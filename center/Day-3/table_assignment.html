@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <style>
+        table{
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 20px;
+            font-family:monospace;
+            border-color: cadetblue;
+            background-color:lightgreen;
+            color: #333;
+            /* border-collapse: collapse; */
+
+        }
+        table tr:hover{
+            background-color:lightseagreen;
+            transition: all 0.6s ease-in;
+        
+        }
+    </style>
+</head>
+<body>
+    <table border="2" cellpadding="5px" cellspacing="5px" bordercolor=" #40E0D0 ">
+        <caption style="color: #de3163;"><i><u><h1>Cash Memo</h1></u></i></caption>
+        <tr>
+            <th>SL No</th>
+            <th>Item Name</th>
+            <th>Quentity</th>
+            <th>Price(&#8377;)</th>
+            <th>Total(&#8377;)</th>
+            <th>Total Amt.(&#8377;)</th>
+            
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Rice</td>
+            <td>5Kg</td>
+            <td>40/kg</td>
+            <td>200</td>
+            <td rowspan="7" style="text-align: center;">525/-</td>
+        </tr>
+         <tr>
+            <td>2</td>
+            <td>Sugar</td>
+            <td>1Kg</td>
+            <td>50/kg</td>
+            <td>50</td>
+        </tr>
+         <tr>
+            <td>3</td>
+            <td>Biscuit</td>
+            <td>2p</td>
+            <td>50/p</td>
+            <td>100</td>
+        </tr>
+         <tr>
+            <td>4</td>
+            <td>Tea</td>
+            <td>50g</td>
+            <td>1000/kg</td>
+            <td>50</td>
+        </tr>
+         <tr>
+            <td>5</td>
+            <td>Coke</td>
+            <td>2L</td>
+            <td>90</td>
+            <td>90</td>
+        </tr>
+         <tr>
+            <td>6</td>
+            <td>Ginger</td>
+            <td>50g</td>
+            <td>100/kg</td>
+            <td>5</td>
+        </tr>
+         <tr>
+            <td>7</td>
+            <td>Onion</td>
+            <td>2Kg</td>
+            <td>15/kg</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align: center;color:red"><i>Thanks for Shopping Here</i></td>
+        </tr>
+
+    </table>
+</body>
+</html>

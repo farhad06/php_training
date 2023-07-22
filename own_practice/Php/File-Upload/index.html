@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <!-- <div class="row">
+            <div class="col-md-12">
+                <header class="modal modal-header">
+                    <h1>Fill the form</h1>
+                </header>
+            </div>
+        </div> -->
+        <form action="file_upload.php" method="post" enctype="multipart/form-data" >
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" name="name" autocomplete="off" required class="form-control">
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="">Image</label>
+                        <input type="file" name="image" required class="form-control" onchange="preview()">
+                        <img src="" id="img_prev" style="width: 110px; height: 85px; margin-top: 10px;">
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button class="btn btn-success">Submit</button>
+                </div>
+            </div>
+            </div>
+            </form>
+    </div>
+    <script>
+        var image1=document.getElementById('img_prev');
+        function preview(){
+            var imagePath=URL.createObjectURL(event.target.files[0]);
+            //console.log(imagePath);
+            image1.src=imagePath;
+            image1.style.display = 'block';
+
+        }
+        addEventListener('load',function(){
+            image1.style.display='none';
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+MariaDB [php_center]> select * from team_list;
++----+-----------------+---------------+------------+-----------------------+--------+------------+-----------------+---------------------+
+| id | name            | jersey_number | phone      | email                 | salary | city       | role            | joined_date         |
++----+-----------------+---------------+------------+-----------------------+--------+------------+-----------------+---------------------+
+|  1 | Rohit Sharma    |            45 | 7337456901 | iamho@gmail.com       |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |
+|  2 | KL Rahul        |             1 | 9630563245 | rahul@gmail.com       |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |
+|  3 | Virat Kohli     |            18 | 8874526548 | vk02@gmail.com        |  65000 | Delhi      | Batter          | 2023-07-13 09:22:46 |
+|  4 | Shubman Gill    |            77 | 8874516548 | sgill@gmail.com       |  30000 | Punjab     | Batter          | 2023-07-13 09:22:46 |
+|  5 | Rishab Pant     |            17 | 7874516548 | pant@gmail.com        |  40000 | Delhi      | Batter(WK)      | 2023-07-13 09:22:46 |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com     |  45000 | Surat      | All Rounder     | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya  |            33 | 7870016547 | hardik@hotmail.com    |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |
+|  8 | Axar Patel      |            36 | 9870016547 | axar@hotmail.com      |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |
+|  9 | Mohammad Siraj  |            13 | 9870016544 | siraj@yahoo.com       |  45000 | Hyderabad  | Blower(Seam)    | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami  |            11 | 7337456900 | shami@gmail.com       |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |
+| 11 | Kuldeep Yadav   |            23 | 8765326345 | kuldeep02@gmail.com   |  32000 | Kolkata    | Blower(Spinner) | 2023-07-13 09:27:48 |
+| 12 | Jasprit Bumrah  |            93 | 8796245123 | bumrah@radiffmail.com |  42000 | Gujrat     | Blower(Seam)    | 2023-07-15 09:28:40 |
++----+-----------------+---------------+------------+-----------------------+--------+------------+-----------------+---------------------+
+12 rows in set (0.004 sec)
+
+MariaDB [php_center]> select count(id) as 'No_of_player',city from team_list group by city;
++--------------+------------+
+| No_of_player | city       |
++--------------+------------+
+|            1 | Ahamedabad |
+|            1 | Bangalore  |
+|            2 | Delhi      |
+|            1 | Gujrat     |
+|            1 | Hyderabad  |
+|            2 | Kolkata    |
+|            1 | Mohali     |
+|            1 | Mumbai     |
+|            1 | Punjab     |
+|            1 | Surat      |
++--------------+------------+
+10 rows in set (0.006 sec)
+
+MariaDB [php_center]> select count(id) as 'No_of_player',role from team_list group by role;
++--------------+-----------------+
+| No_of_player | role            |
++--------------+-----------------+
+|            2 | All Rounder     |
+|            3 | Batter          |
+|            1 | Batter(C)       |
+|            1 | Batter(WK)      |
+|            3 | Blower(Seam)    |
+|            2 | Blower(Spinner) |
++--------------+-----------------+
+6 rows in set (0.002 sec)
+
+MariaDB [php_center]> select count(id) as 'No_of_player',city from team_list group by city order by desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'desc' at line 1
+MariaDB [php_center]> select count(id) as 'No_of_player',city from team_list group by city order by city desc;
++--------------+------------+
+| No_of_player | city       |
++--------------+------------+
+|            1 | Surat      |
+|            1 | Punjab     |
+|            1 | Mumbai     |
+|            1 | Mohali     |
+|            2 | Kolkata    |
+|            1 | Hyderabad  |
+|            1 | Gujrat     |
+|            2 | Delhi      |
+|            1 | Bangalore  |
+|            1 | Ahamedabad |
++--------------+------------+
+10 rows in set (0.003 sec)
+
+MariaDB [php_center]> select count(id) as 'No_of_player',city from team_list group by city having count(id)>=2;
++--------------+---------+
+| No_of_player | city    |
++--------------+---------+
+|            2 | Delhi   |
+|            2 | Kolkata |
++--------------+---------+
+2 rows in set (0.003 sec)
+
+MariaDB [php_center]> select count(id) as 'No_of_player',city from team_list group by city having city='Kolkata';
++--------------+---------+
+| No_of_player | city    |
++--------------+---------+
+|            2 | Kolkata |
++--------------+---------+
+
+
+MariaDB [php_center]> create table team_list_backup(
+    ->      id int primary key auto_increment,
+    ->      name_backup varchar(255),
+    ->   jersey_no_backup int,
+    ->      phone varchar(255) unique,
+    ->      email varchar(255) unique,
+    ->      salary double,
+    ->      city varchar(255),
+    ->   role varchar(255) ,
+    ->      created timestamp default current_timestamp
+    ->      );
+Query OK, 0 rows affected (0.084 sec)
+
+MariaDB [php_center]> desc team_list_backup;
++------------------+--------------+------+-----+---------------------+----------------+
+| Field            | Type         | Null | Key | Default             | Extra          |
++------------------+--------------+------+-----+---------------------+----------------+
+| id               | int(11)      | NO   | PRI | NULL                | auto_increment |
+| name_backup      | varchar(255) | YES  |     | NULL                |                |
+| jersey_no_backup | int(11)      | YES  |     | NULL                |                |
+| phone            | varchar(255) | YES  | UNI | NULL                |                |
+| email            | varchar(255) | YES  | UNI | NULL                |                |
+| salary           | double       | YES  |     | NULL                |                |
+| city             | varchar(255) | YES  |     | NULL                |                |
+| role             | varchar(255) | YES  |     | NULL                |                |
+| created          | timestamp    | NO   |     | current_timestamp() |                |
++------------------+--------------+------+-----+---------------------+----------------+
+9 rows in set (0.021 sec)
+
+MariaDB [php_center]> insert into team_list_backup(id,name_backup,jersey_no_back_up,phone,email,salary,city,role,created) values (select * from team_list);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select * from team_list)' at line 1
+MariaDB [php_center]> insert into team_list_backup(id,name_backup,jersey_no_backup,phone,email,salary,city,role,created) values (select * from team_list);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select * from team_list)' at line 1
+MariaDB [php_center]> insert into team_list_backup(id,name_backup,jersey_no_backup,phone,email,salary,city,role,created) select * from team_list;
+Query OK, 12 rows affected (0.008 sec)
+Records: 12  Duplicates: 0  Warnings: 0
+
+MariaDB [php_center]> select * from team_list_backup;
++----+-----------------+------------------+------------+-----------------------+--------+------------+-----------------+---------------------+
+| id | name_backup     | jersey_no_backup | phone      | email                 | salary | city       | role            | created             |
++----+-----------------+------------------+------------+-----------------------+--------+------------+-----------------+---------------------+
+|  1 | Rohit Sharma    |               45 | 7337456901 | iamho@gmail.com       |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |
+|  2 | KL Rahul        |                1 | 9630563245 | rahul@gmail.com       |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |
+|  3 | Virat Kohli     |               18 | 8874526548 | vk02@gmail.com        |  65000 | Delhi      | Batter          | 2023-07-13 09:22:46 |
+|  4 | Shubman Gill    |               77 | 8874516548 | sgill@gmail.com       |  30000 | Punjab     | Batter          | 2023-07-13 09:22:46 |
+|  5 | Rishab Pant     |               17 | 7874516548 | pant@gmail.com        |  40000 | Delhi      | Batter(WK)      | 2023-07-13 09:22:46 |
+|  6 | Ravindra Jadeja |                9 | 7870016548 | jaddu@outlook.com     |  45000 | Surat      | All Rounder     | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya  |               33 | 7870016547 | hardik@hotmail.com    |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |
+|  8 | Axar Patel      |               36 | 9870016547 | axar@hotmail.com      |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |
+|  9 | Mohammad Siraj  |               13 | 9870016544 | siraj@yahoo.com       |  45000 | Hyderabad  | Blower(Seam)    | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami  |               11 | 7337456900 | shami@gmail.com       |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |
+| 11 | Kuldeep Yadav   |               23 | 8765326345 | kuldeep02@gmail.com   |  32000 | Kolkata    | Blower(Spinner) | 2023-07-13 09:27:48 |
+| 12 | Jasprit Bumrah  |               93 | 8796245123 | bumrah@radiffmail.com |  42000 | Gujrat     | Blower(Seam)    | 2023-07-15 09:28:40 |
++----+-----------------+------------------+------------+-----------------------+--------+------------+-----------------+---------------------+
+12 rows in set (0.001 sec)

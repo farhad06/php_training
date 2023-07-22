@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js</title>
+</head>
+<body>
+    <center><h1>Javascript Program</h1></center>
+
+    <button type="submit" onclick="alertBox()">Submit</button>
+    <button type="submit" onclick="add()">Add</button><br><br>
+
+    <form action="">
+        <label for="">Name</label>
+        <input type="text" id="name">
+        <input type="submit" id="submit" value="Submit" onclick="displayName()">
+    </form>
+
+    <script>
+        //alert box
+        function alertBox(){
+            alert("You Clicked Submit Button.");
+        }
+        //add two numbers
+        function add(){
+            var a=10;
+            var b=20;
+            var c=a+b;
+            alert("Sum of " +a+" and "+b+" is: " +c);
+        }
+        //to display user name
+        function displayName(){
+            var name=document.getElementById('name').value;
+            alert(name+" ,you clicked the submit button 🤩");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+@font-face{
+	font-family: digital;
+	src:url(digital8.ttf);}
+#clock{
+	font-family: digital;
+	font-size: 100px;
+	width: 600px;
+	margin: 200px;
+	text-align: center;
+}
+body{
+	background:linear-gradient(#08f,#fff);
+	
+}

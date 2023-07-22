@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <!-- Adding jquery-min.js Mother Dependancy -->
+    <script src="../../js-cdn-files/jquery.js"></script>
+    <!-- Adding jQuery-ui.js -->
+    <script src="../../js-cdn-files/jquery-ui.min.js"></script>
+    <!-- Adding jQuery-ui-min.css for designing -->
+    <link rel="stylesheet" href="../../js-cdn-files/jquery-ui.min.css">
+       <style type="text/css">  
+         #spinner-1 input {width: 100px}  
+      </style>
+</head>
+<body>
+    <center><h1><i>This is jQuery UI</i></h1></center>
+    <!-- <section>
+        DOB:
+        <input type="text" id="dob" autocomplete="off">
+    </section> -->
+    <!-- <div id="d1">
+        <ul>
+            <li><a href="#sec1">React</a></li>
+            <li><a href="#sec2">Node</a></li>
+            <li><a href="#sec3">Vie</a></li>
+        </ul>
+        <section id="sec1">
+        <h2>React</h2>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur fuga numquam officiis repellendus, ad vero molestiae nobis quas. At ipsum nemo voluptatum repellat laboriosam tempore eos sequi tenetur esse doloremque accusantium iure veritatis praesentium aperiam nisi saepe, sit sunt iusto cupiditate asperiores vero maxime. Sequi illum ratione accusamus autem facilis?
+        </section>
+        <section id="sec2">
+        <h2>Node</h2>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur fuga numquam officiis repellendus, ad vero molestiae nobis quas. At ipsum nemo voluptatum repellat laboriosam tempore eos sequi tenetur esse doloremque accusantium iure veritatis praesentium aperiam nisi saepe, sit sunt iusto cupiditate asperiores vero maxime. Sequi illum ratione accusamus autem facilis?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis beatae tenetur ex sapiente error vel, architecto fugit aliquam repellendus ullam rerum tempore veniam accusamus eius pariatur explicabo hic repellat quidem similique quia asperiores omnis odio quaerat minima! Ea molestias alias voluptates error incidunt, vitae eveniet provident itaque quia! Dolorum, architecto!
+        </section>
+        <section id="sec3">
+        <h2>Viu</h2>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur fuga numquam officiis repellendus, ad vero molestiae nobis quas. At ipsum nemo voluptatum repellat laboriosam tempore eos sequi tenetur esse doloremque accusantium iure veritatis praesentium aperiam nisi saepe, sit sunt iusto cupiditate asperiores vero maxime. Sequi illum ratione accusamus autem facilis?
+        </section>
+    </div> -->
+    <div id="example">  
+    <input type="text" id="spinner-1" value="0" />  
+    </div>  
+    <script>
+        $(document).ready(function(){
+            console.log("jQuery Loaded");
+            //date picker
+            $("#dob").datepicker({
+                changeYear:true,
+                changeMonth:true,
+                yearRange:"1900:2023"
+            });
+            //according
+            // $('#d1').accordion();
+            //tabs
+            $('#d1').tabs();
+            //progress bar
+            // $(function() {  
+            //     $( "#progressbar-1" ).progressbar({  
+            //     value: 30  
+            //     });  
+            // });
+           $(function() {  
+            $( "#spinner-1" ).spinner();  
+         });  
+
+        });
+    </script>
+</body>
+</html>

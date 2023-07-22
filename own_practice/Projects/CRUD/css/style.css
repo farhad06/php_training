@@ -1,0 +1,32 @@
+#header{
+    text-align: center;
+    margin-top: 33px;
+    background-color: aqua;
+    height: 70px;
+}
+/* #main-contain{
+    background-color: darkgray;
+} */
+
+button a{
+    color: azure;
+}
+
+/* #addForm{
+    text-align: center;
+    width: 700px;
+    height: 350px;
+    background-color:lightgray;
+    border-radius: 10px;
+            
+} */
+
+/* #addBtn{
+    display: flex;
+    justify-content: center;
+} */
+
+#btn{
+    margin-left: 91px;
+    width: 100px;
+}

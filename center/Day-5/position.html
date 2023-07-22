@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #child-div{
+            height: 200px;
+            width: 250px;
+            margin: 15px;
+            padding: 8px;
+            border: 2px solid green;
+            position: relative;
+            top:200px;
+            right:250px;
+        }
+        #parent-div{
+            height: 200px;
+            width: 250px;
+            margin: 15px;
+            padding: 8px;
+            border: 2px solid indigo;
+            position: absolute;
+            top:250px;
+            right: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent-div">
+        <strong><i>This is Parent Div</i></strong>
+        <div id="child-div">
+            <strong><i>This is Chield Div</i></strong>
+        </div>
+    </div>
+</body>
+</html>

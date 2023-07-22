@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            .error-msg{
+                color:red;
+            }
+            label{
+                color:indigo;
+            }
+        </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+        <div style="text-align: center; color: blueviolet;"><h1><i><u>Registration Form</u></i></h1></div>
+
+            </div>
+        </div>
+         <form action="successful.html">
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" id="name" placeholder="Enter Your name" class="form-control" onkeyup="nameValidation()" autocomplete="off">
+                <section id="nameErr"></section>
+            </div>
+            <div class="form-group">
+                <label for="">Email</label>
+                <input type="text" id="email" placeholder="Enter Your Email" class="form-control" onkeyup="emailValidation()"
+                    autocomplete="off">
+                <section id="emailErr"></section>
+            </div>
+            <div class="form-group">
+                <label for="">Age</label>
+                <input type="text" id="age" placeholder="Enter Your Age" class="form-control" onkeyup="ageValidation()"
+                    autocomplete="off" maxlength="2">
+                <section id="ageErr"></section>
+            </div>
+            <div class="form-group">
+                <label for="">Phone</label>
+                <input type="text" id="phone" placeholder="Enter Your Phone" class="form-control" onkeyup="phoneValidation()"
+                    autocomplete="off" maxlength="10">
+                <section id="phoneErr"></section>
+            </div>
+            <div class="form-group">
+                <label for="">Pin</label>
+                <input type="text" id="pin" placeholder="Enter Your's Area Pin Code" class="form-control" onkeyup="pinValidation()"
+                    autocomplete="off" maxlength="6">
+                <section id="pinErr"></section>
+            </div>
+            <div class="form-group">
+               <button type="submit" id="btn" class="btn btn-primary">Submit</button>
+            </div>
+</form>
+    </div>
+  <script>
+    
+         function nameValidation() {
+            var name = document.getElementById('name').value;
+            var nameRegex = /^[a-zA-Z ]{3,20}$/;
+            if (name == "" || name == null) {
+                document.getElementById('nameErr').innerHTML = 'Name Should Not Blank';
+                document.getElementById('btn').disabled = true;
+                document.getElementById('name').classList.add('is-invalid');
+                document.getElementById('nameErr').classList.add('error-msg');
+
+            }
+            else if (nameRegex.test(name)) {
+                document.getElementById('nameErr').innerHTML = '';
+                document.getElementById('btn').disabled = false;
+                document.getElementById('name').classList.remove('is-invalid');
+                document.getElementById('nameErr').classList.remove('error-msg');
+
+            } else {
+                document.getElementById('nameErr').innerHTML = 'Invalid Name (Name Should contain alphabet 3-20 Char.)';
+                document.getElementById('btn').disabled = true;
+                document.getElementById('name').classList.add('is-invalid');
+                document.getElementById('nameErr').classList.add('error-msg');
+
+            }
+        }
+
+function emailValidation(){
+    var email = document.getElementById('email').value;
+    var emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
+    if (email == "" || email == null) {
+        document.getElementById('emailErr').innerHTML = 'Email Should Not Blank';
+        document.getElementById('btn').disabled = true;
+        document.getElementById('email').classList.add('is-invalid');
+        document.getElementById('emailErr').classList.add('error-msg');
+
+    }
+    else if (emailRegEx.test(email)) {
+        document.getElementById('emailErr').innerHTML = '';
+        document.getElementById('btn').disabled = false;
+        document.getElementById('email').classList.remove('is-invalid');
+        document.getElementById('emailErr').classList.remove('error-msg');
+
+    } else {
+        document.getElementById('emailErr').innerHTML = 'Invalid Email';
+        document.getElementById('btn').disabled = true;
+        document.getElementById('email').classList.add('is-invalid');
+        document.getElementById('emailErr').classList.add('error-msg');
+
+    }
+}  
+
+function ageValidation(){
+    var age=document.getElementById('age').value;
+       if (age == "" || age == null) {
+        document.getElementById('ageErr').innerHTML = 'Age Should Not Blank';
+        document.getElementById('btn').disabled = true;
+        document.getElementById('age').classList.add('is-invalid');
+        document.getElementById('ageErr').classList.add('error-msg');
+
+    }
+    else if (parseInt(age)>=18 && parseInt(age) <=45) {
+        document.getElementById('ageErr').innerHTML = '';
+        document.getElementById('btn').disabled = false;
+        document.getElementById('age').classList.remove('is-invalid');
+        document.getElementById('ageErr').classList.remove('error-msg');
+
+    } else {
+        document.getElementById('ageErr').innerHTML = 'Age Must be 18-45';
+        document.getElementById('btn').disabled = true;
+        document.getElementById('age').classList.add('is-invalid');
+        document.getElementById('ageErr').classList.add('error-msg');
+
+    }
+
+}
+    function phoneValidation() {
+            var phone = document.getElementById('phone').value;
+            //console.log(phone);
+            if (phone == "" || phone == null) {
+                document.getElementById('phoneErr').innerText = 'Phone NUmber Should Not Blank';
+                document.getElementById('btn').disabled = true;
+                document.getElementById('phone').classList.add('is-invalid');
+                document.getElementById('phoneErr').classList.add('error-msg');
+
+
+            }
+            else if (phone.length == 10) {
+                console.log('ok')
+                //check first number is 9,8,7,6
+                if (phone.substr(0, 1) == '6' || phone.substr(0, 1) == '7' || phone.substr(0, 1) == '8' || phone.substr(0, 1) == '9') {
+                    document.getElementById('phoneErr').innerText = '';
+                    document.getElementById('btn').disabled = false;
+                    document.getElementById('phone').classList.remove('is-invalid');
+                    document.getElementById('phoneErr').classList.remove('error-msg');
+
+                } else {
+                    document.getElementById('phoneErr').innerText = 'Invaild Phone Number';
+                    document.getElementById('btn').disabled = true;
+                    document.getElementById('phone').classList.add('is-invalid');
+                    document.getElementById('phoneErr').classList.add('error-msg');
+
+                }
+                //check if it exceed 10 digits.
+            } else if (phone.length > 10) {
+                document.getElementById('phoneErr').innerText = 'Maximum 10 Digits Allowed.';
+                document.getElementById('btn').disabled = true;
+                document.getElementById('phone').classList.add('is-invalid');
+                document.getElementById('phoneErr').classList.add('error-msg');
+
+            } else {
+                document.getElementById('phoneErr').innerText = 'Phone number should be 10 digits.';
+                document.getElementById('btn').disabled = true;
+                document.getElementById('phone').classList.add('is-invalid');
+                document.getElementById('phoneErr').classList.add('error-msg');
+
+            }
+        } 
+
+function pinValidation(){
+    var pin=document.getElementById('pin').value;
+    var pinRegex = /^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/;
+       if (pin == "" || pin == null) {
+        document.getElementById('pinErr').innerHTML = 'Pin Should Not Blank';
+        document.getElementById('btn').disabled = true;
+        document.getElementById('pin').classList.add('is-invalid');
+        document.getElementById('pinErr').classList.add('error-msg');
+
+    }
+    else if (pinRegex.test(pin)) {
+        document.getElementById('pinErr').innerHTML = '';
+        document.getElementById('btn').disabled = false;
+        document.getElementById('pin').classList.remove('is-invalid');
+        document.getElementById('pinErr').classList.remove('error-msg');
+
+    } else {
+        document.getElementById('pinErr').innerHTML = 'Invalid pin';
+        document.getElementById('btn').disabled = true;
+        document.getElementById('pin').classList.add('is-invalid');
+        document.getElementById('pinErr').classList.add('error-msg');
+
+    }
+}        
+  </script>
+    
+</body>
+</html>

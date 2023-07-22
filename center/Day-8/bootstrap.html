@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap</title>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <head class="modal-header"><h1><i>Fill the Form</i></h1></head>
+        <form action="success.html">
+        <div class="form-group">
+        <label for="">Name:</label>
+        <input type="text" id="name" class="form-control" autocomplete="off" onkeyup="nameValidation()">
+        <section id="nameErr"></section>
+        </div>
+        <div class="form-group">
+        <label for="">Email:</label>
+        <input type="text" id="email" class="form-control" autocomplete="off" onkeyup="emailValidation()">
+        <section id="emailErr"></section>
+
+       </div>
+        <div class="form-group">
+        <label for="">Phone</label>
+        <input type="number" id="phone" class="form-control" autocomplete="off" onkeyup="phoneValidation()">
+        <section id="phoneErr"></section>
+
+     </div>
+    <div class="form-group">
+        <button class="btn btn-primary" id="btn">Submit</button>
+    </div>
+        </form>
+       
+    </div>
+    <script>
+         function nameValidation(){
+            var name=document.getElementById('name').value;
+            var nameRegex=/^[a-zA-Z ]{3,20}$/;
+            if(name==""||name==null){
+                document.getElementById('nameErr').innerHTML='Name must be not null';
+                document.getElementById('btn').disabled=true;
+                document.getElementById('name').classList.add('is-invalid'); 
+            }
+            else if (nameRegex.test(name)){
+                document.getElementById('nameErr').innerHTML='';
+                document.getElementById('btn').disabled=false;
+                document.getElementById('name').classList.remove('is-invalid');
+            }else{
+                document.getElementById('nameErr').innerHTML='Invalid Name (Name Should contain alphabet 3-20 Char.)';
+                document.getElementById('btn').disabled=true;
+                document.getElementById('name').classList.add('is-invalid');
+            }
+        }
+        function emailValidation(){
+        var email=document.getElementById('email').value;
+        var emailRegEx=/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
+        if(email==""||email==null){
+                document.getElementById('emailErr').innerHTML='Email must be not null';
+                document.getElementById('btn').disabled=true;
+                document.getElementById('email').classList.add('is-invalid'); 
+            }
+        else if(emailRegEx.test(email)){
+            document.getElementById('emailErr').innerHTML='';
+            document.getElementById('btn').disabled=false;
+            document.getElementById('email').classList.remove('is-invalid');
+
+        }else{
+            document.getElementById('emailErr').innerHTML='Invalid Email Address';
+            document.getElementById('btn').disabled=true;
+            document.getElementById('email').classList.add('is-invalid');
+        }
+    }
+    function phoneValidation(){
+            var phone=document.getElementById('phone').value;
+            //console.log(phone);
+            if(phone==""||phone==null){
+                document.getElementById('phoneErr').innerText='Phone number must be not null.';
+                document.getElementById('btn').disabled=false;
+                document.getElementById('phone').classList.add('is-invalid');
+
+            }
+            else if(phone.length==10){
+                console.log('ok')
+                //check first number is 9,8,7,6
+                if(phone.substr(0,1)=='6'||phone.substr(0,1)=='7'||phone.substr(0,1)=='8'||phone.substr(0,1)=='9'){
+                    document.getElementById('phoneErr').innerText='';
+                    document.getElementById('btn').disabled=false;
+                    document.getElementById('phone').classList.remove('is-invalid');
+                }else{
+                     document.getElementById('phoneErr').innerText='Invaild Phone Number';
+                     document.getElementById('btn').disabled=true;
+                     document.getElementById('phone').classList.add('is-invalid');
+                }
+                //check if it exceed 10 digits.
+            }else if(phone.length>10) {
+                document.getElementById('phoneErr').innerText='Maximum 10 Digits Allowed.';
+                document.getElementById('btn').disabled=true;
+                document.getElementById('phone').classList.add('is-invalid');
+            }else{
+                document.getElementById('phoneErr').innerText='Phone number should be 10 digits.';
+                document.getElementById('btn').disabled=true;
+                document.getElementById('phone').classList.add('is-invalid');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        /* .btn{
+            height: 25px;
+            width: 25px;
+            border: 1px solid rgb(248, 132, 132);
+            border-radius: 50%;
+        }
+        .number{
+           border: 1px solid rgb(185, 236, 65);
+        } */
+    </style>
+</head>
+<body>
+    <center>Basic Calculator</center>
+    <table style="margin-left: auto; margin-right: auto;">
+        <!-- <caption style="text-align: center;">Basic Calculator</caption> -->
+        <tr>
+            <td>Number-1: </td>
+            <td>
+                <input type="number" name="" id="n1" class="number">
+            </td>
+        </tr>
+        <tr>
+            <td>Number-2: </td>
+            <td>
+                <input type="number" name="" id="n2" class="number">
+            </td>
+        </tr>
+        <tr>
+            <td>Calculate: </td>
+            <td>
+            <button id="add" onclick="add()" class="btn">+</button>
+            <button id="sub" onclick="sub()" class="btn">-</button>
+            <button id="multi" onclick="multi()" class="btn">*</button>
+            <button id="divi" onclick="divi()" class="btn">/</button>
+            <button id="mod" onclick="mod()" class="btn">%</button>
+            </td>
+           
+        </tr>
+        <tr>
+            <td>Result: </td>
+            <td><span id="res"></span></td>
+        </tr>
+    </table>
+    <script>
+        //addtion function
+        function add(){
+            var a =Number(document.getElementById('n1').value);
+            var b =Number(document.getElementById('n2').value);
+            var c=a+b;
+            console.log(c)
+            document.getElementById('res').innerHTML=c;
+
+        }
+        //substraction function
+        function sub(){
+            var a =Number(document.getElementById('n1').value);
+            var b =Number(document.getElementById('n2').value);
+            var c=a-b;
+            console.log(c)
+            document.getElementById('res').innerHTML=c;
+
+        }
+        //multiplication function
+        function multi(){
+            var a =Number(document.getElementById('n1').value);
+            var b =Number(document.getElementById('n2').value);
+            var c=a*b;
+            console.log(c)
+            document.getElementById('res').innerHTML=c;
+
+        }
+        //division function
+        function divi(){
+            var a =Number(document.getElementById('n1').value);
+            var b =Number(document.getElementById('n2').value);
+            var c=a/b;
+            console.log(c)
+            document.getElementById('res').innerHTML=c;
+
+        }
+        //modulation function
+        function mod(){
+            var a =Number(document.getElementById('n1').value);
+            var b =Number(document.getElementById('n2').value);
+            var c=a%b;
+            console.log(c)
+            document.getElementById('res').innerHTML=c;
+
+        }
+    </script>
+</body>
+</html>

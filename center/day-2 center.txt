@@ -1,0 +1,288 @@
+MariaDB [php_center]> select * from team_list;
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+| id | name            | jersey_number | phone      | email               | salary | city       | role            | joined_date         |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+|  1 | Rohit Sharma    |            45 | 7337456901 | iamho@gmail.com     |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |
+|  2 | KL Rahul        |             1 | 9630563245 | rahul@gmail.com     |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |
+|  3 | Virat Kohli     |            18 | 8874526548 | vk02@gmail.com      |  65000 | Delhi      | Batter          | 2023-07-13 09:22:46 |
+|  4 | Shubman Gill    |            77 | 8874516548 | sgill@gmail.com     |  30000 | Punjab     | Batter          | 2023-07-13 09:22:46 |
+|  5 | Rishab Pant     |            17 | 7874516548 | pant@gmail.com      |  40000 | Delhi      | Batter(WK)      | 2023-07-13 09:22:46 |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com   |  45000 | Surat      | All Rounder     | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya  |            33 | 7870016547 | hardik@hotmail.com  |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |
+|  8 | Axar Patel      |            36 | 9870016547 | axar@hotmail.com    |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |
+|  9 | Mohammad Siraj  |            13 | 9870016544 | siraj@yahoo.com     |  45000 | Hyderabad  | Blower(Seam)    | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami  |            11 | 7337456900 | shami@gmail.com     |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |
+| 11 | Kuldeep Yadav   |            23 | 8765326345 | kuldeep02@gmail.com |  32000 | Kolkata    | Blower(Spinner) | 2023-07-13 09:27:48 |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+11 rows in set (0.001 sec)
+
+MariaDB [php_center]> show tables;
++----------------------+
+| Tables_in_php_center |
++----------------------+
+| employee             |
+| team_list            |
++----------------------+
+2 rows in set (0.009 sec)
+
+MariaDB [php_center]> select * from team_list order by name desc;
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+| id | name            | jersey_number | phone      | email               | salary | city       | role            | joined_date         |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+|  3 | Virat Kohli     |            18 | 8874526548 | vk02@gmail.com      |  65000 | Delhi      | Batter          | 2023-07-13 09:22:46 |
+|  4 | Shubman Gill    |            77 | 8874516548 | sgill@gmail.com     |  30000 | Punjab     | Batter          | 2023-07-13 09:22:46 |
+|  1 | Rohit Sharma    |            45 | 7337456901 | iamho@gmail.com     |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |
+|  5 | Rishab Pant     |            17 | 7874516548 | pant@gmail.com      |  40000 | Delhi      | Batter(WK)      | 2023-07-13 09:22:46 |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com   |  45000 | Surat      | All Rounder     | 2023-07-13 09:22:46 |
+|  9 | Mohammad Siraj  |            13 | 9870016544 | siraj@yahoo.com     |  45000 | Hyderabad  | Blower(Seam)    | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami  |            11 | 7337456900 | shami@gmail.com     |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |
+| 11 | Kuldeep Yadav   |            23 | 8765326345 | kuldeep02@gmail.com |  32000 | Kolkata    | Blower(Spinner) | 2023-07-13 09:27:48 |
+|  2 | KL Rahul        |             1 | 9630563245 | rahul@gmail.com     |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya  |            33 | 7870016547 | hardik@hotmail.com  |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |
+|  8 | Axar Patel      |            36 | 9870016547 | axar@hotmail.com    |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+11 rows in set (0.031 sec)
+
+MariaDB [php_center]> select * from team_list order by name asc;
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+| id | name            | jersey_number | phone      | email               | salary | city       | role            | joined_date         |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+|  8 | Axar Patel      |            36 | 9870016547 | axar@hotmail.com    |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya  |            33 | 7870016547 | hardik@hotmail.com  |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |
+|  2 | KL Rahul        |             1 | 9630563245 | rahul@gmail.com     |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |
+| 11 | Kuldeep Yadav   |            23 | 8765326345 | kuldeep02@gmail.com |  32000 | Kolkata    | Blower(Spinner) | 2023-07-13 09:27:48 |
+| 10 | Mohammad Shami  |            11 | 7337456900 | shami@gmail.com     |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |
+|  9 | Mohammad Siraj  |            13 | 9870016544 | siraj@yahoo.com     |  45000 | Hyderabad  | Blower(Seam)    | 2023-07-13 09:22:46 |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com   |  45000 | Surat      | All Rounder     | 2023-07-13 09:22:46 |
+|  5 | Rishab Pant     |            17 | 7874516548 | pant@gmail.com      |  40000 | Delhi      | Batter(WK)      | 2023-07-13 09:22:46 |
+|  1 | Rohit Sharma    |            45 | 7337456901 | iamho@gmail.com     |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |
+|  4 | Shubman Gill    |            77 | 8874516548 | sgill@gmail.com     |  30000 | Punjab     | Batter          | 2023-07-13 09:22:46 |
+|  3 | Virat Kohli     |            18 | 8874526548 | vk02@gmail.com      |  65000 | Delhi      | Batter          | 2023-07-13 09:22:46 |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+11 rows in set (0.002 sec)
+
+MariaDB [php_center]> alter table team_list add column highest_score int;
+Query OK, 0 rows affected (0.036 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [php_center]> select * from team_list;
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+---------------+
+| id | name            | jersey_number | phone      | email               | salary | city       | role            | joined_date         | highest_score |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+---------------+
+|  1 | Rohit Sharma    |            45 | 7337456901 | iamho@gmail.com     |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |          NULL |
+|  2 | KL Rahul        |             1 | 9630563245 | rahul@gmail.com     |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |          NULL |
+|  3 | Virat Kohli     |            18 | 8874526548 | vk02@gmail.com      |  65000 | Delhi      | Batter          | 2023-07-13 09:22:46 |          NULL |
+|  4 | Shubman Gill    |            77 | 8874516548 | sgill@gmail.com     |  30000 | Punjab     | Batter          | 2023-07-13 09:22:46 |          NULL |
+|  5 | Rishab Pant     |            17 | 7874516548 | pant@gmail.com      |  40000 | Delhi      | Batter(WK)      | 2023-07-13 09:22:46 |          NULL |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com   |  45000 | Surat      | All Rounder     | 2023-07-13 09:22:46 |          NULL |
+|  7 | Hardik Pandiya  |            33 | 7870016547 | hardik@hotmail.com  |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |          NULL |
+|  8 | Axar Patel      |            36 | 9870016547 | axar@hotmail.com    |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |          NULL |
+|  9 | Mohammad Siraj  |            13 | 9870016544 | siraj@yahoo.com     |  45000 | Hyderabad  | Blower(Seam)    | 2023-07-13 09:22:46 |          NULL |
+| 10 | Mohammad Shami  |            11 | 7337456900 | shami@gmail.com     |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |          NULL |
+| 11 | Kuldeep Yadav   |            23 | 8765326345 | kuldeep02@gmail.com |  32000 | Kolkata    | Blower(Spinner) | 2023-07-13 09:27:48 |          NULL |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+---------------+
+11 rows in set (0.007 sec)
+
+MariaDB [php_center]> alter table team_list drop column highest_score;
+Query OK, 0 rows affected (0.018 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [php_center]> select * from team_list;
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+| id | name            | jersey_number | phone      | email               | salary | city       | role            | joined_date         |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+|  1 | Rohit Sharma    |            45 | 7337456901 | iamho@gmail.com     |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |
+|  2 | KL Rahul        |             1 | 9630563245 | rahul@gmail.com     |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |
+|  3 | Virat Kohli     |            18 | 8874526548 | vk02@gmail.com      |  65000 | Delhi      | Batter          | 2023-07-13 09:22:46 |
+|  4 | Shubman Gill    |            77 | 8874516548 | sgill@gmail.com     |  30000 | Punjab     | Batter          | 2023-07-13 09:22:46 |
+|  5 | Rishab Pant     |            17 | 7874516548 | pant@gmail.com      |  40000 | Delhi      | Batter(WK)      | 2023-07-13 09:22:46 |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com   |  45000 | Surat      | All Rounder     | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya  |            33 | 7870016547 | hardik@hotmail.com  |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |
+|  8 | Axar Patel      |            36 | 9870016547 | axar@hotmail.com    |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |
+|  9 | Mohammad Siraj  |            13 | 9870016544 | siraj@yahoo.com     |  45000 | Hyderabad  | Blower(Seam)    | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami  |            11 | 7337456900 | shami@gmail.com     |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |
+| 11 | Kuldeep Yadav   |            23 | 8765326345 | kuldeep02@gmail.com |  32000 | Kolkata    | Blower(Spinner) | 2023-07-13 09:27:48 |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+11 rows in set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where salary>55000;
++----+-------------+---------------+------------+----------------+--------+-------+--------+---------------------+
+| id | name        | jersey_number | phone      | email          | salary | city  | role   | joined_date         |
++----+-------------+---------------+------------+----------------+--------+-------+--------+---------------------+
+|  3 | Virat Kohli |            18 | 8874526548 | vk02@gmail.com |  65000 | Delhi | Batter | 2023-07-13 09:22:46 |
++----+-------------+---------------+------------+----------------+--------+-------+--------+---------------------+
+1 row in set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where salary=55000;
++----+----------------+---------------+------------+--------------------+--------+------------+-------------+---------------------+
+| id | name           | jersey_number | phone      | email              | salary | city       | role        | joined_date         |
++----+----------------+---------------+------------+--------------------+--------+------------+-------------+---------------------+
+|  2 | KL Rahul       |             1 | 9630563245 | rahul@gmail.com    |  55000 | Bangalore  | Batter      | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya |            33 | 7870016547 | hardik@hotmail.com |  55000 | Ahamedabad | All Rounder | 2023-07-13 09:22:46 |
++----+----------------+---------------+------------+--------------------+--------+------------+-------------+---------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where salary<30000;
++----+------------+---------------+------------+------------------+--------+--------+-----------------+---------------------+
+| id | name       | jersey_number | phone      | email            | salary | city   | role            | joined_date         |
++----+------------+---------------+------------+------------------+--------+--------+-----------------+---------------------+
+|  8 | Axar Patel |            36 | 9870016547 | axar@hotmail.com |  25000 | Mohali | Blower(Spinner) | 2023-07-13 09:22:46 |
++----+------------+---------------+------------+------------------+--------+--------+-----------------+---------------------+
+1 row in set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where salary<30000 and salary >40000;
+Empty set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where salary<=30000 and salary >=40000;
+Empty set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where not (salary<=30000 and salary >=40000);
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+| id | name            | jersey_number | phone      | email               | salary | city       | role            | joined_date         |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+|  1 | Rohit Sharma    |            45 | 7337456901 | iamho@gmail.com     |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |
+|  2 | KL Rahul        |             1 | 9630563245 | rahul@gmail.com     |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |
+|  3 | Virat Kohli     |            18 | 8874526548 | vk02@gmail.com      |  65000 | Delhi      | Batter          | 2023-07-13 09:22:46 |
+|  4 | Shubman Gill    |            77 | 8874516548 | sgill@gmail.com     |  30000 | Punjab     | Batter          | 2023-07-13 09:22:46 |
+|  5 | Rishab Pant     |            17 | 7874516548 | pant@gmail.com      |  40000 | Delhi      | Batter(WK)      | 2023-07-13 09:22:46 |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com   |  45000 | Surat      | All Rounder     | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya  |            33 | 7870016547 | hardik@hotmail.com  |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |
+|  8 | Axar Patel      |            36 | 9870016547 | axar@hotmail.com    |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |
+|  9 | Mohammad Siraj  |            13 | 9870016544 | siraj@yahoo.com     |  45000 | Hyderabad  | Blower(Seam)    | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami  |            11 | 7337456900 | shami@gmail.com     |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |
+| 11 | Kuldeep Yadav   |            23 | 8765326345 | kuldeep02@gmail.com |  32000 | Kolkata    | Blower(Spinner) | 2023-07-13 09:27:48 |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+11 rows in set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where salary between (30000 and 45000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [php_center]> select * from team_list where salary between 30000 and 45000;
++----+-----------------+---------------+------------+---------------------+--------+-----------+-----------------+---------------------+
+| id | name            | jersey_number | phone      | email               | salary | city      | role            | joined_date         |
++----+-----------------+---------------+------------+---------------------+--------+-----------+-----------------+---------------------+
+|  4 | Shubman Gill    |            77 | 8874516548 | sgill@gmail.com     |  30000 | Punjab    | Batter          | 2023-07-13 09:22:46 |
+|  5 | Rishab Pant     |            17 | 7874516548 | pant@gmail.com      |  40000 | Delhi     | Batter(WK)      | 2023-07-13 09:22:46 |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com   |  45000 | Surat     | All Rounder     | 2023-07-13 09:22:46 |
+|  9 | Mohammad Siraj  |            13 | 9870016544 | siraj@yahoo.com     |  45000 | Hyderabad | Blower(Seam)    | 2023-07-13 09:22:46 |
+| 11 | Kuldeep Yadav   |            23 | 8765326345 | kuldeep02@gmail.com |  32000 | Kolkata   | Blower(Spinner) | 2023-07-13 09:27:48 |
++----+-----------------+---------------+------------+---------------------+--------+-----------+-----------------+---------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where salary not between 30000 and 45000;
++----+----------------+---------------+------------+--------------------+--------+------------+-----------------+---------------------+
+| id | name           | jersey_number | phone      | email              | salary | city       | role            | joined_date         |
++----+----------------+---------------+------------+--------------------+--------+------------+-----------------+---------------------+
+|  1 | Rohit Sharma   |            45 | 7337456901 | iamho@gmail.com    |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |
+|  2 | KL Rahul       |             1 | 9630563245 | rahul@gmail.com    |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |
+|  3 | Virat Kohli    |            18 | 8874526548 | vk02@gmail.com     |  65000 | Delhi      | Batter          | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya |            33 | 7870016547 | hardik@hotmail.com |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |
+|  8 | Axar Patel     |            36 | 9870016547 | axar@hotmail.com   |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami |            11 | 7337456900 | shami@gmail.com    |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |
++----+----------------+---------------+------------+--------------------+--------+------------+-----------------+---------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where salary in(30000,45000);
++----+-----------------+---------------+------------+-------------------+--------+-----------+--------------+---------------------+
+| id | name            | jersey_number | phone      | email             | salary | city      | role         | joined_date         |
++----+-----------------+---------------+------------+-------------------+--------+-----------+--------------+---------------------+
+|  4 | Shubman Gill    |            77 | 8874516548 | sgill@gmail.com   |  30000 | Punjab    | Batter       | 2023-07-13 09:22:46 |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com |  45000 | Surat     | All Rounder  | 2023-07-13 09:22:46 |
+|  9 | Mohammad Siraj  |            13 | 9870016544 | siraj@yahoo.com   |  45000 | Hyderabad | Blower(Seam) | 2023-07-13 09:22:46 |
++----+-----------------+---------------+------------+-------------------+--------+-----------+--------------+---------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where salary not in(30000,45000);
++----+----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+| id | name           | jersey_number | phone      | email               | salary | city       | role            | joined_date         |
++----+----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+|  1 | Rohit Sharma   |            45 | 7337456901 | iamho@gmail.com     |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |
+|  2 | KL Rahul       |             1 | 9630563245 | rahul@gmail.com     |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |
+|  3 | Virat Kohli    |            18 | 8874526548 | vk02@gmail.com      |  65000 | Delhi      | Batter          | 2023-07-13 09:22:46 |
+|  5 | Rishab Pant    |            17 | 7874516548 | pant@gmail.com      |  40000 | Delhi      | Batter(WK)      | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya |            33 | 7870016547 | hardik@hotmail.com  |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |
+|  8 | Axar Patel     |            36 | 9870016547 | axar@hotmail.com    |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami |            11 | 7337456900 | shami@gmail.com     |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |
+| 11 | Kuldeep Yadav  |            23 | 8765326345 | kuldeep02@gmail.com |  32000 | Kolkata    | Blower(Spinner) | 2023-07-13 09:27:48 |
++----+----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [php_center]> select  from team_list where salary>45000 or salary <60000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from team_list where salary>45000 or salary <60000' at line 1
+MariaDB [php_center]> select * from team_list where salary>45000 or salary <60000;
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+| id | name            | jersey_number | phone      | email               | salary | city       | role            | joined_date         |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+|  1 | Rohit Sharma    |            45 | 7337456901 | iamho@gmail.com     |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |
+|  2 | KL Rahul        |             1 | 9630563245 | rahul@gmail.com     |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |
+|  3 | Virat Kohli     |            18 | 8874526548 | vk02@gmail.com      |  65000 | Delhi      | Batter          | 2023-07-13 09:22:46 |
+|  4 | Shubman Gill    |            77 | 8874516548 | sgill@gmail.com     |  30000 | Punjab     | Batter          | 2023-07-13 09:22:46 |
+|  5 | Rishab Pant     |            17 | 7874516548 | pant@gmail.com      |  40000 | Delhi      | Batter(WK)      | 2023-07-13 09:22:46 |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com   |  45000 | Surat      | All Rounder     | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya  |            33 | 7870016547 | hardik@hotmail.com  |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |
+|  8 | Axar Patel      |            36 | 9870016547 | axar@hotmail.com    |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |
+|  9 | Mohammad Siraj  |            13 | 9870016544 | siraj@yahoo.com     |  45000 | Hyderabad  | Blower(Seam)    | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami  |            11 | 7337456900 | shami@gmail.com     |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |
+| 11 | Kuldeep Yadav   |            23 | 8765326345 | kuldeep02@gmail.com |  32000 | Kolkata    | Blower(Spinner) | 2023-07-13 09:27:48 |
++----+-----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+11 rows in set (0.000 sec)
+
+MariaDB [php_center]> select * from team_list name like 'm%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'like 'm%'' at line 1
+MariaDB [php_center]> select * from team_list where name like 'm%';
++----+----------------+---------------+------------+-----------------+--------+-----------+--------------+---------------------+
+| id | name           | jersey_number | phone      | email           | salary | city      | role         | joined_date         |
++----+----------------+---------------+------------+-----------------+--------+-----------+--------------+---------------------+
+|  9 | Mohammad Siraj |            13 | 9870016544 | siraj@yahoo.com |  45000 | Hyderabad | Blower(Seam) | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami |            11 | 7337456900 | shami@gmail.com |  50000 | Kolkata   | Blower(Seam) | 2023-07-13 09:27:48 |
++----+----------------+---------------+------------+-----------------+--------+-----------+--------------+---------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where name like '%a';
++----+-----------------+---------------+------------+--------------------+--------+------------+-------------+---------------------+
+| id | name            | jersey_number | phone      | email              | salary | city       | role        | joined_date         |
++----+-----------------+---------------+------------+--------------------+--------+------------+-------------+---------------------+
+|  1 | Rohit Sharma    |            45 | 7337456901 | iamho@gmail.com    |  50000 | Mumbai     | Batter(C)   | 2023-07-13 09:08:39 |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com  |  45000 | Surat      | All Rounder | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya  |            33 | 7870016547 | hardik@hotmail.com |  55000 | Ahamedabad | All Rounder | 2023-07-13 09:22:46 |
++----+-----------------+---------------+------------+--------------------+--------+------------+-------------+---------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [php_center]> select * from team_list where name like '%vi%';
++----+-----------------+---------------+------------+-------------------+--------+-------+-------------+---------------------+
+| id | name            | jersey_number | phone      | email             | salary | city  | role        | joined_date         |
++----+-----------------+---------------+------------+-------------------+--------+-------+-------------+---------------------+
+|  3 | Virat Kohli     |            18 | 8874526548 | vk02@gmail.com    |  65000 | Delhi | Batter      | 2023-07-13 09:22:46 |
+|  6 | Ravindra Jadeja |             9 | 7870016548 | jaddu@outlook.com |  45000 | Surat | All Rounder | 2023-07-13 09:22:46 |
++----+-----------------+---------------+------------+-------------------+--------+-------+-------------+---------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where name not like '%a';
++----+----------------+---------------+------------+---------------------+--------+-----------+-----------------+---------------------+
+| id | name           | jersey_number | phone      | email               | salary | city      | role            | joined_date         |
++----+----------------+---------------+------------+---------------------+--------+-----------+-----------------+---------------------+
+|  2 | KL Rahul       |             1 | 9630563245 | rahul@gmail.com     |  55000 | Bangalore | Batter          | 2023-07-13 09:22:46 |
+|  3 | Virat Kohli    |            18 | 8874526548 | vk02@gmail.com      |  65000 | Delhi     | Batter          | 2023-07-13 09:22:46 |
+|  4 | Shubman Gill   |            77 | 8874516548 | sgill@gmail.com     |  30000 | Punjab    | Batter          | 2023-07-13 09:22:46 |
+|  5 | Rishab Pant    |            17 | 7874516548 | pant@gmail.com      |  40000 | Delhi     | Batter(WK)      | 2023-07-13 09:22:46 |
+|  8 | Axar Patel     |            36 | 9870016547 | axar@hotmail.com    |  25000 | Mohali    | Blower(Spinner) | 2023-07-13 09:22:46 |
+|  9 | Mohammad Siraj |            13 | 9870016544 | siraj@yahoo.com     |  45000 | Hyderabad | Blower(Seam)    | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami |            11 | 7337456900 | shami@gmail.com     |  50000 | Kolkata   | Blower(Seam)    | 2023-07-13 09:27:48 |
+| 11 | Kuldeep Yadav  |            23 | 8765326345 | kuldeep02@gmail.com |  32000 | Kolkata   | Blower(Spinner) | 2023-07-13 09:27:48 |
++----+----------------+---------------+------------+---------------------+--------+-----------+-----------------+---------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [php_center]> select * from team_list where name not like '%vi%';
++----+----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+| id | name           | jersey_number | phone      | email               | salary | city       | role            | joined_date         |
++----+----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+|  1 | Rohit Sharma   |            45 | 7337456901 | iamho@gmail.com     |  50000 | Mumbai     | Batter(C)       | 2023-07-13 09:08:39 |
+|  2 | KL Rahul       |             1 | 9630563245 | rahul@gmail.com     |  55000 | Bangalore  | Batter          | 2023-07-13 09:22:46 |
+|  4 | Shubman Gill   |            77 | 8874516548 | sgill@gmail.com     |  30000 | Punjab     | Batter          | 2023-07-13 09:22:46 |
+|  5 | Rishab Pant    |            17 | 7874516548 | pant@gmail.com      |  40000 | Delhi      | Batter(WK)      | 2023-07-13 09:22:46 |
+|  7 | Hardik Pandiya |            33 | 7870016547 | hardik@hotmail.com  |  55000 | Ahamedabad | All Rounder     | 2023-07-13 09:22:46 |
+|  8 | Axar Patel     |            36 | 9870016547 | axar@hotmail.com    |  25000 | Mohali     | Blower(Spinner) | 2023-07-13 09:22:46 |
+|  9 | Mohammad Siraj |            13 | 9870016544 | siraj@yahoo.com     |  45000 | Hyderabad  | Blower(Seam)    | 2023-07-13 09:22:46 |
+| 10 | Mohammad Shami |            11 | 7337456900 | shami@gmail.com     |  50000 | Kolkata    | Blower(Seam)    | 2023-07-13 09:27:48 |
+| 11 | Kuldeep Yadav  |            23 | 8765326345 | kuldeep02@gmail.com |  32000 | Kolkata    | Blower(Spinner) | 2023-07-13 09:27:48 |
++----+----------------+---------------+------------+---------------------+--------+------------+-----------------+---------------------+
+9 rows in set (0.001 sec)

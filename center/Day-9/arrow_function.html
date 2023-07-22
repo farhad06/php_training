@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow-Function</title>
+</head>
+<body>
+    <div class="main">
+        <table>
+            <tr>
+                <td>Enter 1st number:</td>
+                <td><input type="text" name="" id="n1"></td>
+            </tr>
+             <tr>
+                <td>Enter 2nd number:</td>
+                <td><input type="text" name="" id="n2"></td>
+            </tr>
+             <tr>
+                <td></td>
+                <td><section id="res"></section></td>
+            </tr>
+             <tr>
+                <td></td>
+                <td><input type="submit"  value="Add" onclick="sum(Number(document.getElementById('n1').value),Number(document.getElementById('n2').value))"></td>
+                <td><input type="submit"  value="Sub" onclick="sub(Number(document.getElementById('n1').value),Number(document.getElementById('n2').value))"></td>
+                <td><input type="submit"  value="Multiplication" onclick="multi(Number(document.getElementById('n1').value),Number(document.getElementById('n2').value))"></td>
+                <td><input type="submit"  value="Division" onclick="divi(Number(document.getElementById('n1').value),Number(document.getElementById('n2').value))"></td>
+                <td><input type="submit"  value="Modulus" onclick="mod(Number(document.getElementById('n1').value),Number(document.getElementById('n2').value))"></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        // num1=Number(document.getElementById('n1').value);
+        // num2=Number(document.getElementById('n2').value);
+        var sum=(a,b)=>{
+            document.getElementById('res').innerHTML=`Addition is: ${a+b}`;
+        };
+        var sub=(a,b)=>{
+            document.getElementById('res').innerHTML=`Substraction is: ${a-b}`;
+        };
+        var multi=(a,b)=>{
+            document.getElementById('res').innerHTML=`Multipication is: ${a*b}`;
+        };
+        var divi=(a,b)=>{
+            document.getElementById('res').innerHTML=`Division is: ${a/b}`;
+        };
+        var mod=(a,b)=>{
+            document.getElementById('res').innerHTML=`Modulus is: ${a%b}`;
+        };
+        
+        let arr=[11,33,44,55,66]
+        // document.writeln("Array Elements are:")
+        console.log("Array Elements are:")
+        for(let i=0;i<arr.length;i++){
+            // document.write(arr[i])
+            console.log(arr[i])
+
+        }
+
+        const courses=[{'c_id':1,'c_name':'PHP','c_fees':9000},{'c_id':2,'c_name':'React','c_fees':20000}]
+        for(let c of courses){
+            console.log(c.c_id+" "+c.c_name+" "+c.c_fees);
+        }
+
+    </script>
+</body>
+</html>

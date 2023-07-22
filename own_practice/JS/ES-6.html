@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES-6</title>
+    <script src="./import-calculation.js"></script>
+
+</head>
+<body>
+    <!--
+    <input type="text" id="name">
+    <input type="text" id="number">
+    <button id="btn">Hello</button>
+    -->
+    <script>
+        /*
+        var name = document.querySelector('#name').value;
+        var number=Number(document.querySelector('#number').value);    
+        document.getElementById('btn').addEventListener('click',function(){
+            alert("Hello "+name);
+        });
+        document.getElementById('number').addEventListener('keyup',function(){
+            //alert('The number is'+number);
+            console.log("OK");
+            console.log(number);
+
+        });*/
+        //spread operator
+        const numArr=[1,2,3,4,5]
+        console.log(numArr);
+        console.log(...numArr);
+        const numArr1=[10,11,12];
+        const ARR=[...numArr,...numArr1];
+        console.log(ARR);
+        
+
+    </script>
+</body>
+</html>

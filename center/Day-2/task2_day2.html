@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      .d {
+        float: left;
+        margin: 20px;
+      }
+      .row{
+        justify-content: center;
+      }
+      #youtube{
+        margin-left: 100px ;
+      }
+       .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .gallery img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      margin: 5px;
+    }
+    .play_audio{
+      margin-top: 444px;
+    }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div>
+        <h1
+          style="color: #de3163; text-align: center; background-color: bisque"
+        >
+          Welcome to My Page
+        </h1>
+      </div>
+      <div style="background-color: beige">
+        <marquee behavior="up" direction="right">Welcome</marquee>
+      </div>
+      <div style="background-color: #c0c0c0">
+        <center><h2>About Us</h2></center>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam
+          corrupti ex praesentium ducimus labore impedit suscipit? Sit vero
+          laboriosam delectus ad ducimus nemo non laborum consequatur ipsum in
+          corporis dolorum totam nesciunt, unde accusamus magni quo quod a quia!
+          Provident labore totam fugiat similique aperiam odio, animi, sunt sit
+          dolor, ad sapiente minima? Suscipit perspiciatis quasi totam officiis
+          accusantium, quos eum soluta illum, modi, odit asperiores cumque
+          voluptas. Voluptate rem iure nemo sit iusto obcaecati, tempora ipsam
+          ipsum. Corporis explicabo, quaerat fugiat cumque mollitia error enim
+          modi eligendi ullam magnam eum molestias praesentium fuga non
+          accusantium? Ad, magni laboriosam sunt fugiat ab aspernatur?
+          Laboriosam aut libero exercitationem in pariatur qui ipsam, maiores,
+          incidunt sapiente excepturi veniam sint. Debitis, provident in? Ab,
+          quibusdam dolorum.
+        </p>
+      </div>
+      <div class="row">
+
+        <div class="d">
+          <center><h3>Play this Video</h3></center>
+          <video
+            src="multimedia/Tom & Jerry - Tom & Jerry in Full Screen - Classic Cartoon Compilation - WB Kids.mp4"
+            controls
+            type="video/mp4"
+            height="315"
+            width="560"
+          ></video>
+        </div>
+        <div class="d" id="youtube">
+          <center><h3>Play this Youtube Video</h3></center>
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/iQJxoZhgaFU"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="play_audio">
+        <center><h3>Play this Audio</h3></center>
+        <audio style="margin-left: 500px;"
+          src="multimedia/alarm_tone.mp3"
+          controls
+          loop
+          type="audio/mp3"
+        ></audio>
+      </div>
+      <div>
+        <center><h3>This is Our Location</h3></center>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.79810511767!2d88.48798487421969!3d22.586653232457245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a020ac7b088374f%3A0x744b574c82e9efeb!2sEcospace%2C%20Premises%20-%2011F%2F12%2C%20Campus%20-%202B%2C%20Action%20Area%20II%2C%20Newtown%2C%20New%20Town%2C%20West%20Bengal%20700156!5e0!3m2!1sen!2sin!4v1684261979999!5m2!1sen!2sin"
+          width="100%"
+          height="250"
+          style="border: 0"
+          allowfullscreen=""
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+      <center><h3>Image Gallery</h3></center>
+      <div class="gallery">
+        
+        <img src="images/190703-lionel-messi.jpg" alt="" srcset="">
+        <img src="images/pic_002.jpg" alt="" srcset="">
+        <img src="images/pic_003.jpg" alt="" srcset="">
+        <img src="images/pic_004.jpg" alt="" srcset="">
+        <img src="images/pic_005.jpg" alt="" srcset="">
+        <img src="images/pic_007.jpg" alt="" srcset="">
+        <img src="images/pic_008.jpg" alt="" srcset="">
+        <img src="images/pic_009.jpg" alt="" srcset="">
+        <img src="images/pic_010.jpg" alt="" srcset="">
+        <img src="images/k1 (2).jpg" alt="" srcset="">
+        <img src="images/k1 (1).jpg" alt="" srcset="">
+        <img src="images/27243622-0-image-m-13_1586991155251.jpg" alt="" srcset="">
+
+      </div>
+      <div>
+        <footer style="margin-top: 12px;text-align: right;">
+            All Copyright Reserved &copy; 2023 
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+Microsoft Windows [Version 10.0.19045.2965]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
+Server version: 10.4.28-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database PHP_center;
+Query OK, 1 row affected (0.109 sec)
+
+MariaDB [(none)]> use PHP_center;
+Database changed
+MariaDB [PHP_center]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ajax_crud          |
+| crud               |
+| information_schema |
+| mvc_crud           |
+| mysql              |
+| performance_schema |
+| php_center         |
+| phpmyadmin         |
+| test               |
+| wordpress_project  |
++--------------------+
+10 rows in set (0.106 sec)
+
+MariaDB [PHP_center]> create table employee(
+    -> id int primary key auto_increment,
+    -> name varchar(255),
+    -> phone varchar(255) unique,
+    -> email varchar(255) unique,
+    -> salary double check(salary>=5000),
+    -> city varchar(255) default 'Kolkata',
+    -> created timestamp default current_timestamp
+    -> );
+Query OK, 0 rows affected (0.123 sec)
+
+MariaDB [PHP_center]> desc employee;
++---------+--------------+------+-----+---------------------+----------------+
+| Field   | Type         | Null | Key | Default             | Extra          |
++---------+--------------+------+-----+---------------------+----------------+
+| id      | int(11)      | NO   | PRI | NULL                | auto_increment |
+| name    | varchar(255) | YES  |     | NULL                |                |
+| phone   | varchar(255) | YES  | UNI | NULL                |                |
+| email   | varchar(255) | YES  | UNI | NULL                |                |
+| salary  | double       | YES  |     | NULL                |                |
+| city    | varchar(255) | YES  |     | Kolkata             |                |
+| created | timestamp    | NO   |     | current_timestamp() |                |
++---------+--------------+------+-----+---------------------+----------------+
+7 rows in set (0.047 sec)
+
+
+MariaDB [php_center]> insert into employee values('Rohit','933654214','iamrohit@gmail.com',50000,'Mumbai');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [php_center]> insert into employee(name,phone,email,salary,city) values('Rohit','933654214','iamrohit@gmail.com',50000,'Mumbai');
+Query OK, 1 row affected (0.015 sec)
+
+MariaDB [php_center]> select * from employee;
++----+-------+-----------+--------------------+--------+--------+---------------------+
+| id | name  | phone     | email              | salary | city   | created             |
++----+-------+-----------+--------------------+--------+--------+---------------------+
+|  1 | Rohit | 933654214 | iamrohit@gmail.com |  50000 | Mumbai | 2023-07-12 14:43:05 |
++----+-------+-----------+--------------------+--------+--------+---------------------+
+1 row in set (0.007 sec)
+
+MariaDB [php_center]> insert into employee(name,phone,email,salary,city) values('Rohit','73354214','iamsourav@gmail.com',60000);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [php_center]> insert into employee(name,phone,email,salary) values('Rohit','73354214','iamsourav@gmail.com',60000);
+Query OK, 1 row affected (0.015 sec)
+
+MariaDB [php_center]> select * from employee;
++----+-------+-----------+---------------------+--------+---------+---------------------+
+| id | name  | phone     | email               | salary | city    | created             |
++----+-------+-----------+---------------------+--------+---------+---------------------+
+|  1 | Rohit | 933654214 | iamrohit@gmail.com  |  50000 | Mumbai  | 2023-07-12 14:43:05 |
+|  2 | Rohit | 73354214  | iamsourav@gmail.com |  60000 | Kolkata | 2023-07-12 14:44:04 |
++----+-------+-----------+---------------------+--------+---------+---------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [php_center]> update  employee set name='Sourav' where id='2';
+Query OK, 1 row affected (0.019 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [php_center]> select * from employee;
++----+--------+-----------+---------------------+--------+---------+---------------------+
+| id | name   | phone     | email               | salary | city    | created             |
++----+--------+-----------+---------------------+--------+---------+---------------------+
+|  1 | Rohit  | 933654214 | iamrohit@gmail.com  |  50000 | Mumbai  | 2023-07-12 14:43:05 |
+|  2 | Sourav | 73354214  | iamsourav@gmail.com |  60000 | Kolkata | 2023-07-12 14:44:04 |
++----+--------+-----------+---------------------+--------+---------+---------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [php_center]> update employee phone='7788961456' where id=6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '='7788961456' where id=6' at line 1
+MariaDB [php_center]> update employee set phone='7788961456' where id=6;
+Query OK, 1 row affected (0.002 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [php_center]> select * from employee;
++----+----------+------------+---------------------+--------+---------+---------------------+
+| id | name     | phone      | email               | salary | city    | created             |
++----+----------+------------+---------------------+--------+---------+---------------------+
+|  1 | Rohit    | 933654214  | iamrohit@gmail.com  |  50000 | Mumbai  | 2023-07-12 14:43:05 |
+|  2 | Sourav   | 73354214   | iamsourav@gmail.com |  60000 | Kolkata | 2023-07-12 14:44:04 |
+|  3 | Virat    | 633654214  | vk02@gmail.com      |  50000 | Delhi   | 2023-07-12 14:58:24 |
+|  6 | KL Rahul | 7788961456 | rahul1@gmail.com    |  55000 | Delhi   | 2023-07-12 15:09:36 |
++----+----------+------------+---------------------+--------+---------+---------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [php_center]> delete from employee where id=3;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [php_center]> select * from employee;
++----+----------+------------+---------------------+--------+---------+---------------------+
+| id | name     | phone      | email               | salary | city    | created             |
++----+----------+------------+---------------------+--------+---------+---------------------+
+|  1 | Rohit    | 933654214  | iamrohit@gmail.com  |  50000 | Mumbai  | 2023-07-12 14:43:05 |
+|  2 | Sourav   | 73354214   | iamsourav@gmail.com |  60000 | Kolkata | 2023-07-12 14:44:04 |
+|  6 | KL Rahul | 7788961456 | rahul01@gmail.com   |  55000 | Delhi   | 2023-07-12 15:09:36 |
++----+----------+------------+---------------------+--------+---------+---------------------+
+3 rows in set (0.001 sec)

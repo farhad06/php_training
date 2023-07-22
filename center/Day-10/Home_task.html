@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>JQ</title>
+    <style>
+        .col-sm{
+            border: 2px solid gold;
+            margin: 12px;
+            padding: 12px;
+            height: 180px;
+        }
+        #div-1{
+           
+            background-color: coral;
+        }
+        #div-2{
+           
+            background-color:chartreuse;
+        }
+        #div-3{
+           
+            background-color:darkorchid;
+        }
+        #div-4{
+           
+            background-color:deeppink
+        }
+        .btn btn-primary btn-sm{
+            display: flex;
+        }
+    </style>
+</head> 
+<body>
+    <div class="container">
+        <h1 style="text-align: center; margin:12px 0 12px 0;"><u>Some jQuery Example.</u></h1>
+        <div class="row">
+            <div class="col-sm" id="div-1">
+                <!-- div-1 -->
+                <p>Show/Hide</p>
+            </div>
+            <div class="col-sm" id="div-2">
+                <!-- div-2 -->
+                <p>Toggle</p>
+            </div>
+            <div class="col-sm" id="div-3">
+                <!-- div-3 -->
+                <p>Slide Toggle</p>
+            </div>
+            <div class="col-sm" id="div-4">
+                <!-- div-4 -->
+                <p>Fade Toggle</p>
+            </div>
+        </div>
+        
+            <button class="btn btn-success btn-sm" id="show">Show</button>
+            <button class="btn btn-danger btn-sm" id="hide">Hide</button>
+            <button class="btn btn-info btn-sm" id="toggle">Toggle</button>
+            <button class="btn btn-info btn-sm" id="stoggle">Slide Toggle</button>
+            <button class="btn btn-info btn-sm" id="ftoggle">Fade Toggle</button>
+     
+    </div>
+        <script>
+            $(document).ready(function () {
+                $('#show').click(function () {
+                    $('#div-1').show();
+                });
+                $('#hide').click(function () {
+                    $('#div-1').hide();
+                });
+                $('#toggle').click(function () {
+                    $('#div-2').toggle(1500);
+                });
+                $('#stoggle').click(function () {
+                    $('#div-3').slideToggle(1500);
+                });
+                $('#ftoggle').click(function () {
+                    $('#div-4').fadeToggle(2000);
+                });
+
+
+            });
+        </script>
+</body>
+</html>

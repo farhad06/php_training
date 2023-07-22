@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+</head>
+<style>
+    #errorAge{
+        color: red;
+    }
+    #errorEmail{
+        color: red;
+    }
+</style>
+<body>
+    <h2>Age Validation</h2>
+    <div>
+        <form action="">
+            <label for="">Age:</label>
+            <input type="text" id="age" onkeyup="ageValidation()" required autocomplete="off">
+            <span id="errorAge"></span><br><br> 
+            <label for="">Email:</label>
+            <input type="text" id="email" onkeyup="emailValidation()" required autocomplete="off">
+            <span id="errorEmail"></span><br><br>
+            <!-- email.value.match(emailregex) -->
+            <button type="submit" id="btn">Submit</button>
+        </form>         
+    </div>
+    <script>
+        function ageValidation(){
+            var age=parseInt(document.getElementById('age').value);
+            if(age>=18 && age<=45){
+                document.getElementById('errorAge').innerHTML="";
+                document.getElementById('btn').disabled=false;
+
+            }else{
+                document.getElementById('errorAge').innerHTML="Age must be 18 to 45.";
+                document.getElementById('btn').disabled=true;
+            }
+        }
+        function emailValidation(){
+            var email=document.getElementById('email').value;
+            //this is email Validation Regex
+            var emailRegEx=/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
+            if(emailRegEx.test(email)){
+                document.getElementById('errorEmail').innerHTML="";
+                document.getElementById('btn').disabled=false;
+
+            }else{
+                document.getElementById('errorEmail').innerHTML="Invaid Email Address";
+                document.getElementById('btn').disabled=false;
+            }
+        }
+    </script>
+</body>
+</html>

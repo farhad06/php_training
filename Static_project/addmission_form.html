@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission-Form</title>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .error-msg {
+            color: red;
+        }
+
+        #main-row {
+            /* border: 2px solid gold;
+            border-radius: 50px; */
+            margin-top: 15px;
+            /* width: 500px; */
+
+        }
+
+        #reg-form {
+            border: 2px solid gold;
+            /* margin: 15px; */
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        label {
+            color: #FF00FF;
+        }
+
+        .form-control::placeholder {
+            color: #FF00FF;
+        }
+
+        .form-control {
+            border-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" id="main-row">
+            <div class="col-md-6 offset-md-3" id="reg-form">
+                <h1 style="text-align: center; color:#008080;" class="alert alert-info"><i><u>Admission Form</u></i>
+                </h1>
+                <form>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" placeholder="Enter Your Name."
+                                onkeyup="nameValidation()" autocomplete="off">
+                            <section id="nameErr"></section>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="email"
+                                placeholder="Enter Your Email (ex.zyz@gmail.com)" onkeyup="emailValidation()"
+                                autocomplete="off">
+                            <section id="emailErr"></section>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Phone</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="phone"
+                                placeholder="Indian Valid Phone Number Only." autocomplete="off"
+                                onkeyup="phoneValidation()">
+                            <section id="phoneErr"></section>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Age</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="age" placeholder="Enter Your Age."
+                                autocomplete="off" onkeyup="ageValidation()">
+                            <section id="ageErr"></section>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Pin</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="pin"
+                                placeholder="Only 6 digits Indian Pin number." autocomplete="off"
+                                onkeyup="pinValidation()">
+                            <section id="pinErr"></section>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Address</label>
+                        <div class="col-sm-10">
+                            <textarea type="text" class="form-control" id="address" rows="3"
+                                placeholder="Enter Your Address." autocomplete="off"
+                                onkeyup="addressValidation()"></textarea>
+                            <section id="addressErr"></section>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button class="btn btn-primary" id="btn">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="validation.js"></script> -->
+
+</body>
+
+</html>

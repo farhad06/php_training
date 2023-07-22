@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <title>Jquery</title>
+</head>
+<body>
+    <div class="main">
+        <p class="para" style="border: 2px solid orange;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi voluptate autem eveniet consequuntur accusamus, aliquam, vitae dolores labore consectetur eius, consequatur atque repellendus odio? Aspernatur!</p>
+        <p class="para" style="border: 2px solid tomato;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut modi velit eveniet nemo, animi nam, veritatis numquam voluptate amet impedit temporibus mollitia blanditiis cupiditate reiciendis?</p>
+        <p id="para-1" style="border: 2px solid indigo;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate eos quibusdam libero dicta accusantium omnis dolore quas, tempora maiores unde reiciendis quisquam velit odio incidunt praesentium neque explicabo sunt pariatur?</p>
+        <div>
+            <button id="show">Show</button>
+            <button id="hide">Hide</button>
+            <button id="toggle">Toggle</button>
+            <button id="stoggle">Slide Toggle</button>
+            <button id="ftoggle">Fade Toggle</button>
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#show').click(function(){
+                $('.para').show();
+            });
+            $('#hide').click(function () {
+                $('.para').hide();
+            });
+            $('#toggle').click(function () {
+                $('#para-1').toggle(1500);
+            });
+            $('#stoggle').click(function () {
+                $('#para-1').slideToggle(1500);
+            });
+            $('#ftoggle').click(function () {
+                $('#para-1').fadeToggle(1500);
+            });
+
+
+        });
+    </script>
+</body>
+</html>

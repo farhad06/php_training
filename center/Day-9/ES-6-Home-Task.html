@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Task</title>
+</head>
+<body>
+    <div class="main">
+        <table>
+            <tr>
+                <td>Enter 1st number:</td>
+                <td><input type="text" name="" id="n1"></td>
+            </tr>
+            <tr>
+                <td>Enter 2nd number:</td>
+                <td><input type="text" name="" id="n2"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <section id="res"></section>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Add"
+                        onclick="sum(Number(document.getElementById('n1').value),Number(document.getElementById('n2').value))">
+                </td>
+                <td><input type="submit" value="Sub"
+                        onclick="sub(Number(document.getElementById('n1').value),Number(document.getElementById('n2').value))">
+                </td>
+                <td><input type="submit" value="Multiplication"
+                        onclick="multi(Number(document.getElementById('n1').value),Number(document.getElementById('n2').value))">
+                </td>
+                <td><input type="submit" value="Division"
+                        onclick="divi(Number(document.getElementById('n1').value),Number(document.getElementById('n2').value))">
+                </td>
+                <td><input type="submit" value="Modulus"
+                        onclick="mod(Number(document.getElementById('n1').value),Number(document.getElementById('n2').value))">
+                </td>
+            </tr>
+        </table>
+        </div>
+        <script>
+            // num1=Number(document.getElementById('n1').value);
+            // num2=Number(document.getElementById('n2').value);
+            var sum = (a, b) => {
+                document.getElementById('res').innerHTML = `Addition is: ${a + b}`;
+            };
+            var sub = (a, b) => {
+                document.getElementById('res').innerHTML = `Substraction is: ${a - b}`;
+            };
+            var multi = (a, b) => {
+                document.getElementById('res').innerHTML = `Multipication is: ${a * b}`;
+            };
+            var divi = (a, b) => {
+                document.getElementById('res').innerHTML = `Division is: ${a / b}`;
+            };
+            var mod = (a, b) => {
+                document.getElementById('res').innerHTML = `Modulus is: ${a % b}`;
+            };
+            //array
+            let arr=[5,7,8,9,10,11,24,32];
+            console.log("The array elements are: ")
+            for(let i=0;i<arr.length;i++){
+                console.log(arr[i]);
+            }
+            //search the even and odd numbers
+            for(let num of arr){
+                if(num%2==0){
+                    console.log(`${num} is even.`);
+                }else{
+                    console.log(`${num} is odd.`);
+
+                }
+            }
+            //key-value pair array/JSON array.
+            let player=[{ 'p_name': 'Rohit' ,'jersy_no':45,'role':'Batter','Higest_score':264}, 
+            { 'p_name': 'Rahul', 'jersy_no': 1, 'role': 'Batter' , 'Higest_score': 132 },
+            { 'p_name': 'Virat', 'jersy_no': 18, 'role': 'Batter', 'Higest_score': 183 },
+            { 'p_name': 'Jadeja', 'jersy_no': 9, 'role': 'All Rounder', 'Higest_score': 100 },
+            { 'p_name': 'Siraj', 'jersy_no': 77, 'role': 'Blower', 'Higest_score': 35 }];
+            for(let p of player){
+                console.log(`Player name is: ${p.p_name} Jersy Number: ${p.jersy_no} Role in team is: ${p.role}`);
+            }
+            //search the player name whose juersy number is 45
+            console.log(`45 number juersy number player is:`);
+            for(let pl of player){
+                if(pl.jersy_no==45){
+                    console.log(`Player name is: ${pl.p_name} Role in team is: ${pl.role}`);
+                }
+            }
+            //find the first odd element in [arr] array
+            var first_odd=arr.find((num)=>{
+                return (num%2!=0);
+            });
+            console.log(`First Odd number in the array is: ${first_odd}`);
+            //find the first even element in [arr] array
+             var first_even = arr.find((num) => {
+                    return (num % 2 == 0);
+            });
+            console.log(`First Even number in the array is: ${first_even}`);
+            //Return all the odd elements in the array
+             var odd = arr.filter((num) => {
+                    return (num % 2 != 0);
+            });
+            console.log(`Odd numbers in the array are: ${odd}`);
+            //Return all the even elements in the array
+            var even = arr.filter((num) => {
+                    return (num % 2 == 0);
+            });
+            console.log(`Even numbers in the array are: ${even}`);
+            //map function
+            let numbers=[2,4,5,6,7,11];
+            var squre_result=numbers.map((n)=>{
+                    return n**2;
+            });
+            console.log(`After Squre the new array is: ${squre_result}`);
+            
+                           
+            
+
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery</title>
+    <style>
+      #d1{
+        margin: 12px;
+        padding: 5px;
+        border: 2px solid red;
+      }
+      #box{
+
+        margin: 12px;
+        padding: 5px;
+        border: 2px solid greenyellow;
+      }
+       #box2{
+
+        margin: 12px;
+        padding: 5px;
+        border: 2px solid  black;
+      }
+    </style>
+  </head>
+  <body>
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+  <h2>This is jQuery</h2>
+  <div id="d1">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem quae ratione aut voluptas minima, voluptatem natus aspernatur nihil a nobis laudantium totam quam rem commodi! Aspernatur sed est quaerat accusamus porro itaque expedita nemo aperiam ab. A quas optio voluptatum maxime sunt praesentium, molestiae doloribus dolor eos? Quo, soluta rerum?</p>
+  </div>
+  <div>
+    <form action="" id="sform">
+      <label for="">Name:</label>
+      <input type="text" id="name"><br><br>
+      <label for="" >Phone:</label>
+      <input type="number" id="phone"><br><br>
+      <input type="submit" value="Submit" id="submit">
+    </form>
+  </div>
+  <div id="box">
+    <center><h3>This is a Text Box</h3></center>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis laboriosam non vitae cumque voluptatibus, iste ducimus suscipit nam rem alias!
+    </p>
+  </div>
+  <button id="ebtn">Empty</button>
+  <button id="rbtn">Remove</button>
+  <button id="clone">Clone</button>
+  <div id="box2">
+    <center><h3 id="box2-h3"></h3></center>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet tempora ipsa, quos ab placeat minima deserunt facilis consequatur est odit veniam pariatur mollitia, facere sed, distinctio dolorem iusto suscipit laboriosam. Quasi eveniet odit unde ex qui est, fugit blanditiis id expedita commodi rem quos, voluptates cupiditate natus, maxime ut necessitatibus.
+  </div>
+  <button id="wrap">Wrap</button>
+  <button id="unwrap">Unwrap</button>
+
+  <script>
+    $(document).ready(function(){
+      //Mouse  Events
+      /*$("#d1").click(function(){
+          $("#d1").css("background-color","red")
+      });
+       $("#d1").dblclick(function(){
+          $("#d1").css("background-color","blue")
+      });
+       $("#d1").mouseenter(function(){
+          $("#d1").css("background-color","#00FF00")
+      });
+       $("#d1").mouseleave(function(){
+          $("#d1").css("background-color","#008080")
+      });
+      $("#d1").contextmenu(function(){
+          $("#d1").css("background-color","tomato")
+      });*/
+
+      //Keyboard Events
+      /*$("body").keypress(function(){
+          $(this).css("background-color","pink")
+      });
+       $("body").keydown(function(){
+          $(this).css("background-color","greem")
+      });
+       $("body").keyup(function(){
+          $(this).css("background-color","blue")
+      });*/ 
+
+
+
+    });
+  </script>
+  <script src="jquery.js"></script>
+  </body>
+</html>

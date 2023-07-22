@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+    <!--Font Awsome Cdn Path-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <style>
+        #errorSal{color: red;}
+        .b1{
+            border: 2px solid green;
+        }
+        .b2{
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <!-- <i class="fa fa-quora" aria-hidden="true"></i> -->
+    <label for="">Salary:</label>
+    <input type="number" id="sal" onkeyup="salaryValidation()" required>
+    <span id="errorSal"></span><br><br>
+    <button type="submit" class="b" id="b">Submit</button>
+    <script>
+        function salaryValidation(){
+            var salary=parseInt(document.getElementById('sal').value);
+
+            if (salary<5000){
+                //console.log("no")
+                document.getElementById('errorSal').innerHTML="Salary Must be Greater than 5000";
+                document.getElementById('b').disabled=true;
+                document.getElementById('sal').classList.add('b2');
+                // document.getElementById('sal').classList.remove('b1');
+
+            }else{
+                //console.log('good')
+                document.getElementById('errorSal').innerHTML="";
+                document.getElementById('b').disabled=false;
+                // document.getElementById('sal').classList.add('b1');
+                document.getElementById('sal').classList.remove('b2');
+
+
+
+            }
+        }
+    </script>
+
+    
+</body>
+</html>

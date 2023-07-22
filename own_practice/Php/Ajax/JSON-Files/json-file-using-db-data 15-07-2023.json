@@ -1,0 +1,102 @@
+[
+    {
+        "id": "20",
+        "name": "Farhad Ahamed",
+        "email": "farhadahamed06@gmail.com",
+        "phone": "87965412365",
+        "age": "25",
+        "gender": "Male",
+        "city": "Kolkata",
+        "password": "$2y$10$v9\/Zy7QqZCGnfd0.XFFSJeBPIhWf.fv0N5MYhMzRg9hbyIwB0ortm"
+    },
+    {
+        "id": "22",
+        "name": "Rohit",
+        "email": "iamro@gmai.com",
+        "phone": "12456666",
+        "age": "35",
+        "gender": "Male",
+        "city": "Mumbai",
+        "password": "$2y$10$53YYhunnbLfEUgd5fn1enO2JaUDawgsd9rV84WK4vI\/Z1hAn89.gy"
+    },
+    {
+        "id": "23",
+        "name": "Harman Preet Kaur",
+        "email": "harmon@gmail.com",
+        "phone": "8745213625",
+        "age": "35",
+        "gender": "Male",
+        "city": "Delhi",
+        "password": "$2y$10$aHtHRmgNY234rVbVs6SxU.8tIURNS2lk2nwUcX6j8Ym8xxUXsYCF6"
+    },
+    {
+        "id": "24",
+        "name": "Rishab Pant",
+        "email": "pant@hotmail.c0m",
+        "phone": "12333",
+        "age": "23",
+        "gender": "Male",
+        "city": "Delhi",
+        "password": "$2y$10$d\/hJyiKQz4vSEas9bZwtmO68\/uzWywnemxrEG3qNS4LtR1JsC7oDy"
+    },
+    {
+        "id": "25",
+        "name": "Puja Jadav",
+        "email": "puja@yahoo.com",
+        "phone": "98745632145",
+        "age": "24",
+        "gender": "Male",
+        "city": "Pune",
+        "password": "$2y$10$zhFG34u1KF.bC73ocTxZyejYDwBVQSwfIo6c6I35U\/kSqS6ivT9dW"
+    },
+    {
+        "id": "28",
+        "name": "John",
+        "email": "jh@gmail.com",
+        "phone": "08768619628",
+        "age": "21",
+        "gender": "Male",
+        "city": "Pune",
+        "password": "$2y$10$f36D8L1GM8mOm\/POv1TuvuUncqByVaUvS14DDcNYYzI9KVMKQsfpy"
+    },
+    {
+        "id": "34",
+        "name": "Farhad Ahamed",
+        "email": "jh@gamil.com",
+        "phone": "11",
+        "age": "22",
+        "gender": "Male",
+        "city": "Kolkata",
+        "password": "$2y$10$OKIt2khuyZfzYp4BYuENveBe.x6le1wcXNvCaxf2r4wulgh9fbfyu"
+    },
+    {
+        "id": "39",
+        "name": "Anindita",
+        "email": "puja@gmail.com",
+        "phone": "8752145632",
+        "age": "23",
+        "gender": "Female",
+        "city": "Kolkata",
+        "password": "$2y$10$90EWbRvfl73\/QspH4netRegnmfXi3lsHmQdsoSvq587jZUKSDqufe"
+    },
+    {
+        "id": "40",
+        "name": "Ruhul",
+        "email": "rh@gmail.com",
+        "phone": "56666",
+        "age": "21",
+        "gender": "Male",
+        "city": "Mumbai",
+        "password": "$2y$10$n3uesqWtG3EKcc32NzCrJ.7XqlMoqzlQtL153Dfdht51uJuS3EVcK"
+    },
+    {
+        "id": "41",
+        "name": "Smriti",
+        "email": "smriti@gmail.com",
+        "phone": "876543652",
+        "age": "23",
+        "gender": "Female",
+        "city": "Mumbai",
+        "password": "$2y$10$kD.kjVmC8lC6TQ26ihXJlelksZdVgWHl5U2BXr8UuKlgZLhBLBVJC"
+    }
+]
