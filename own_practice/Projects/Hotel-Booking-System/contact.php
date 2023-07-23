@@ -45,16 +45,16 @@
                     <h5 class="mt-4">Call US</h5>
                     <a href="tel:+919603879645" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-telephone-inbound-fill"></i></span>&nbsp;+91&nbsp;9603879645</a>
                     <h5 class="mt-1">Mail US</h5>
-                    <a href="mailto:hoteltajkolkata@gmail.com" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-envelope-at-fill"></i></span> &nbsp;hoteltajkolkata@gmail.com</a>
+                    <a href="mailto:hoteltajkolkata@gmail.com" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-envelope-paper-fill"></i></span> &nbsp;hoteltajkolkata@gmail.com</a>
                     <h5 class="mt-1">Follow US</h5>
                     <a href="" class="d-inline-block text-dark fs-5 me-2">
-                            <i class="bi bi-twitter me-1"></i>
+                        <i class="bi bi-twitter me-1"></i>
                     </a>
                     <a href="" class="d-inline-block text-dark fs-5 me-2">
-                            <i class="bi bi-facebook me-1"></i>
-                    </a> 
+                        <i class="bi bi-facebook me-1"></i>
+                    </a>
                     <a href="" class="d-inline-block text-dark fs-5">
-                            <i class="bi bi-instagram me-1"></i>
+                        <i class="bi bi-instagram me-1"></i>
                     </a>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                             <label class="form-label" style="font-weight: 500;">Message</label>
                             <textarea class="form-control shadow-none" rows="5" style="resize: none;"></textarea>
                         </div>
-                            <button type="submit" class="btn text-white custom-bg shadow-none mt-3">SEND</button>
+                        <button type="submit" class="btn text-white custom-bg shadow-none mt-3">SEND</button>
                     </form>
                 </div>
             </div>

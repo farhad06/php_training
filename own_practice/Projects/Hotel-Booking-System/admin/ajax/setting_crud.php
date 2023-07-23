@@ -46,5 +46,14 @@ if(isset($_POST['get_contact_data'])){
 
 }
 
+if(isset($_POST['update_contact_details'])){
+    $form_data = filteration($_POST);
+    $q = "UPDATE `contact_details` SET `address`=?,`gmap`=?,`phone`=?,`mail`=?,`fb`=?,`insta`=?,`tw`=?,`iframe`=? WHERE `sr_no`=?";
+    $values = [$form_data['address'], $form_data['gmap'], $form_data['phone_no'], $form_data['mail'], $form_data['facebook'], $form_data['instagram'], $form_data['twitter'], $form_data['iframe'], 1];
+    $res = update($q, $values, "ssssssssi");
+    echo $res;
+
+}
+
 
 ?>

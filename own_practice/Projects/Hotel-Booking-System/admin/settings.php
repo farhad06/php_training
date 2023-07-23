@@ -106,7 +106,7 @@ adminLogIN();
                                 <div class="mb-4">
                                     <h6 class="card-subtitle mb-1 fw-bold">Mail</h6>
                                     <p class="card-text">
-                                        <i class="bi bi-envelope-at-fill"></i>
+                                        <i class="bi bi-envelope-paper-fill"></i>
                                         <span id="mail"></span>
                                     </p>
                                 </div>
@@ -143,7 +143,7 @@ adminLogIN();
             <div class="modal fade" id="contactSetting" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
-                    <form id="contact_settings_form">
+                    <form id="contact_details_form">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Contact Details</h5>
@@ -190,12 +190,13 @@ adminLogIN();
                                                     <span class="input-group-text"><i class="bi bi-facebook"></i></span>
                                                     <input type="text" class="form-control shadow-none" name="facebook" id="facebook_input" required>
                                                 </div>
+                                        <!--Here I change twitter as instagram and instagram as twitter because some code change and later I see that code is changed. I can not change this because I want to avoid change. So there name=instagram&id=instagram_input for twitter and vice versa  -->
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text"><i class="bi bi-instagram"></i></span>
+                                                    <span class="input-group-text"><i class="bi bi-twitter"></i></span>
                                                     <input type="text" class="form-control shadow-none" name="instagram" id="instagram_input" required>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text"><i class="bi bi-twitter"></i></span>
+                                                    <span class="input-group-text"><i class="bi bi-instagram"></i></span>
                                                     <input type="text" class="form-control shadow-none" name="twitter" id="twitter_input" required>
                                                 </div>
                                             </div>
@@ -214,7 +215,7 @@ adminLogIN();
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn text-secondary shadow-none" data-bs-dismiss="modal"
-                                    onclick="site_title.value=general_data.site_title,site_about.value=general_data.site_about">Cancel</button>
+                                    onclick="contact_input_data_value(contact_data)">Cancel</button>
                                 <button type="submit" class="btn text-white custom-bg shadow-none" onclick="">Submit</button>
                             </div>
                         </div>
@@ -231,11 +232,13 @@ adminLogIN();
         let site_title_input = document.getElementById('site_title_input');
         let site_about_input = document.getElementById('site_about_input');
 
+        //general modal form not submit with out data
         general_form_data.addEventListener('submit',function(e) {
             e.preventDefault();
             upload_general_data(site_title_input.value, site_about_input.value);
 
             });
+        
         
         //this function is used to get data from database
         function get_general_data()
@@ -297,6 +300,7 @@ adminLogIN();
 
 
         }
+        //this function is used for  site shutdown on/off
         function update_shutdown(val){
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "ajax/setting_crud.php", true);
@@ -315,9 +319,15 @@ adminLogIN();
             xhr.send('update_shutdown='+val);
 
         }
+
+        //this function is used for get contact details from database
         function get_contact_data() {
                 
+                //all the  ids to showing data 
                 let contacts_details_ids = ['address','gmap','phone_no','mail','facebook','twitter','instagram'];
+                 //all the  ids to showing data  in input box
+                let contact_details_input_ids = ['address_input','gmap_input','phone_input','mail_input','facebook_input', 'instagram_input','twitter_input','iframe_input'];
+
                 let iframe = document.getElementById('iframe');
 
                 let xhr = new XMLHttpRequest();
@@ -329,12 +339,18 @@ adminLogIN();
                     contact_data = JSON.parse(this.responseText);
                     contact_data = Object.values(contact_data);
                     // console.log("-----------------------------------------");
-                    console.log(contact_data);
+                    //console.log(contact_data);
                     for(i=0;i<contacts_details_ids.length;i++){
                         document.getElementById(contacts_details_ids[i]).innerText = contact_data[i+1];
                     }
 
                     iframe.src= contact_data[8];
+
+                    contact_input_data_value(contact_data);
+
+                     for (i = 0; i < contact_details_input_ids.length; i++) {
+                        document.getElementById(contact_details_input_ids[i]).value = contact_data[i + 1];
+                    }
 
 
 
@@ -344,11 +360,62 @@ adminLogIN();
 
 
 
-            }    
+            } 
+
+        //this function is used for get contact data values for all input field    
+        function contact_input_data_value(data){
+            let contact_details_input_ids = ['address_input', 'gmap_input', 'phone_input', 'mail_input', 'facebook_input', 'instagram_input', 'twitter_input', 'iframe_input'];
+             for (i = 0; i < contact_details_input_ids.length; i++) {
+                document.getElementById(contact_details_input_ids[i]).value = data[i + 1];
+            }
+        }
+        //this function is used for prevent submit without data 
+        contact_details_form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            update_contact_details();
+        });  
+        
+        //this data is used for update contact details
+        function update_contact_details(){
+            let index = ['address', 'gmap', 'phone_no', 'mail', 'facebook', 'twitter', 'instagram','iframe'];
+
+            let contact_details_input_ids = ['address_input', 'gmap_input', 'phone_input', 'mail_input', 'facebook_input', 'instagram_input', 'twitter_input', 'iframe_input'];
+
+            let data_str="";
+
+            for(i=0;i<index.length;i++){
+                data_str += index[i] + "=" + document.getElementById(contact_details_input_ids[i]).value +'&';
+    
+            }
+
+            data_str+="update_contact_details";
+            //console.log(data_str);
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/setting_crud.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onload = function () {
+                //hide the edit modal form
+                var myModal = document.getElementById('contactSetting');
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
+
+                if (this.responseText == 1) {
+                    alert_msg('success', 'Data Changes');
+                    get_contact_data();
+                } else {
+                    alert_msg('danger', 'No Data Changes');
+                }
+
+            }
+            xhr.send(data_str);
+
+        }
         
         window.onload = function () {
             get_general_data();
-            get_contact_data() 
+            get_contact_data();
         }
 
     $(document).ready(function(){

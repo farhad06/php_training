@@ -396,7 +396,7 @@
                     <h5>Call US</h5>
                     <a href="tel:+919603879645" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-telephone-inbound-fill"></i></span>&nbsp;+91&nbsp;9603879645</a>
                     <h5>Mail US</h5>
-                    <a href="" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-envelope-at-fill"></i></span> &nbsp;hoteltajkolkata@gmail.com</a>
+                    <a href="" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-envelope-paper-fill"></i></span> &nbsp;hoteltajkolkata@gmail.com</a>
                 </div>
                 <div class="bg-white p-4 mb-4 rounded">
                     <h5>Follow US US</h5>
