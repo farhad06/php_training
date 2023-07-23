@@ -21,7 +21,7 @@ adminLogIN();
             <div class="col-lg-10 ms-auto p-4 overflow-hidden">
                 <h3 class="mb-4">Settings</h3>
                 <!-- General Settings -->
-                <div class="card">
+                <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h5 class="card-title m-0">General Settings</h5>
@@ -54,11 +54,25 @@ adminLogIN();
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn text-secondary shadow-none" data-bs-dismiss="modal" id="site_about">Cancel</button>
-                                    <button type="button" class="btn text-white custom-bg shadow-none">Submit</button>
+                                    <button type="button" class="btn text-secondary shadow-none" data-bs-dismiss="modal" onclick="site_title.value=general_data.site_title,site_about.value=general_data.site_about">Cancel</button>
+                                    <button type="button" class="btn text-white custom-bg shadow-none" onclick="upload_general_data(site_title.value,site_about.value)">Submit</button>
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+                <!--Shut Down Settings-->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="card-title m-0">Shutdown Website</h5>
+                            <div class="form-check form-switch">
+                               <form>
+                                <input class="form-check-input shadow-none" type="checkbox" id="shutdown-btn" onchange="update_shutdown(this.value)">
+                               </form>
+                            </div>
+                        </div>
+                        <p class="card-text">No customer can't be book hotel when Shutdown Mode is turned on.</p>
                     </div>
                 </div>
             </div>
@@ -66,12 +80,15 @@ adminLogIN();
     </div>
     <script>
         let general_data;
+        //this function is used to get data from database
         function get_general_data(){
             let site_title = document.getElementById('site_title');
             let site_about = document.getElementById('site_about');
 
             let site_title_input = document.getElementById('site_title_input');
             let site_about_input = document.getElementById('site_about_input');
+
+            let shutdown_btn = document.getElementById('shutdown-btn');
             
             let xhr = new XMLHttpRequest();
             xhr.open("POST","ajax/setting_crud.php",true);
@@ -86,10 +103,61 @@ adminLogIN();
                 site_title_input.value = general_data.site_title;
                 site_about_input.value = general_data.site_about;
 
+                if(general_data.shutdown == 0){
+                    shutdown_btn.checked=false;
+                    shutdown_btn.value=0;
+                }else{
+                    shutdown_btn.checked = true;
+                    shutdown_btn.value = 1;
+                }
+
             }
             xhr.send('get_general_data');
 
 
+
+        }
+        //this function is used to update data 
+        function upload_general_data(site_title_value, site_about_value){
+            
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/setting_crud.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onload = function () {
+                //hide the edit modal form
+                var myModal = document.getElementById('generalSetting');
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
+
+                if(this.responseText==1){
+                    alert_msg('success','Data Changes');
+                    get_general_data();
+                }else{
+                    alert_msg('danger', 'No Data Changes');
+                }
+
+            }
+            xhr.send('site_title='+site_title_value+'&site_about='+site_about_value+'&upload_general_data');
+
+
+        }
+        function update_shutdown(val){
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/setting_crud.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onload = function(){
+                console.log(this.responseText);
+                if(this.responseText==1 && general_data.shutdown ==0 ){
+                    alert_msg('success','Site has been Shutdown!');
+                }else{
+                    alert_msg('success', 'Shutdown mode off!');
+
+                }
+                get_general_data();
+            }
+            xhr.send('update_shutdown='+val);
 
         }
         window.onload = function () {
