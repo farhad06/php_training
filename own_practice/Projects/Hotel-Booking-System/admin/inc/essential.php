@@ -1,4 +1,22 @@
-<?php 
+<?php
+
+function adminLogIN()
+{
+    session_start();
+    if (!(isset($_SESSION['adminLogin']) && $_SESSION['adminLogin'] == true)) {
+        redirect('index.php');
+        exit;
+    }
+    //session_regenerate_id(true);
+    
+}
+function redirect($url)
+{
+    echo "<script>
+            window.location.href='$url'
+         </script>";
+         exit;
+}
 function alert($type,$msg){
     $bs_class=($type=='success') ?"alert-success":"alert-danger";
     echo <<<alert
@@ -9,18 +27,8 @@ function alert($type,$msg){
             alert;
 }
 
-function redirect($url){
-    echo "<script>
-            window.location.href='$url'
-         </script>";
-}
-function adminLogIN(){
-    session_start();
-    if (!(isset($_SESSION['adminLogin']) && $_SESSION['adminLogin'] == true)) {
-        redirect('index.php');
-    }
-    session_regenerate_id(true);
-}
+
+
 
 
 

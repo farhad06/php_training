@@ -36,5 +36,15 @@ if(isset($_POST['update_shutdown'])){
 
 }
 
+if(isset($_POST['get_contact_data'])){
+    $query = "SELECT * FROM `contact_details` WHERE sr_no=?";
+    $values = [1];
+    $res = select($query, $values, "i");
+    $data = mysqli_fetch_assoc($res);
+    $json_data = json_encode($data);
+    echo $json_data;
+
+}
+
 
 ?>
