@@ -1,0 +1,12 @@
+1.difference between primary key and unique key.
+2.difference between drop,delete,truncate.
+3.SQL syntax for table creation .
+4.Add a new column to existing table.
+5.Show the 2nd highest salary from table.
+6.Return the total number of rows from the table.
+7.count the total number of employee whose name start with "S".
+8.Show all the employee whose not salary 15000 and 20000.
+9.Delete a table from database.
+10.Select employee whose salary greate than 12000 and less than 15000 and show email alphabatically decending order.
+11.crate a backup table .
+12.Write Inner join query.
