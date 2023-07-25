@@ -253,9 +253,11 @@ adminLogIN();
                                 <i class="bi bi-plus-square"></i>&nbsp;Add
                             </button>
                         </div>
-                        <div class="row">
-                        
+                        <!--Show Management Team Images-->
+                        <div class="row" id="team-data">
+                          <!--Here Show all the data fetch from 'management_team' table--> 
                         </div>
+                    <!--Show Management Team Images End-->
                     </div>
                 </div>
                 <div class="modal fade" id="managementTeam" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1"
@@ -280,7 +282,7 @@ adminLogIN();
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn text-secondary shadow-none" data-bs-dismiss="modal"
-                                        onclick="">Cancel</button>
+                                        onclick="member_name.value='',member_picture.value=''">Cancel</button>
                                     <button type="submit" class="btn text-white custom-bg shadow-none" onclick="">Submit</button>
                                 </div>
                             </div>
@@ -504,8 +506,10 @@ adminLogIN();
 
                 if (this.responseText == 'inv_img') {
                     alert_msg('error', 'Only JPG JPEG and PNG format allowed.');
+                    member_picture_input.value = "";
                 } else if(this.responseText == 'inv_size') {
                     alert_msg('error', 'Please Upload File Less than 2mb.');
+                    member_picture_input.value = "";
                 } else if (this.responseText == 'upd_failed'){
                     alert_msg('error', 'Image Upload Failded');
 
@@ -513,19 +517,52 @@ adminLogIN();
                     alert_msg('success','New Member Added');
                     member_name_input.value="";
                     member_picture_input.value="";
+                    get_management_data();
                 }
 
             }
             xhr.send(data);
         }
+        function get_management_data() {
+
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "ajax/setting_crud.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                xhr.onload = function () {
+                    //console.log(this.responseText);
+                    document.getElementById('team-data').innerHTML=this.responseText;
+
+                }
+                xhr.send('get_management_data');
+
+            }
+        function detele_member_data(val){
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/setting_crud.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onload = function () {
+                if(this.responseText==1){
+                    alert_msg('success','Member Deleted');
+                    get_management_data();
+                }else{
+                    alert_msg('error','Data Not Deleted');
+                }
+                
+
+            }
+            xhr.send('detele_member_data='+val);
+        }    
 
         window.onload = function () {
             get_general_data();   
             get_contact_data();
+            get_management_data();
         }
 
         $(document).ready(function () {
-            console.log("Page Ready");
+            //console.log("Page Ready");
             /*$.ajax({
                 url:"ajax/setting_crud.php",
                 type:"POST",

@@ -1,6 +1,9 @@
 <?php
+//file path for frontend development
+define('SITE_URL', 'http://127.0.0.1/php_tranning/own_practice/Projects/Hotel-Booking-System/');
+define('ABOUT_IMAGE_PATH',SITE_URL.'images/about/');
+//file path for Backend Development
 define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT']. '/php_tranning/own_practice/Projects/Hotel-Booking-System/images/');
-
 define('ABOUT_FOLDER','about/');
 
 function adminLogIN()
@@ -48,9 +51,15 @@ function uploadImage($image,$folder){
             return 'upd_failed';
         }
      }
+}
 
 
-
+function deleteImage($image,$folder){
+    if(unlink(UPLOAD_IMAGE_PATH.$folder.$image)){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 

@@ -75,5 +75,50 @@ if(isset($_POST['add_member'])){
     }
 }
 
+if(isset($_POST['get_management_data'])){
+    $res=selectAll("member_details");
+    while($row=mysqli_fetch_assoc($res)){
+        $path= ABOUT_IMAGE_PATH;
+
+    echo <<<data
+
+            <div class="col-md-2 mb-3">
+                <div class="card bg-dark text-white">
+                  <img src="$path$row[picture]" class="card-img">
+                    <div class="card-img-overlay text-end">
+                    <button type="button" onclick="detele_member_data($row[sr_no])" class="btn btn-sm btn-danger shadow-none">
+                  <i class="bi bi-x-octagon me-1"></i>Delete
+                </button>
+                    </div>
+                  <p class="card- text text-center px-3 py-2">{$row['name']}</p>
+                </div>
+            </div>
+
+        data;
+    }
+}
+
+
+if(isset($_POST['detele_member_data'])){
+    $form_data = filteration($_POST);
+    $values = [$form_data['detele_member_data']];
+
+    $pre_sql = "SELECT * FROM `member_details` WHERE sr_no=?";
+    $res=select($pre_sql,$values,'i');
+    $row=mysqli_fetch_assoc($res);
+
+    if(deleteImage($row['picture'], ABOUT_FOLDER)){
+        $q= "DELETE FROM `member_details` WHERE sr_no=?";
+        $res=delete($q,$values,'i');
+        echo $res;
+
+    }else{
+        echo 0;
+    }
+
+
+
+}
+
 
 ?>

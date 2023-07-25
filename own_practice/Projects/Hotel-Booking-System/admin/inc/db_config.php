@@ -76,6 +76,33 @@ function insert($sql, $values, $datatypes)
     }
 }
 
+function selectAll($table){
+    $conn = $GLOBALS['conn'];
+
+    $sql= "SELECT * FROM $table";
+    $res=mysqli_query($conn,$sql);
+    return $res;
+
+}
+
+function delete($sql, $values, $datatypes)
+{
+    $conn = $GLOBALS['conn'];
+    if ($stmt = mysqli_prepare($conn, $sql)) {
+        mysqli_stmt_bind_param($stmt, $datatypes, ...$values);
+        if (mysqli_stmt_execute($stmt)) {
+            $res = mysqli_stmt_affected_rows($stmt);
+            mysqli_stmt_close($stmt);
+            return $res;
+        } else {
+            mysqli_stmt_close($stmt);
+            die("Query Can not be Executed --Delete");
+        }
+    } else {
+        die("Query Can not be prepared --Delete");
+    }
+}
+
 
 
 ?>
