@@ -18,10 +18,10 @@
                             <a class="nav-link text-white" href="settings.php">Setting</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">User</a>
+                            <a class="nav-link text-white" href="user.php">User</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Room</a>
+                            <a class="nav-link text-white" href="rooms.php">Room</a>
                         </li>
 
                     </ul>

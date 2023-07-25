@@ -34,26 +34,31 @@
         </p>
     </div>
     <div class="container">
+        <?php
+        $contact_q = "SELECT * FROM `contact_details` WHERE sr_no=?";
+        $values = [1];
+        $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'))
+        ?>
         <div class="row">
             <div class="col-lg-6 col-md-6 px-4 mb-5">
                 <div class="bg-white rounded shadow p-4">
-                    <iframe height="320px" class="w-100 rounded mb-4" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.79810511767!2d88.48798487421969!3d22.586653232457245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a020ac7b088374f%3A0x744b574c82e9efeb!2sEcospace%2C%20Premises%20-%2011F%2F12%2C%20Campus%20-%202B%2C%20Action%20Area%20II%2C%20Newtown%2C%20New%20Town%2C%20West%20Bengal%20700156!5e0!3m2!1sen!2sin!4v1689681175826!5m2!1sen!2sin" loading="lazy"></iframe>
+                    <iframe height="320px" class="w-100 rounded mb-4" src="<?php echo  $contact_r['iframe']; ?>" loading="lazy"></iframe>
                     <h5>Address</h5>
-                    <a href="https://goo.gl/maps/vitxAyjqEG8aj5xF9" target="_blank" class="d-inline-block text-decoration-none text-dark mb-2">
+                    <a href="<?php echo  $contact_r['gmap']; ?>" target="_blank" class="d-inline-block text-decoration-none text-dark mb-2">
                         <i class="bi bi-geo-alt-fill"></i>&nbsp;Eco-Space , Action Area-II , New Town ,Kolkata
                     </a>
                     <h5 class="mt-4">Call US</h5>
-                    <a href="tel:+919603879645" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-telephone-inbound-fill"></i></span>&nbsp;+91&nbsp;9603879645</a>
+                    <a href="tel:+<?php echo  $contact_r['phone']; ?>" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-telephone-inbound-fill"></i></span>&nbsp;+<?php echo  $contact_r['phone']; ?></a>
                     <h5 class="mt-1">Mail US</h5>
-                    <a href="mailto:hoteltajkolkata@gmail.com" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-envelope-paper-fill"></i></span> &nbsp;hoteltajkolkata@gmail.com</a>
+                    <a href="mailto:<?php echo  $contact_r['mail']; ?>" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-envelope-paper-fill"></i></span> &nbsp;<?php echo  $contact_r['mail']; ?></a>
                     <h5 class="mt-1">Follow US</h5>
-                    <a href="" class="d-inline-block text-dark fs-5 me-2">
+                    <a href="<?php echo  $contact_r['tw']; ?>" class="d-inline-block text-dark fs-5 me-2" target="_blank">
                         <i class="bi bi-twitter me-1"></i>
                     </a>
-                    <a href="" class="d-inline-block text-dark fs-5 me-2">
+                    <a href="<?php echo  $contact_r['fb']; ?>" class="d-inline-block text-dark fs-5 me-2" target="_blank">
                         <i class="bi bi-facebook me-1"></i>
                     </a>
-                    <a href="" class="d-inline-block text-dark fs-5">
+                    <a href="<?php echo  $contact_r['insta']; ?>" class="d-inline-block text-dark fs-5" target="_blank">
                         <i class="bi bi-instagram me-1"></i>
                     </a>
                 </div>

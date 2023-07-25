@@ -385,32 +385,39 @@
     <!--Our Testomonials End-->
 
     <!--Reach US Start-->
+    <?php
+    $contact_q = "SELECT * FROM `contact_details` WHERE sr_no=?";
+    $values = [1];
+    $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
+    // print("<pre>");
+    // print_r($contact_r);
+    ?>
     <h2 class="mt-5 mb-4 pt-4 text-center fw-bold h-font">Reach US</h2>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
-                <iframe height="320px" class="w-100 rounded" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.79810511767!2d88.48798487421969!3d22.586653232457245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a020ac7b088374f%3A0x744b574c82e9efeb!2sEcospace%2C%20Premises%20-%2011F%2F12%2C%20Campus%20-%202B%2C%20Action%20Area%20II%2C%20Newtown%2C%20New%20Town%2C%20West%20Bengal%20700156!5e0!3m2!1sen!2sin!4v1689681175826!5m2!1sen!2sin" loading="lazy"></iframe>
+                <iframe height="320px" class="w-100 rounded" src="<?php echo  $contact_r['iframe']; ?>" loading="lazy"></iframe>
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="bg-white p-4 mb-4 rounded">
                     <h5>Call US</h5>
-                    <a href="tel:+919603879645" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-telephone-inbound-fill"></i></span>&nbsp;+91&nbsp;9603879645</a>
+                    <a href="tel:+<?php echo  $contact_r['phone']; ?>" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-telephone-inbound-fill"></i></span>&nbsp;+<?php echo  $contact_r['phone']; ?></a>
                     <h5>Mail US</h5>
-                    <a href="" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-envelope-paper-fill"></i></span> &nbsp;hoteltajkolkata@gmail.com</a>
+                    <a href="mailto:<?php echo  $contact_r['mail']; ?>" class="d-inline-block mb-2 text-decoration-none text-dark"><span><i class="bi bi-envelope-paper-fill"></i></span> &nbsp;<?php echo  $contact_r['mail']; ?></a>
                 </div>
                 <div class="bg-white p-4 mb-4 rounded">
-                    <h5>Follow US US</h5>
-                    <a href="" class="d-inline-block mb-3">
+                    <h5>Follow US</h5>
+                    <a href="<?php echo  $contact_r['tw']; ?>" class="d-inline-block mb-3" target="_blank">
                         <span class="badge bg-light text-dark fs-6 p-2">
                             <i class="bi bi-twitter me-1"></i>&nbsp;Twitter
                         </span>
                     </a> <br>
-                    <a href="" class="d-inline-block mb-3">
+                    <a href="<?php echo  $contact_r['fb']; ?>" class="d-inline-block mb-3" target="_blank">
                         <span class="badge bg-light text-dark fs-6 p-2">
                             <i class="bi bi-facebook me-1"></i>&nbsp;Facebook
                         </span>
                     </a> <br>
-                    <a href="" class="d-inline-block">
+                    <a href="<?php echo  $contact_r['insta']; ?>" class="d-inline-block" target="_blank">
                         <span class="badge bg-light text-dark fs-6 p-2">
                             <i class="bi bi-instagram me-1"></i>&nbsp;Instagram
                         </span>
