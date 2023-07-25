@@ -18,7 +18,7 @@
                             <a class="nav-link text-white" href="settings.php">Setting</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="user.php">User</a>
+                            <a class="nav-link text-white" href="carousel.php">Carousel</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="rooms.php">Room</a>

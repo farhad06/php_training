@@ -26,7 +26,19 @@
     <div class="container-fluid px-lg-4 mt-4">
         <div class="swiper swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                <?php
+                $carousel_img = selectAll('carousel');
+                //print_r($about_r);
+                while ($row = mysqli_fetch_assoc($carousel_img)) {
+                    $path = CAROUSEL_IMAGE_PATH;
+                    echo <<< data
+                        <div class="swiper-slide">
+                            <img src="$path$row[picture]" class="w-100 d-block" />
+                        </div>
+                    data;
+                }
+                ?>
+                <!-- <div class="swiper-slide">
                     <img src="images/carousel/1.png" class="w-100 d-block" />
                 </div>
                 <div class="swiper-slide">
@@ -43,7 +55,7 @@
                 </div>
                 <div class="swiper-slide">
                     <img src="images/carousel/6.png" class="w-100 d-block" />
-                </div>
+                </div> -->
 
             </div>
         </div>

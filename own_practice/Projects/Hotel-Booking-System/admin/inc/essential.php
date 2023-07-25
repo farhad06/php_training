@@ -2,9 +2,13 @@
 //file path for frontend development
 define('SITE_URL', 'http://127.0.0.1/php_tranning/own_practice/Projects/Hotel-Booking-System/');
 define('ABOUT_IMAGE_PATH',SITE_URL.'images/about/');
+define('CAROUSEL_IMAGE_PATH', SITE_URL . 'images/carousel/');
+
 //file path for Backend Development
 define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT']. '/php_tranning/own_practice/Projects/Hotel-Booking-System/images/');
 define('ABOUT_FOLDER','about/');
+define('CAROUSEL_FOLDER', 'carousel/');
+
 
 function adminLogIN()
 {
