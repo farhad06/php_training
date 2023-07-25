@@ -1,4 +1,7 @@
 <?php
+define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT']. '/php_tranning/own_practice/Projects/Hotel-Booking-System/images/');
+
+define('ABOUT_FOLDER','about/');
 
 function adminLogIN()
 {
@@ -25,6 +28,29 @@ function alert($type,$msg){
                 <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
             </div> 
             alert;
+}
+
+function uploadImage($image,$folder){
+    $valid_mime=['image/jpg','image/jpeg','image/png','image/webp'];
+    $image_mime=$image['type'];
+     if(!in_array($image_mime,$valid_mime)){
+        return 'inv_img'; //invalid image type
+     }else if(($image['size']/(1024*1024))>2){
+        return 'inv_size'; //invalid size grater than 2mb
+     }else{
+        $ext=pathinfo($image['name'],PATHINFO_EXTENSION);
+        $rname='IMG_'.random_int(11111,99999).".$ext";
+        $img_path= UPLOAD_IMAGE_PATH.$folder.$rname;
+
+        if(move_uploaded_file($image['tmp_name'],$img_path)){
+            return $rname;
+        }else{
+            return 'upd_failed';
+        }
+     }
+
+
+
 }
 
 

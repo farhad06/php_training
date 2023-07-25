@@ -249,11 +249,42 @@ adminLogIN();
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h5 class="card-title m-0">Management Team</h5>
                             <button type="button" class="btn btn-sm btn-dark shadow-none" data-bs-toggle="modal"
-                                data-bs-target="#contactDetails">
-                                <i class="bi bi-pencil-square"></i>Add
+                                data-bs-target="#managementTeam">
+                                <i class="bi bi-plus-square"></i>&nbsp;Add
                             </button>
                         </div>
-                    
+                        <div class="row">
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="managementTeam" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form id="management_team_form">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title fw-bold">Management Team</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Name</label>
+                                        <input type="text" name="member_name" id="member_name_input" class="form-control shadow-none"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Picture</label>
+                                        <input type="file" name="member_picture" id="member_picture_input"
+                                        class="form-control shadow-none" accept=".jpg,.jpeg,.png,.webp" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn text-secondary shadow-none" data-bs-dismiss="modal"
+                                        onclick="">Cancel</button>
+                                    <button type="submit" class="btn text-white custom-bg shadow-none" onclick="">Submit</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!--Management Team End-->
@@ -268,6 +299,12 @@ adminLogIN();
 
         let site_title_input = document.getElementById('site_title_input');
         let site_about_input = document.getElementById('site_about_input');
+
+        let management_team_form = document.getElementById('management_team_form');
+
+        let member_name_input = document.getElementById('member_name_input');
+        let member_picture_input = document.getElementById('member_picture_input');
+
 
         //general modal form not submit with out data
         general_form_data.addEventListener('submit', function (e) {
@@ -442,8 +479,48 @@ adminLogIN();
 
         }
 
+        management_team_form.addEventListener('submit',function(e){
+            e.preventDefault();
+
+            add_member();
+
+        });
+
+        function add_member(){
+            let data = new FormData();
+            data.append('name',member_name_input.value);
+            data.append('picture',member_picture_input.files[0]);
+            data.append('add_member','');
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/setting_crud.php", true);
+            //xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onload = function () {
+                console.log(this.responseText);
+                //hide the  member-details form
+                var myModal = document.getElementById('managementTeam');
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
+
+                if (this.responseText == 'inv_img') {
+                    alert_msg('error', 'Only JPG JPEG and PNG format allowed.');
+                } else if(this.responseText == 'inv_size') {
+                    alert_msg('error', 'Please Upload File Less than 2mb.');
+                } else if (this.responseText == 'upd_failed'){
+                    alert_msg('error', 'Image Upload Failded');
+
+                }else{
+                    alert_msg('success','New Member Added');
+                    member_name_input.value="";
+                    member_picture_input.value="";
+                }
+
+            }
+            xhr.send(data);
+        }
+
         window.onload = function () {
-            get_general_data();
+            get_general_data();   
             get_contact_data();
         }
 
