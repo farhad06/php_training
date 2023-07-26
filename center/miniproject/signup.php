@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <h1 class="modal-header">Fill the Form</h1>
-        <form action="registration.php" method="post">
+        <form action="registration.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="">Name</label>
                 <input type="text" name="name" class="form-control" required>
@@ -79,10 +79,24 @@
                 <label for="">Password</label>
                 <input type="password" name="password" class="form-control">
             </div>
+            <div class="form-group">
+                <label for="">Image</label>
+                <input type="file" name="image" class="form-control" onchange="preImg()">
+                <section id="prev_img"></section>
+            </div>
             <div>
                 <button type="submit" class="btn btn-primary">Sign UP</button>
             </div>
         </form>
+        <script>
+            function preImg() {
+                console.log(event.target);
+                let preImg = URL.createObjectURL(event.target.files[0]);
+                console.log(preImg);
+                document.getElementById('prev_img').innerHTML = "<img src='" + preImg + "'height='60px' width='60px'>";
+
+            }
+        </script>
     </div>
 
 </body>

@@ -78,7 +78,7 @@ if (isset($_GET['del'])) {
                     <div class="card-body">
                         <div class="text-end mb-4">
                             <a href='?seen=all' class='btn btn-sm rounded-pill btn-primary text-nowrap'><i class="bi bi-check2-all"></i> Mark all Read</a>
-                            <a href='?del=all' class='btn btn-sm rounded-pill btn-danger text-nowrap'><i class="bi bi-trash"></i> All Delete</a>
+                            <a href='?del=all' class='btn btn-sm rounded-pill btn-danger text-nowrap'><i class="bi bi-trash"></i> Delete All</a>
                         </div>
                         <div class="table-responsive-md" style="height: 450px;overflow-y:scroll;">
                             <table class="table table-striped table-hover">

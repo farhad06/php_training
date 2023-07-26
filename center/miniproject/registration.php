@@ -29,12 +29,22 @@ $password = $_POST['password'];
 $known_lang = implode(',', $languege);
 
 $enc_pass = password_hash($password,PASSWORD_DEFAULT);
+$imageName = $_FILES['image']['name'];
+$imageTemp = $_FILES['image']['tmp_name'];
+$imageType = $_FILES['image']['type'];
+
+//$imgName = "IMG_".random_int(11111,99999).$imageType;
+// $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
+// $rname = 'IMG_' . random_int(11111, 99999) . ".$ext";
+// $img_path = UPLOAD_IMAGE_PATH . $folder . $rname;
+move_uploaded_file($imageTemp,'uploads/'.$imageName);
 
 $conn =  new mysqli('localhost','root','', 'center_miniproject');
 
+
 if($conn->connect_error) die($conn->connect_error);
 else{
-    $sql= "INSERT INTO `student` ( `name`, `email`, `phone`, `age`, `gender`, `language`, `city`, `password`) VALUES ('{$name}','{$email}','{$phone}','{$age}','{$gender}','{$known_lang}','{$city}','{$enc_pass}')";
+    $sql= "INSERT INTO `student` ( `name`, `email`, `phone`, `age`, `gender`, `language`, `city`, `password`,`image`) VALUES ('{$name}','{$email}','{$phone}','{$age}','{$gender}','{$known_lang}','{$city}','{$enc_pass}','{$imageName}')";
 
     $conn->query($sql);
 
@@ -55,8 +65,14 @@ else{
 }
 
 
-$conn->close()
+$conn->close();
 
+
+// print('<pre>');
+// print_r($_FILES);
+
+// $imageName = $_FILES['image']['name'];
+// $imageTemp = $_FILES['image']['tmp_name'];
 
 
 
