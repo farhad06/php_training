@@ -61,6 +61,8 @@ function detele_features(val) {
             alert_msg('success', 'Features Deleted');
             get_features();
 
+        } else if (this.responseText == 'room_added') {
+            alert_msg('error', 'Feature added in Room')
         } else {
             alert_msg('error', 'Something went Wrong');
         }
@@ -130,11 +132,10 @@ function detele_facilities(val) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onload = function () {
+        console.log(this.responseText);
         if (this.responseText == 1) {
-            console.log(this.responseText);
             alert_msg('success', 'Facilities Deleted');
             get_facilities();
-
         } else {
             alert_msg('error', 'Something went Wrong');
         }
