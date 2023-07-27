@@ -102,6 +102,7 @@ function add_facility() {
         } else {
             alert_msg('success', 'Facility Added');
             facility_form.reset();
+            get_facilities();
             
         }
 
@@ -109,6 +110,41 @@ function add_facility() {
     xhr.send(data);
 }
 
+function get_facilities() {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/features_facilities_crud.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onload = function () {
+        //console.log(this.responseText);
+        document.getElementById('facilities-data').innerHTML = this.responseText;
+
+    }
+    xhr.send('get_facilities');
+
+}
+
+function detele_facilities(val) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/features_facilities_crud.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onload = function () {
+        if (this.responseText == 1) {
+            console.log(this.responseText);
+            alert_msg('success', 'Facilities Deleted');
+            get_facilities();
+
+        } else {
+            alert_msg('error', 'Something went Wrong');
+        }
+
+
+    }
+    xhr.send('detele_facilities=' + val);
+}
+
 window.onload = function () {
     get_features();
+    get_facilities();
 }

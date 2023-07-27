@@ -34,7 +34,25 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-4 col-md-6 px-4 mb-5">
+        <?php
+            $res = selectAll("facilities");
+            while ($row = mysqli_fetch_assoc($res)) {
+                $path = FACILITIES_IMAGE_PATH;
+                echo <<<data
+                        <div class="col-lg-4 col-md-6 px-4 mb-5">
+                            <div class="bg-white rounded shadow border-top border-4 p-4 border-dark pop">
+                                <div class="d-flex align-items-center mb-2">
+                                    <img src="$path$row[icon]" width="40px">
+                                        <h5 class="m-0 ms-3">$row[name]</h5>
+                                </div>
+                                <p>$row[description]</p>
+                             </div>
+                        </div>
+                        data;
+            }
+        
+        ?>
+        <!-- <div class="col-lg-4 col-md-6 px-4 mb-5">
            <div class="bg-white rounded shadow border-top border-4 p-4 border-dark pop">
             <div class="d-flex align-items-center mb-2">
                 <img src="images/facilities/wifi.svg" width="40px">
@@ -42,8 +60,8 @@
             </div>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea assumenda reiciendis sit obcaecati quam nam.</p>
            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 px-4 mb-5">
+        </div> -->
+        <!-- <div class="col-lg-4 col-md-6 px-4 mb-5">
             <div class="bg-white rounded shadow border-top border-4 p-4 border-dark pop">
                 <div class="d-flex align-items-center mb-2">
                     <img src="images/facilities/IMG_47816.svg" width="40px">
@@ -51,8 +69,8 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea assumenda reiciendis sit obcaecati quam nam.</p>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6 px-4 mb-5">
+        </div> -->
+        <!-- <div class="col-lg-4 col-md-6 px-4 mb-5">
             <div class="bg-white rounded shadow border-top border-4 p-4 border-dark pop">
                 <div class="d-flex align-items-center mb-2">
                     <img src="images/facilities/room-hiter.svg" width="40px">
@@ -60,8 +78,8 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea assumenda reiciendis sit obcaecati quam nam.</p>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6 px-4 mb-5">
+        </div> -->
+        <!-- <div class="col-lg-4 col-md-6 px-4 mb-5">
             <div class="bg-white rounded shadow border-top border-4 p-4 border-dark pop">
                 <div class="d-flex align-items-center mb-2">
                     <img src="images/facilities/ac.svg" width="40px">
@@ -69,8 +87,8 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea assumenda reiciendis sit obcaecati quam nam.</p>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6 px-4 mb-5">
+        </div> -->
+        <!-- <div class="col-lg-4 col-md-6 px-4 mb-5">
             <div class="bg-white rounded shadow border-top border-4 p-4 border-dark pop">
                 <div class="d-flex align-items-center mb-2">
                     <img src="images/facilities/tv.svg" width="40px">
@@ -78,8 +96,8 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea assumenda reiciendis sit obcaecati quam nam.</p>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6 px-4 mb-5">
+        </div> -->
+        <!-- <div class="col-lg-4 col-md-6 px-4 mb-5">
             <div class="bg-white rounded shadow border-top border-4 p-4 border-dark pop">
                 <div class="d-flex align-items-center mb-2">
                     <img src="images/facilities/IMG_96423.svg" width="40px">
@@ -87,7 +105,7 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea assumenda reiciendis sit obcaecati quam nam.</p>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <?php require_once('inc/footer.php'); ?>

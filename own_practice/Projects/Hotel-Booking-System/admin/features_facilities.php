@@ -4,58 +4,6 @@ require('inc/db_config.php');
 require('inc/links.php');
 
 adminLogIN();
-//update message
-if (isset($_GET['seen'])) {
-    $form_data = filteration($_GET);
-
-    if ($form_data['seen'] == 'all') {
-        $q = "UPDATE `contact_us` SET `seen`=?";
-        $values = [1];
-
-        if (update($q, $values, 'i')) {
-            echo "<script>alert('Message All Read Successfully.');
-            window.location.href='user_queries.php';
-            </script>";
-        } else {
-            echo "<script>alert('Message Not Read!');</script>";
-        }
-    } else {
-        $q = "UPDATE `contact_us` SET `seen`=?  WHERE `sr_no`=?";
-        $values = [1, $form_data['seen']];
-
-        if (update($q, $values, 'ii')) {
-            echo "<script>alert('Message Read Successfully.');
-            window.location.href='user_queries.php';
-            </script>";
-        } else {
-            echo "<script>alert('Message Not Read!');</script>";
-        }
-    }
-}
-//delete message
-if (isset($_GET['del'])) {
-    $form_data = filteration($_GET);
-
-    if ($form_data['del'] == 'all') {
-        $q = "DELETE FROM `contact_us`";
-        if (mysqli_query($conn, $q)) {
-            echo "<script>alert('Message All Deleted Successfully.');
-            window.location.href='user_queries.php';</script>";
-        } else {
-            echo "<script>alert('Message Not Delete!');</script>";
-        }
-    } else {
-        $q = "DELETE FROM `contact_us` WHERE `sr_no`=?";
-        $values = [$form_data['del']];
-
-        if (delete($q, $values, 'i')) {
-            echo "<script>alert('Message Deleted Successfully.');
-            window.location.href='user_queries.php';</script>";
-        } else {
-            echo "<script>alert('Message Not Delete!');</script>";
-        }
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +66,7 @@ if (isset($_GET['del'])) {
                                         <th scope="col">Sl.No</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Icon</th>
-                                        <th scope="col">Description</th>
+                                        <th scope="col" width="35%">Description</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>

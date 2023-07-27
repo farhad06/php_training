@@ -57,5 +57,43 @@ if (isset($_POST['add_facility'])) {
     }
 }
 
+if (isset($_POST['get_facilities'])) {
+    $res = selectAll("facilities");
+    $sl_no = 1;
+    while ($row = mysqli_fetch_assoc($res)) {
+        $path= FACILITIES_IMAGE_PATH;
+        echo <<<data
+                <tr>
+                    <td>$sl_no</td>
+                    <td>$row[name]</td>
+                    <td><img src='$path$row[icon]' heigth='50px' width='50px'></td>
+                    <td>$row[description]</td>
+                    <td>
+                    <button type="button" onclick="detele_facilities($row[id])" class="btn btn-sm rounded-pill btn-danger shadow-none"> Delete
+                    </button>
+                    </td>
+                </tr>
+            data;
+        $sl_no++;
+    }
+}
+
+if (isset($_POST['detele_facilities'])) {
+    $form_data = filteration($_POST);
+    $values = [$form_data['detele_facilities']];
+
+    $pre_sql = "SELECT * FROM `facilities` WHERE id=?";
+    $res = select($pre_sql, $values, 'i');
+    $row = mysqli_fetch_assoc($res);
+
+    if (deleteImage($row['icon'], FACILITIES_FOLDER)){
+        $q = "DELETE FROM `facilities` WHERE id=?";
+        $res = delete($q, $values, 'i');
+        echo $res;
+    } else {
+        echo 0;
+    }
+}
+
 
 ?>
