@@ -57,16 +57,12 @@ function detele_features(val) {
 
     xhr.onload = function () {
         if (this.responseText == 1) {
-            console.log(this.responseText);
+            //console.log(this.responseText);
             alert_msg('success', 'Features Deleted');
             get_features();
-
-        } else if (this.responseText == 'room_added') {
-            alert_msg('error', 'Feature added in Room')
         } else {
             alert_msg('error', 'Something went Wrong');
         }
-
 
     }
     xhr.send('detele_features=' + val);
