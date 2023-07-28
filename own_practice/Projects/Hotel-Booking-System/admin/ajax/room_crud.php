@@ -87,7 +87,9 @@ if(isset($_POST['get_all_rooms'])){
                <td>$row[quantity]</td>
                <td>$status</td>
                <td>
-               <button type='button' onclick='edit_room($row[id])' class='btn btn-sm btn-success shadow-none' data-bs-toggle='modal' data-bs-target='#editroom'><i class='bi bi-pencil-square fs-5'></i>
+               <button type='button' onclick='edit_room($row[id])' class='btn btn-sm btn-success shadow-none mb-sm-2 mb-lg-0' data-bs-toggle='modal' data-bs-target='#editroom'><i class='bi bi-pencil-square fs-5'></i>
+               </button>
+               <button type='button' onclick=\"room_id_name($row[id],'$row[name]')\" class='btn btn-sm btn-info shadow-none' data-bs-toggle='modal' data-bs-target='#addroomimage'><i class='bi bi-image fs-5'></i>
                </button>
                </td>
             </tr>
@@ -196,6 +198,59 @@ if (isset($_POST['submit_edit_room'])) {
     ###############################################################################################
     if ($flag) {
         echo 1;
+    } else {
+        echo 0;
+    }
+}
+
+if (isset($_POST['add_room_image'])) {
+
+    $form_data = filteration($_POST);
+    $img_r = uploadImage($_FILES['room_image'], ROOMS_FOLDER);
+
+    if ($img_r == 'inv_img') {
+        echo $img_r;
+    } else if ($img_r == 'inv_size') {
+        echo $img_r;
+    } else if ($img_r == 'upd_failed') {
+        echo $img_r;
+    } else {
+        $q = "INSERT INTO `rooms_image`(`room_id`, `image`) VALUES (?,?)";
+        $values = [$form_data['room_id'],$img_r];
+        $res = insert($q, $values, 'is');
+        echo $res;
+    }
+}
+
+if (isset($_POST['room_id_name'])) {
+    $form_data = filteration($_POST);
+    $res = select("SELECT * FROM `rooms_image` WHERE `room_id`=?",[$form_data['room_id_name']],'i');
+    
+    while ($row = mysqli_fetch_assoc($res)) {
+        $path= ROOM_IMAGE_PATH;
+        echo <<<data
+                <tr class='align-middle'>
+                    <td><img src=$path$row[image] class='img-fluid'></td>
+                    <td>$row[thumb]</td>
+                    <td><button type="button" onclick='delete_room_image($row[sr_no],$row[room_id])' class="btn btn-sm rounded-pill btn-danger shadow-none"> Delete
+                </button></td>
+                </tr>
+            data;
+    }
+}
+
+if (isset($_POST['delete_room_image'])) {
+    $form_data = filteration($_POST);
+    $values = [$form_data['image_id'], $form_data['room_id']];
+
+    $pre_sql = "SELECT * FROM `rooms_image` WHERE `sr_no`=? AND `room_id`=?";
+    $res = select($pre_sql, $values, 'ii');
+    $row = mysqli_fetch_assoc($res);
+
+    if (deleteImage($row['image'], ROOMS_FOLDER)) {
+        $q = "DELETE FROM `rooms_image` WHERE `sr_no`=? AND `room_id`=?";
+        $res = delete($q, $values, 'ii');
+        echo $res;
     } else {
         echo 0;
     }

@@ -191,6 +191,88 @@ function submit_edit_room() {
     
 }
 
+let room_image_form_id = document.getElementById('add_room_image_form');
+
+room_image_form_id.addEventListener('submit', function (e) {
+    e.preventDefault();
+    add_room_image();
+});
+
+function room_id_name(id, rname) {
+    //document.querySelector('#addroomimage .modal-title').innerText = rname;
+    document.getElementById('mTitel').innerText = rname;
+    //room_image_form_id.elements['room_id'].value = id;
+    document.getElementById('room_id').value = id;
+    document.getElementById('room_image').value = '';
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/room_crud.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onload = function () {
+        //console.log(this.responseText);
+        document.getElementById('room-image-data').innerHTML = this.responseText;
+
+    }
+    xhr.send('room_id_name='+id+'&r_name='+rname);
+}
+
+function add_room_image() {
+    let data = new FormData();
+    //data.append('name', member_name_input.value);
+    data.append('room_image', room_image_form_id.elements['room_image'].files[0]);
+    data.append('room_id', room_image_form_id.elements['room_id'].value);
+    data.append('add_room_image', '');
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/room_crud.php", true);
+    
+    xhr.onload = function () {
+
+        if (this.responseText == 'inv_img') {
+            alert_msg('error', 'Only JPG JPEG and PNG format allowed.','alert-msg');
+        } else if (this.responseText == 'inv_size') {
+            alert_msg('error', 'Please Upload File Less than 2mb.','alert-msg');
+        } else if (this.responseText == 'upd_failed') {
+            alert_msg('error', 'Image Upload Failded');
+
+        } else {
+            alert_msg('success', 'New Image Added', 'alert-msg');
+            room_id_name(room_image_form_id.elements['room_id'].value, document.getElementById('mTitel').innerText);
+            room_image_form_id.reset();
+            
+        }
+
+    }
+    xhr.send(data);
+}
+
+function delete_room_image(image_id, room_id) {
+    let data = new FormData();
+    data.append('image_id', image_id);
+    data.append('room_id', room_id);
+    data.append('delete_room_image', '');
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/room_crud.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onload = function () {
+        console.log(this.responseText);
+        if (this.responseText == 1) {
+            alert_msg('success', 'Room Image Deleted','alert-msg');
+            room_id_name(room_image_form_id.elements['room_id'].value, document.getElementById('mTitel').innerText);
+        } else {
+            console.log(this.responseText);
+
+            alert_msg('error', 'Something went Wrong','alert-msg');
+        }
+
+    }
+    xhr.send(data);
+}
+
+
+
 window.onload = function () {
     get_all_rooms();
+    room_id_name();
 }

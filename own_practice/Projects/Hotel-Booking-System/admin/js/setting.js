@@ -32,6 +32,7 @@ function get_general_data() {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onload = function () {
+        //console.log(this.responseText);
         general_data = JSON.parse(this.responseText);
         //console.log(general_data);
         site_title.innerText = general_data.site_title;

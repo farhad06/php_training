@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +13,13 @@
 
 <body>
     <div class="container">
+            <?php
+            if (isset($_SESSION['message'])){
+                echo "<div class='alert alert-success'> 
+                $_SESSION[message]</div>";
+                unset($_SESSION['message']);
+            }
+            ?>
         <h1 class="modal-header">Fill the Form</h1>
         <form action="registration.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
@@ -87,12 +95,12 @@
             <div>
                 <button type="submit" class="btn btn-primary">Sign UP</button>
             </div>
-        </form>
+        </form>   
         <script>
             function preImg() {
-                console.log(event.target);
+                //console.log(event.target);
                 let preImg = URL.createObjectURL(event.target.files[0]);
-                console.log(preImg);
+                //console.log(preImg);
                 document.getElementById('prev_img').innerHTML = "<img src='" + preImg + "'height='60px' width='60px'>";
 
             }

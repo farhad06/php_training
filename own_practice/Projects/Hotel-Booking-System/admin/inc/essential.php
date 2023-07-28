@@ -4,6 +4,8 @@ define('SITE_URL', 'http://127.0.0.1/php_tranning/own_practice/Projects/Hotel-Bo
 define('ABOUT_IMAGE_PATH',SITE_URL.'images/about/');
 define('CAROUSEL_IMAGE_PATH', SITE_URL . 'images/carousel/');
 define('FACILITIES_IMAGE_PATH', SITE_URL . 'images/facilities/');
+define('ROOM_IMAGE_PATH', SITE_URL . 'images/rooms/');
+
 
 
 //file path for Backend Development
@@ -11,6 +13,8 @@ define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT']. '/php_tranning/own_practic
 define('ABOUT_FOLDER','about/');
 define('CAROUSEL_FOLDER', 'carousel/');
 define('FACILITIES_FOLDER', 'facilities/');
+define('ROOMS_FOLDER', 'rooms/');
+
 
 
 
