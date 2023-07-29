@@ -300,7 +300,7 @@
                 </div>
             </div>
             <div class="col-lg-12 text-center mt-5">
-                <a href="" class="btn btn-sm btn-outline-dark shadow-none fw-bold rounded-0">More Rooms >>></a>
+                <a href="rooms.php" class="btn btn-sm btn-outline-dark shadow-none fw-bold rounded-0">More Rooms >>></a>
 
             </div>
         </div>
@@ -310,29 +310,42 @@
     <h2 class="mt-5 mb-4 pt-4 text-center fw-bold h-font">Our Facilities</h2>
     <div class="container">
         <div class="row justify-content-evenly px-lg-0 px-md-0">
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow my-3 py-4">
+            <?php
+            $res = mysqli_query($conn, "SELECT * FROM `facilities` ORDER BY `id` DESC LIMIT 5");
+            while ($row = mysqli_fetch_assoc($res)) {
+                $path = FACILITIES_IMAGE_PATH;
+                echo <<<data
+                        <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow my-3 py-4">
+                            <img src="$path$row[icon]" width="80px">
+                            <h5 class="mt-3">$row[name]</h5>
+                        </div>
+                    data;
+            }
+
+            ?>
+            <!-- <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow my-3 py-4">
                 <img src="images/facilities/wifi.svg" width="80px">
                 <h5 class="mt-3">Wifi</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow my-3 py-4">
+            </div> -->
+            <!-- <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow my-3 py-4">
                 <img src="images/facilities/ac.svg" width="80px">
                 <h5 class="mt-3">AC</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow my-3 py-4">
+            </div> -->
+            <!-- <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow my-3 py-4">
                 <img src="images/facilities/room-hiter.svg" width="80px">
                 <h5 class="mt-3">Room Hiter</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow my-3 py-4">
+            </div> -->
+            <!-- <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow my-3 py-4">
                 <img src="images/facilities/tv.svg" width="80px">
                 <h5 class="mt-3">TV</h5>
-            </div>
-            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow my-3 py-4">
+            </div> -->
+            <!-- <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow my-3 py-4">
                 <img src="images/facilities/IMG_96423.svg" width="80px">
                 <h5 class="mt-3">Wifi</h5>
-            </div>
+            </div> -->
         </div>
         <div class="col-lg-12 text-center mt-5">
-            <a href="" class="btn btn-sm btn-outline-dark shadow-none fw-bold rounded-0">More Facilities >>></a>
+            <a href="facilities.php" class="btn btn-sm btn-outline-dark shadow-none fw-bold rounded-0">More Facilities >>></a>
 
         </div>
     </div>
