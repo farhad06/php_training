@@ -33,11 +33,12 @@
 
                     </tr>
                 </thead>
-                <?php
-                $slNumber = 1;
-                while ($row = mysqli_fetch_assoc($result)) {
-                ?>
-                    <tbody>
+                <tbody>
+                    <?php
+                    $slNumber = 1;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+
                         <tr>
                             <td><?php echo $slNumber ?></td>
                             <td><?php echo $row['name'] ?></td>
@@ -51,11 +52,12 @@
                             <td><button type="button" class="btn btn-sm btn-danger" id="delete-btn" data-id=<?php echo $row['id']; ?>>Delete</button></td>
 
                         </tr>
-                    </tbody>
 
-                <?php
-                    $slNumber++;
-                } ?>
+
+                    <?php
+                        $slNumber++;
+                    } ?>
+                </tbody>
             </table>
         <?php
         } else {

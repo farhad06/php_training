@@ -13,13 +13,6 @@
 
 <body>
     <div class="container">
-            <?php
-            if (isset($_SESSION['message'])){
-                echo "<div class='alert alert-success'> 
-                $_SESSION[message]</div>";
-                unset($_SESSION['message']);
-            }
-            ?>
         <h1 class="modal-header">Fill the Form</h1>
         <form action="registration.php" method="post" enctype="multipart/form-data">
             <div class="form-group">

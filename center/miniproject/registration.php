@@ -55,34 +55,16 @@ else{
     $affected_rows=$conn->affected_rows;
 
     if($affected_rows==1){
-        // echo"<script>
-        //     alert('Data Saved Successfully');
-        //     window.location.href='signup.php';
-        // </script>";
         $_SESSION['message']= 'Data Saved Successfully';
     }else{
-        // echo "<script>
-        //     alert('Data Not Saved');
-        //     window.location.href='signup.php';
-        // </script>";
         $_SESSION['message'] = 'Data Not Saved';
 
     }
-    header('location:signup.php');
+    header('location:index.php', "Refresh: 0");
 
 }
 
 
 $conn->close();
-
-
-// print('<pre>');
-// print_r($_FILES);
-
-// $imageName = $_FILES['image']['name'];
-// $imageTemp = $_FILES['image']['tmp_name'];
-
-
-
 
 ?>

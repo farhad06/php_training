@@ -39,7 +39,7 @@ function add_room() {
     //xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onload = function () {
-        //console.log(this.responseText);
+
         //hide the  member-details form
         var myModal = document.getElementById('addroom');
         var modal = bootstrap.Modal.getInstance(myModal);
@@ -204,14 +204,13 @@ function room_id_name(id, rname) {
     //room_image_form_id.elements['room_id'].value = id;
     document.getElementById('room_id').value = id;
     document.getElementById('room_image').value = '';
+
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "ajax/room_crud.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onload = function () {
-        //console.log(this.responseText);
         document.getElementById('room-image-data').innerHTML = this.responseText;
-
     }
     xhr.send('room_id_name='+id+'&r_name='+rname);
 }
@@ -246,28 +245,62 @@ function add_room_image() {
 }
 
 function delete_room_image(image_id, room_id) {
-    let data = new FormData();
-    data.append('image_id', image_id);
-    data.append('room_id', room_id);
-    data.append('delete_room_image', '');
-
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "ajax/room_crud.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onload = function () {
-        console.log(this.responseText);
+        //console.log(this.responseText);
         if (this.responseText == 1) {
             alert_msg('success', 'Room Image Deleted','alert-msg');
-            room_id_name(room_image_form_id.elements['room_id'].value, document.getElementById('mTitel').innerText);
+            room_id_name(room_id, document.getElementById('mTitel').innerText);
         } else {
-            console.log(this.responseText);
-
+            //console.log(this.responseText);
             alert_msg('error', 'Something went Wrong','alert-msg');
         }
 
     }
-    xhr.send(data);
+    xhr.send('delete_room_image=' + image_id + '&room_id=' + room_id);
+
+}
+
+function thumb_image(image_id, room_id) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax/room_crud.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onload = function () {
+        //console.log(this.responseText);
+        if (this.responseText == 1) {
+            alert_msg('success', 'Image Set as a Thumbnil', 'alert-msg');
+            room_id_name(room_id, document.getElementById('mTitel').innerText);
+        } else {
+            //console.log(this.responseText);
+            alert_msg('error', 'Something went Wrong', 'alert-msg');
+        }
+
+    }
+    xhr.send('thumb_image='+image_id+'&room_id='+room_id);
+}
+
+function remove_room(id) {
+    if (confirm('Are You sure ! You Want to delete this Room?')) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/room_crud.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onload = function () {
+            if (this.responseText == 1) {
+                alert_msg('success', 'Room  Deleted');
+                get_all_rooms();
+            } else {
+                alert_msg('error', 'Something went Wrong');
+            }
+
+        }
+        xhr.send('remove_room=' + id);
+    
+    }
 }
 
 
