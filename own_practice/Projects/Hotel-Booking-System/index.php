@@ -110,7 +110,93 @@
     <h2 class="mt-5 mb-4 pt-4 text-center fw-bold h-font">Our Rooms</h2>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 my-3">
+    <?php
+    $room_res = select("SELECT * FROM `room` WHERE `status`=? AND `remove`=?  ORDER BY `id` DESC LIMIT 3", [1, 0], 'ii');
+    // print('<pre>');
+    // print_r($room_res);
+    while ($room_data = mysqli_fetch_assoc($room_res)) {
+
+        ############################################################################
+        //get features of room
+        $room_fea = mysqli_query($conn, "SELECT f.name FROM `features`  f INNER JOIN  `room_features` rfea ON f.id = rfea.features_id WHERE rfea.room_id='$room_data[id]' ");
+
+        $features_data = "";
+        while ($fea_row = mysqli_fetch_assoc($room_fea)) {
+            $features_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+                                    $fea_row[name] </span>";
+        }
+        //echo $features_data;
+        ##################################################################################
+
+        //get facilities of room
+        $room_faci = mysqli_query($conn, "SELECT f.name FROM `facilities`  f INNER JOIN  `room_facilities` rfaci ON f.id = rfaci.facilities_id WHERE rfaci.room_id='$room_data[id]'");
+
+        $facilities_data = "";
+        while ($faci_row = mysqli_fetch_assoc($room_faci)) {
+            $facilities_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>$faci_row[name]</span>";
+        }
+        //echo $facilities_data;
+        ##################################################################################
+        //get thumbnil image 
+        $rooms_thumb = ROOM_IMAGE_PATH . "9.jpg";
+        $thumb_q = mysqli_query($conn, "SELECT * FROM `rooms_image` WHERE `room_id`='$room_data[id]' AND `thumb`=1");
+        if (mysqli_num_rows($thumb_q) > 0) {
+            $thumb_res = mysqli_fetch_assoc($thumb_q);
+            $rooms_thumb = ROOM_IMAGE_PATH . $thumb_res['image'];
+        }
+        ####################################################################################
+        $book_btn="";
+        if (!$setting_r['shutdown']) {
+            $book_btn= '<a href="#" class="btn btn-sm text-white custom-bg shadow-none">Book Now</a>';
+        }
+        //print Room card
+        echo <<< data
+        <div class="col-lg-4 col-md-6 my-3">
+                <div class="card border-0 shadow" style="max-width:350px;margin: auto;">
+                    <img src="$rooms_thumb" class="card-img-top">
+                    <div class="card-body">
+                        <h5>$room_data[name]</h5>
+                        <h6 class="mb-4"> <span>&#8377;</span> $room_data[price] per night</h6>
+                        <div class="features mb-4">
+                            <h6 class="mb-1">Features</h6>
+                                $features_data 
+                        </div>
+                        <div class="facilities mb-4">
+                            <h6 class="mb-1">Facilities</h6>
+                             $facilities_data
+                        </div>
+                        <div class="guests mb-4">
+                            <h6 class="mb-1">Guests</h6>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                $room_data[adult] Adult
+                            </span>
+                            <span class="badge rounded-pill bg-light text-dark text-wrap">
+                                  $room_data[children] Children
+                            </span>
+                        </div>
+                        <div class="rating mb-4">
+                            <h6 class="mb-1">Rating</h6>
+                            <span class="badge rounded-pill bg-light">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-evenly mb-2">
+                            $book_btn
+                            <a href="room_details.php?id=$room_data[id]" class="btn btn-sm btn-outline-dark shadow-none">More Details</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+                            
+        data;
+        }
+            ?>
+            <!-- <div class="col-lg-4 col-md-6 my-3">
                 <div class="card border-0 shadow" style="max-width:350px;margin: auto;">
                     <img src="images/rooms/1.jpg" class="card-img-top">
                     <div class="card-body">
@@ -172,8 +258,8 @@
 
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 my-3">
+            </div> -->
+            <!-- <div class="col-lg-4 col-md-6 my-3">
                 <div class="card border-0 shadow" style="max-width:350px;margin: auto;">
                     <img src="images/rooms/2.png" class="card-img-top">
                     <div class="card-body">
@@ -235,8 +321,8 @@
 
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 my-3">
+            </div> -->
+            <!-- <div class="col-lg-4 col-md-6 my-3">
                 <div class="card border-0 shadow" style="max-width:350px;margin: auto;">
                     <img src="images/rooms/3.png" class="card-img-top">
                     <div class="card-body">
@@ -298,7 +384,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-lg-12 text-center mt-5">
                 <a href="rooms.php" class="btn btn-sm btn-outline-dark shadow-none fw-bold rounded-0">More Rooms >>></a>
 
@@ -403,7 +489,7 @@
         </div>
     </div>
     <div class="col-lg-12 text-center mt-5">
-        <a href="" class="btn btn-sm btn-outline-dark shadow-none fw-bold rounded-0">Know More >>></a>
+        <a href="about.php" class="btn btn-sm btn-outline-dark shadow-none fw-bold rounded-0">Know More >>></a>
 
     </div>
 

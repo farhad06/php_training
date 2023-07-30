@@ -24,6 +24,9 @@
                             <a class="nav-link text-white" href="user_queries.php">User Query</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-white" href="users.php">User</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white" href="features_facilities.php">Features & Facilities</a>
                         </li>
                         <li class="nav-item">
