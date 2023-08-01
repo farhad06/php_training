@@ -1,37 +1,19 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Show Data</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
     <div class="container">
-        <div>
-            <a href="signup.php" class="text-decoration-none"><button type="button" class="btn btn-primary shadow-none" style="margin-top: 12px;">
-                    + ADD
-                </button></a>
-        </div>
-        <?php
-        if (isset($_SESSION['SUCCESS_MSG']) && !empty($_SESSION['SUCCESS_MSG'])) {
-            echo "<div class='alert alert-success' style='float:right;' id='responseMsg'> 
-                $_SESSION[SUCCESS_MSG]</div>";
-            unset($_SESSION['SUCCESS_MSG']);
-        }
-        if (isset($_SESSION['ERROR_MSG']) && !empty($_SESSION['ERROR_MSG'])) {
-            echo "<div class='alert alert-danger' style='float:right;' id='responseMsg'> 
-                $_SESSION[ERROR_MSG]</div>";
-            unset($_SESSION['ERROR_MSG']);
-        }
-        ?>
         <div class="fw-bold text-center">
             <h1><u>USER DATA</u></h1>
         </div>
-        <div class="tabel-responsive"><!--style="overflow-y: scroll; height:550px;"-->
+        <div class="tabel-responsive">
             <table class="table">
                 <thead class="sticky-top thead-dark">
                     <tr>
@@ -44,7 +26,7 @@
                         <th scope="col">Language Known</th>
                         <th scope="col">City</th>
                         <th scope="col">Profile Picture</th>
-                        <th scope="col" colspan="2" class="text-center">Action</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,10 +49,9 @@
                                             <td>$row[age]</td>
                                             <td>$row[language]</td>
                                             <td>$row[city]</td>
-                                            <td><img src=$row[image] height='80px' width='100px'></td>
+                                            <td><img src='center/miniproject/'$row[image] height='80px' width='100px'></td>
                                             <td>
-                                            <a href='update.php?id=$row[id]' class='text-decoration-none'><button class='btn btn-sm  btn-success mb-1'>Update</button></a></td>
-                                            <td>
+                                            <a href='update.php?id=$row[id]' class='text-decoration-none'><button class='btn btn-sm  btn-success mb-1'>Update</button></a>
                                             <a href='' class='text-decoration-none'><button class='btn btn-sm btn-danger'>Delete</button></a>
                                             </td>
                                         </tr>
@@ -88,15 +69,7 @@
             </table>
 
         </div>
-
     </div>
-    <script>
-        setTimeout(removeResponseMsg, 3000);
-
-        function removeResponseMsg() {
-            document.getElementById('responseMsg').remove();
-        }
-    </script>
 
 </body>
 

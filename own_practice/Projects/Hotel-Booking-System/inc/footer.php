@@ -191,4 +191,12 @@
 
 
         }
+
+        function ckeckLogInForBooking(status,r_id){
+            if(status){
+                window.location.href = "confirm_booking.php?id="+r_id;
+            }else{
+                alert_msg('error','Please Login to book room.')
+            }
+        }
     </script>

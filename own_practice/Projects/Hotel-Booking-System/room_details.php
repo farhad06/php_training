@@ -171,7 +171,11 @@
                         ### Book button
                         $book_btn = "";
                         if (!$setting_r['shutdown']) {
-                            $book_btn = "<a href='' class='btn  w-100 text-white custom-bg shadow-none mb-1'>Book Now</a>";
+                            $login = 0;
+                            if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] == true) {
+                                $login = 1;
+                            }
+                            $book_btn = "<button onclick='ckeckLogInForBooking($login,$room_data[id])' class='btn  w-100 text-white custom-bg shadow-none mb-1'>Book Now</button>";
                         }
                         echo $book_btn;
                         ?>

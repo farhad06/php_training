@@ -55,9 +55,9 @@ else{
     $affected_rows=$conn->affected_rows;
 
     if($affected_rows==1){
-        $_SESSION['message']= 'Data Saved Successfully';
+        $_SESSION['SUCCESS_MSG']= 'Data Saved Successfully';
     }else{
-        $_SESSION['message'] = 'Data Not Saved';
+        $_SESSION['ERROR_MSG'] = 'Data Not Saved';
 
     }
     header('location:index.php', "Refresh: 0");
