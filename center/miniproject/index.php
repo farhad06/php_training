@@ -69,7 +69,7 @@
                                             <td>$row[city]</td>
                                             <td><img src=$row[image] height='80px' width='100px'></td>
                                             <td>
-                                            <a href='update.php?id=$row[id]' class='text-decoration-none'><button class='btn btn-sm  btn-success mb-1'>Update</button></a></td>
+                                            <a href='edit.php?id=$row[id]' class='text-decoration-none'><button class='btn btn-sm  btn-success mb-1'>Update</button></a></td>
                                             <td>
                                             <a href='' class='text-decoration-none'><button class='btn btn-sm btn-danger'>Delete</button></a>
                                             </td>
