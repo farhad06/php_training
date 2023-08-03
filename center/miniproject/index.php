@@ -69,9 +69,10 @@
                                             <td>$row[city]</td>
                                             <td><img src=$row[image] height='80px' width='100px'></td>
                                             <td>
-                                            <a href='edit.php?id=$row[id]' class='text-decoration-none'><button class='btn btn-sm  btn-success mb-1'>Update</button></a></td>
+                                            <a href='edit.php?id=$row[id]' class='text-decoration-none'><button class='btn btn-sm  btn-success mb-1'>Update</button></a>
+                                            </td>
                                             <td>
-                                            <a href='' class='text-decoration-none'><button class='btn btn-sm btn-danger'>Delete</button></a>
+                                            <a href='delete.php?id=$row[id]' class='text-decoration-none'><button class='btn btn-sm btn-danger' onclick="return confirm('Are You Sure ! Want to delete it?');">Delete</button></a>
                                             </td>
                                         </tr>
                                     data;
