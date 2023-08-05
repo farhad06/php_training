@@ -48,7 +48,7 @@ if ($res) {
 }
 
 #redirect to index page with refresh index page
-header('location:index.php', "Refresh: 0");
+header('location:show.php', "Refresh: 0");
 
 #close the database connection
 $conn->close();

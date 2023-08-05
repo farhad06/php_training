@@ -5,99 +5,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        div.login-form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
-        <div>
-            <a href="signup.php" class="text-decoration-none"><button type="button" class="btn btn-primary shadow-none" style="margin-top: 12px;">
-                    + ADD
-                </button></a>
-        </div>
-        <?php
-        if (isset($_SESSION['SUCCESS_MSG']) && !empty($_SESSION['SUCCESS_MSG'])) {
-            echo "<div class='alert alert-success' style='float:right;' id='responseMsg'> 
-                $_SESSION[SUCCESS_MSG]</div>";
-            unset($_SESSION['SUCCESS_MSG']);
-        }
-        if (isset($_SESSION['ERROR_MSG']) && !empty($_SESSION['ERROR_MSG'])) {
-            echo "<div class='alert alert-danger' style='float:right;' id='responseMsg'> 
-                $_SESSION[ERROR_MSG]</div>";
-            unset($_SESSION['ERROR_MSG']);
-        }
-        ?>
-        <div class="fw-bold text-center">
-            <h1><u>USER DATA</u></h1>
-        </div>
-        <div class="tabel-responsive"><!--style="overflow-y: scroll; height:550px;"-->
-            <table class="table">
-                <thead class="sticky-top thead-dark">
-                    <tr>
-                        <th scope="col">Sl No</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Age</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Language Known</th>
-                        <th scope="col">City</th>
-                        <th scope="col">Profile Picture</th>
-                        <th scope="col" colspan="2" class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div class="login-form text-center overflow-hidden rounded shadow bg-white">
+            <h4 class="text-center bg-dark text-light py-3">LOG IN FORM</h4>
+            <div class="p-4">
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <!-- <label>Name/Email</label> -->
+                        <input type="text" name="u_name" class="form-control shadow-none rounded" placeholder="Enter Name/Email" autocomplete="off">
+                    </div>
+                    <div class="mb-3">
+                        <!-- <label>Password</label> -->
+                        <input type="password" name="u_pass" class="form-control shadow-none rounded" placeholder="Enter Password" autocomplete="off">
+                    </div>
                     <?php
-                    $conn =  new mysqli('localhost', 'root', '', 'center_miniproject');
-                    if ($conn->connect_error) die($conn->connect_error);
-                    else {
-                        $sql = "SELECT * FROM `student`";
-                        $res = $conn->query($sql);
-                        if (mysqli_num_rows($res) > 0) {
-                            $sl_no = 1;
-                            while ($row = $res->fetch_assoc()) {
-                                echo <<< data
-                                        <tr>
-                                            <td>$sl_no</td>
-                                            <td>$row[name]</td>
-                                            <td>$row[email]</td>
-                                            <td>$row[phone]</td>
-                                            <td>$row[gender]</td>
-                                            <td>$row[age]</td>
-                                            <td>$row[language]</td>
-                                            <td>$row[city]</td>
-                                            <td><img src=$row[image] height='80px' width='100px'></td>
-                                            <td>
-                                            <a href='edit.php?id=$row[id]' class='text-decoration-none'><button class='btn btn-sm  btn-success mb-1'>Update</button></a>
-                                            </td>
-                                            <td>
-                                            <a href='delete.php?id=$row[id]' class='text-decoration-none'><button class='btn btn-sm btn-danger' onclick="return confirm('Are You Sure ! Want to delete it?');">Delete</button></a>
-                                            </td>
-                                        </tr>
-                                    data;
-
-                                $sl_no++;
-                            }
-                        } else {
-                            echo "No Data Found";
-                        }
+                    if (isset($_SESSION['message']) && !empty($_SESSION['message'])) {
+                        echo "<section class='text-danger'  id='responseMsg'> 
+                                    $_SESSION[message]</section>";
+                        unset($_SESSION['message']);
                     }
-
+                    if (isset($_SESSION['no_user']) && !empty($_SESSION['no_user'])) {
+                        echo "<section class='text-danger' id='responseMsg'> 
+                                    $_SESSION[no_user]</section>";
+                        unset($_SESSION['no_user']);
+                    }
                     ?>
-                </tbody>
-            </table>
-
+                    <span class="text-dark">New User?<a href="signup.php" class="text-decoration-none">&nbsp;Sing In</a></span>
+                    <div>
+                        <button class="btn btn-dark shadow-none mt-2" name="login">LOGIN</button>
+                    </div>
+                </form>
+            </div>
         </div>
-
     </div>
-    <script>
-        setTimeout(removeResponseMsg, 3000);
+    <?php
+    if (isset($_POST['login'])) {
+        $u_name = $_POST['u_name'];
+        $u_pass = $_POST['u_pass'];
 
-        function removeResponseMsg() {
-            document.getElementById('responseMsg').remove();
+        $conn =  new mysqli('localhost', 'root', '', 'center_miniproject');
+        //$veri_pass = password_verify($u_pass,);
+
+        if ($conn->connect_error) die($conn->connect_error);
+        else {
+            $sql = "SELECT * FROM `student` WHERE (`email`='$u_name' OR `phone`='$u_name')";
+            $res = $conn->query($sql);
+            $rows = $res->fetch_assoc();
+            if (!(password_verify($u_pass, $rows['password']))) {
+                $_SESSION['message'] = "Wrong Credential.";
+                header("location:index.php");
+            } else if (mysqli_num_rows($res) == 0) {
+                $_SESSION['no_user'] = "User not Exist";
+                header("location:index.php");
+            } else {
+
+                $_SESSION['active_user'] = $rows['name'];
+                $_SESSION['active_id'] = $rows['id'];
+                $_SESSION['active_role'] = $rows['role'];
+                $_SESSION['ip'] = $_SERVER['REMOTE-ADDR'];
+                date_default_timezone_set('Asia/Kolkata');
+                $_SESSION['time'] = date('d-m-y h:i:sA'); 
+                header("location:show.php");
+            }
         }
-    </script>
+    }
+
+
+
+    ?>
 
 </body>
 

@@ -21,7 +21,7 @@ else {
         $_SESSION['ERROR_MSG'] = 'Data not Updated';
     }
 
-    header('location:index.php', 'Refresh:0');
+    header('location:show.php', 'Refresh:0');
 
     $conn->close();
 }
