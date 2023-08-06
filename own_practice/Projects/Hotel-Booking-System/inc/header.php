@@ -50,7 +50,7 @@
                         echo <<<dropdown
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-outline-dark shadow-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                                           Welcome Mr. $_SESSION[USER_NAME]
+                                           Welcome  $_SESSION[USER_NAME]
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-lg-end">
                                             <li><a class="dropdown-item" href="profile.php">Profile</a></li>

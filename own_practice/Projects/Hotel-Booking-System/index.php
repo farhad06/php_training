@@ -66,34 +66,46 @@
         <div class="row">
             <div class="col-lg-12 bg-white shadow p-4 rounded">
                 <h5 class="mb-4">Check Booking Aviability</h5>
-                <form action="">
+                <form action="rooms.php">
                     <div class="row align-items-end">
                         <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-In</label>
-                            <input type="date" class="form-control shadow-none">
+                            <input type="date" class="form-control shadow-none" name="checkin" required>
                         </div>
                         <div class="col-lg-3 mb-3">
                             <label class="form-label" style="font-weight: 500;">Check-Out</label>
-                            <input type="date" class="form-control shadow-none">
+                            <input type="date" class="form-control shadow-none" name="checkout" required>
                         </div>
                         <div class="col-lg-3 mb-3">
-                            <label class="form-label" style="font-weight: 500;">Adult</label>
-                            <select class="form-select">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
+                            <label class="form-label  style=" font-weight: 500;">Adult</label>
+                            <select class="form-select shadow-none" name="adult">
+                                <option value="" selected>Select</option>
+                                <?php
+                                $guests_q = mysqli_query($conn, "SELECT MAX(adult) AS `max_adult`,MAX(children) AS `max_children` FROM `room` WHERE `status`='1' AND `remove`='0'");
+                                $guests_res = mysqli_fetch_assoc($guests_q);
+                                for ($i = 1; $i <= $guests_res['max_adult']; $i++) {
+                                    echo "<option value='$i'>$i</option>";
+                                }
+
+                                ?>
+                                <!-- <option value=" 1">One</option>
                                 <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="3">Three</option> -->
                             </select>
 
                         </div>
                         <div class="col-lg-2 mb-3">
                             <label class="form-label" style="font-weight: 500;">Children</label>
-                            <select class="form-select">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select  shadow-none" name="children">
+                                <option selected value="">Select</option>
+                                <?php
+                                for ($i = 1; $i <= $guests_res['max_children']; $i++) {
+                                    echo "<option value='$i'>$i</option>";
+                                }
+
+                                ?>
                             </select>
+                            <input type="hidden" name="check_avalibality">
 
                         </div>
                         <div class="col-lg-1 mb-lg-3 mt-2">
@@ -110,51 +122,51 @@
     <h2 class="mt-5 mb-4 pt-4 text-center fw-bold h-font">Our Rooms</h2>
     <div class="container">
         <div class="row">
-    <?php
-    $room_res = select("SELECT * FROM `room` WHERE `status`=? AND `remove`=?  ORDER BY `id` DESC LIMIT 3", [1, 0], 'ii');
-    // print('<pre>');
-    // print_r($room_res);
-    while ($room_data = mysqli_fetch_assoc($room_res)) {
+            <?php
+            $room_res = select("SELECT * FROM `room` WHERE `status`=? AND `remove`=?  ORDER BY `id` DESC LIMIT 3", [1, 0], 'ii');
+            // print('<pre>');
+            // print_r($room_res);
+            while ($room_data = mysqli_fetch_assoc($room_res)) {
 
-        ############################################################################
-        //get features of room
-        $room_fea = mysqli_query($conn, "SELECT f.name FROM `features`  f INNER JOIN  `room_features` rfea ON f.id = rfea.features_id WHERE rfea.room_id='$room_data[id]' ");
+                ############################################################################
+                //get features of room
+                $room_fea = mysqli_query($conn, "SELECT f.name FROM `features`  f INNER JOIN  `room_features` rfea ON f.id = rfea.features_id WHERE rfea.room_id='$room_data[id]' ");
 
-        $features_data = "";
-        while ($fea_row = mysqli_fetch_assoc($room_fea)) {
-            $features_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
+                $features_data = "";
+                while ($fea_row = mysqli_fetch_assoc($room_fea)) {
+                    $features_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
                                     $fea_row[name] </span>";
-        }
-        //echo $features_data;
-        ##################################################################################
+                }
+                //echo $features_data;
+                ##################################################################################
 
-        //get facilities of room
-        $room_faci = mysqli_query($conn, "SELECT f.name FROM `facilities`  f INNER JOIN  `room_facilities` rfaci ON f.id = rfaci.facilities_id WHERE rfaci.room_id='$room_data[id]'");
+                //get facilities of room
+                $room_faci = mysqli_query($conn, "SELECT f.name FROM `facilities`  f INNER JOIN  `room_facilities` rfaci ON f.id = rfaci.facilities_id WHERE rfaci.room_id='$room_data[id]'");
 
-        $facilities_data = "";
-        while ($faci_row = mysqli_fetch_assoc($room_faci)) {
-            $facilities_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>$faci_row[name]</span>";
-        }
-        //echo $facilities_data;
-        ##################################################################################
-        //get thumbnil image 
-        $rooms_thumb = ROOM_IMAGE_PATH . "9.jpg";
-        $thumb_q = mysqli_query($conn, "SELECT * FROM `rooms_image` WHERE `room_id`='$room_data[id]' AND `thumb`=1");
-        if (mysqli_num_rows($thumb_q) > 0) {
-            $thumb_res = mysqli_fetch_assoc($thumb_q);
-            $rooms_thumb = ROOM_IMAGE_PATH . $thumb_res['image'];
-        }
-        ####################################################################################
-        $book_btn="";
-        if (!$setting_r['shutdown']) {
-            $login = 0;
-            if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] == true) {
-                $login=1;
-            }
-            $book_btn= "<button onclick='ckeckLogInForBooking($login,$room_data[id])' class='btn btn-sm text-white custom-bg shadow-none'>Book Now</button>";
-        }
-        //print Room card
-        echo <<< data
+                $facilities_data = "";
+                while ($faci_row = mysqli_fetch_assoc($room_faci)) {
+                    $facilities_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>$faci_row[name]</span>";
+                }
+                //echo $facilities_data;
+                ##################################################################################
+                //get thumbnil image 
+                $rooms_thumb = ROOM_IMAGE_PATH . "9.jpg";
+                $thumb_q = mysqli_query($conn, "SELECT * FROM `rooms_image` WHERE `room_id`='$room_data[id]' AND `thumb`=1");
+                if (mysqli_num_rows($thumb_q) > 0) {
+                    $thumb_res = mysqli_fetch_assoc($thumb_q);
+                    $rooms_thumb = ROOM_IMAGE_PATH . $thumb_res['image'];
+                }
+                ####################################################################################
+                $book_btn = "";
+                if (!$setting_r['shutdown']) {
+                    $login = 0;
+                    if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] == true) {
+                        $login = 1;
+                    }
+                    $book_btn = "<button onclick='ckeckLogInForBooking($login,$room_data[id])' class='btn btn-sm text-white custom-bg shadow-none'>Book Now</button>";
+                }
+                //print Room card
+                echo <<< data
         <div class="col-lg-4 col-md-6 my-3">
                 <div class="card border-0 shadow" style="max-width:350px;margin: auto;">
                     <img src="$rooms_thumb" class="card-img-top">
@@ -198,7 +210,7 @@
             </div>
                             
         data;
-        }
+            }
             ?>
             <!-- <div class="col-lg-4 col-md-6 my-3">
                 <div class="card border-0 shadow" style="max-width:350px;margin: auto;">

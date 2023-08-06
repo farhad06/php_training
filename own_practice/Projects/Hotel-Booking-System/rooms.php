@@ -25,7 +25,20 @@
 
 <body class="bg-light">
 
-    <?php require_once('inc/header.php'); ?>
+    <?php
+    require_once('inc/header.php');
+    $checkin_default = '';
+    $checkout_default = '';
+    $adult_default = '';
+    $children_default = '';
+    if (isset($_GET['check_avalibality'])) {
+        $form_data = filteration($_GET);
+        $checkin_default = $form_data['checkin'];
+        $checkout_default = $form_data['checkout'];
+        $adult_default = $form_data['adult'];
+        $children_default = $form_data['children'];
+    }
+    ?>
     <div class="my-5 px-4">
         <h2 class="fw-bold h-font text-center">Our Rooms</h2>
         <div class="h-line bg-dark"></div>
@@ -37,22 +50,37 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-white rounded shadow">
                     <div class="container-fluid flex-lg-column align-items-stretch">
                         <h4 class="mt-2">Filter</h4>
-                        <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#filterDropdown" aria-controls="navbarNav" aria-expanded="false"
-                            aria-label="Toggle navigation">
+                        <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#filterDropdown" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse flex-column align-items-stretch mt-2" id="filterDropdown">
                             <div class="border bg-light p-3 mb-3 rounded">
-                                <h5 class="mb-3" style="font-size: 18px;">Check Avaibility</h5>
+                                <h5 class="mb-3 d-flex align-items-center justify-content-between" style="font-size: 18px;">
+                                    <span>Check Avaibility</span>
+                                    <button class="btn btn-sm text-secondary shadow-none d-none" id="chk_ava_btn" onclick="check_ava_clear()">Reset</button>
+                                </h5>
                                 <label class="form-label ">Check-In</label>
-                                <input type="date" class="form-control shadow-none mb-3">
+                                <input type="date" value="<?php echo $checkin_default ?>" class="form-control shadow-none mb-3" id="checkin" onchange="check_ava_fil()">
                                 <label class="form-label">Check-Out</label>
-                                <input type="date" class="form-control shadow-none">
+                                <input type="date" value="<?php echo $checkout_default ?>" class="form-control shadow-none" onchange="check_ava_fil()" id="checkout">
                             </div>
                             <div class="border bg-light p-3 mb-3 rounded">
-                                <h5 class="mb-3" style="font-size: 18px;">Facilities</h5>
-                                <div class="mb-2">
+                                <h5 class="mb-3" style="font-size: 18px;">
+                                    <span>Facilities</span>
+                                    <button class="btn btn-sm text-secondary shadow-none d-none" id="faci_ava_btn" onclick="faci_clear()">Reset</button>
+                                </h5>
+                                <?php
+                                $faci_q = selectAll('facilities');
+                                while ($faci_f = mysqli_fetch_assoc($faci_q)) {
+                                    echo <<< data
+                                            <div class="mb-2">
+                                                <input type="checkbox" onclick="fetch_room()" name="faci" value="$faci_f[id]" id="$faci_f[id]" class="form-check-input shadow-none me-1">
+                                            <label class="form-check-label" for="$faci_f[id]">$faci_f[name]</label>
+                                            </div>
+                                        data;
+                                }
+                                ?>
+                                <!-- <div class="mb-2">
                                     <input type="checkbox" id="f1" class="form-check-input shadow-none me-1">
                                     <label class="form-check-label" for="f1">Facility One</label>
                                 </div>
@@ -63,18 +91,21 @@
                                 <div class="mb-2">
                                     <input type="checkbox" id="f3" class="form-check-input shadow-none me-1">
                                     <label class="form-check-label" for="f3">Facility Three</label>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="border bg-light p-3 mb-3 rounded">
-                                <h5 class="mb-3" style="font-size: 18px;">Guests</h5>
+                                <h5 class="mb-3" style="font-size: 18px;">
+                                    <span>Guests</span>
+                                    <button class="btn btn-sm text-secondary shadow-none d-none" id="guest_ava_btn" onclick="guest_ava_clear()">Reset</button>
+                                </h5>
                                 <div class="d-flex">
                                     <div class="me-3">
                                         <label class="form-label ">Adults</label>
-                                        <input type="number" class="form-control shadow-none">
+                                        <input type="number" id="adults" class="form-control shadow-none" min="1" value="<?php echo $adult_default ?>" oninput="guest_filter()">
                                     </div>
                                     <div>
                                         <label class="form-label ">Children</label>
-                                        <input type="number" class="form-control shadow-none">
+                                        <input type="number" value="<?php echo $children_default ?>" id="children" class="form-control shadow-none" min="1" oninput="guest_filter()">
                                     </div>
                                 </div>
                             </div>
@@ -82,93 +113,10 @@
                     </div>
                 </nav>
             </div>
-            <div class="col-lg-9 col-md-12 px-4 ">
-                <?php 
-                $room_res=select("SELECT * FROM `room` WHERE `status`=? AND `remove`=?",[1,0],'ii');
-                // print('<pre>');
-                // print_r($room_res);
-                while($room_data=mysqli_fetch_assoc($room_res)){
+            <div class="col-lg-9 col-md-12 px-4" id="room_data">
 
-                    ############################################################################
-                    //get features of room
-                    $room_fea=mysqli_query($conn, "SELECT f.name FROM `features`  f INNER JOIN  `room_features` rfea ON f.id = rfea.features_id WHERE rfea.room_id='$room_data[id]' ");
 
-                    $features_data="";
-                    while($fea_row=mysqli_fetch_assoc($room_fea)){
-                        $features_data.= "<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
-                                    $fea_row[name] </span>";
-                    }
-                    //echo $features_data;
-                    ##################################################################################
 
-                    //get facilities of room
-                    $room_faci = mysqli_query($conn, "SELECT f.name FROM `facilities`  f INNER JOIN  `room_facilities` rfaci ON f.id = rfaci.facilities_id WHERE rfaci.room_id='$room_data[id]'");
-
-                    $facilities_data = "";
-                    while ($faci_row = mysqli_fetch_assoc($room_faci)) {
-                        $facilities_data .= "<span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>$faci_row[name]</span>";
-                    }
-                    //echo $facilities_data;
-                    ##################################################################################
-                    //get thumbnil image 
-                    $rooms_thumb = ROOM_IMAGE_PATH."9.jpg";
-                    $thumb_q = mysqli_query($conn, "SELECT * FROM `rooms_image` WHERE `room_id`='$room_data[id]' AND `thumb`=1");
-                    if(mysqli_num_rows($thumb_q)>0){
-                        $thumb_res=mysqli_fetch_assoc($thumb_q);
-                        $rooms_thumb=ROOM_IMAGE_PATH.$thumb_res['image'];
-                    }
-                    ####################################################################################
-                    $book_btn = "";
-                    if (!$setting_r['shutdown']) {
-                        $login = 0;
-                        if (isset($_SESSION['USER_LOGIN']) && $_SESSION['USER_LOGIN'] == true) {
-                            $login = 1;
-                        }
-                        $book_btn = "<button onclick='ckeckLogInForBooking($login,$room_data[id])' class='btn btn-sm w-100 text-white custom-bg shadow-none mb-2'>Book Now</button>";
-                    }
-                    //print Room card
-                    echo <<< data
-                            <div class="card mb-4 border-0 shadow">
-                            <div class="row g-0 p-3 align-items-center">
-                                <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
-                                    <img src="$rooms_thumb" class="img-fluid rounded">
-                                </div>
-                                <div class="col-md-5 px-lg-3 px-md-3 px-0">
-                                    <h5 class="mb-3">$room_data[name]</h5>
-                                    <div class="features mb-3">
-                                        <h6 class="mb-1">Features</h6>
-                                        $features_data
-                                    </div>
-                                    <div class="facilities mb-3">
-                                        <h6 class="mb-1">Facilities</h6>
-                                        $facilities_data
-                                        
-                                    </div>
-                                    <div class="guests">
-                                        <h6 class="mb-1">Guests</h6>
-                                        <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                             $room_data[adult] Adult
-                                        </span>
-                                        <span class="badge rounded-pill bg-light text-dark text-wrap">
-                                             $room_data[children] Children
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 text-center">
-                                    <h6 class="mb-4"> <span>&#8377;</span> $room_data[price] per night</h6>
-                                    $book_btn
-                                    <a href="room_details.php?id=$room_data[id]" class="btn btn-sm w-100 btn-outline-dark shadow-none">More Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    data;
-
-                }
-                
-                
-                
-                ?>
-                
                 <!-- <div class="card mb-4 border-0 shadow">
                     <div class="row g-0 p-3 align-items-center">
                         <div class="col-md-5 mb-lg-0 mb-md-0 mb-3">
@@ -284,6 +232,110 @@
     </div>
     </div>
     <?php require_once('inc/footer.php'); ?>
+    <script>
+        let room_data = document.getElementById('room_data');
+        let checkout = document.getElementById('checkout');
+        let checkin = document.getElementById('checkin');
+        let chk_ava_btn = document.getElementById('chk_ava_btn');
+
+        let guest_ava_btn = document.getElementById('guest_ava_btn');
+        let children = document.getElementById('children');
+        let adults = document.getElementById('adults');
+
+        let faci_ava_btn = document.getElementById('faci_ava_btn');
+
+
+
+        function fetch_room() {
+
+            let check_ava = JSON.stringify({
+                checkin: checkin.value,
+                checkout: checkout.value
+            });
+
+            let guests = JSON.stringify({
+                adults: adults.value,
+                children: children.value
+            });
+
+            let faci_list = {
+                "facilities": []
+            };
+            let get_facilities = document.querySelectorAll('[name="faci"]:checked');
+            if (get_facilities.length > 0) {
+                get_facilities.forEach((facility) => {
+                    faci_list.facilities.push(facility.value);
+                });
+                faci_ava_btn.classList.remove('d-none');
+            } else {
+                faci_ava_btn.classList.add('d-none');
+
+            }
+
+            faci_list = JSON.stringify(faci_list);
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "ajax/room.php?fetch_room&check_ava=" + check_ava + "&guests=" + guests + "&faci_list=" + faci_list, true);
+
+            xhr.onprogress = function() {
+                room_data.innerHTML = `<div class="spinner-border text-info mb-3 d-block mx-auto" id="loader" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>`;
+
+            }
+
+            xhr.onload = function() {
+                room_data.innerHTML = this.responseText;
+            }
+            xhr.send();
+        }
+
+        function check_ava_fil() {
+            if (checkin.value != '' && checkout.value != '') {
+                fetch_room();
+                chk_ava_btn.classList.remove('d-none');
+            }
+
+        }
+
+        function check_ava_clear() {
+            checkin.value = '';
+            checkout.value = '';
+            fetch_room();
+            chk_ava_btn.classList.add('d-none');
+        }
+
+        function guest_filter() {
+            if (children.value > 0 || adults.value > 0) {
+                fetch_room();
+                guest_ava_btn.classList.remove('d-none');
+
+            }
+
+        }
+
+        function guest_ava_clear() {
+            children.value = '';
+            adults.value = '';
+            fetch_room();
+            guest_ava_btn.classList.add('d-none');
+        }
+
+        function faci_clear() {
+            let get_facilities = document.querySelectorAll('[name="faci"]:checked');
+            if (get_facilities.length > 0) {
+                get_facilities.forEach((facility) => {
+                    facility.checked = false;
+                });
+                faci_ava_btn.classList.add('d-none');
+            }
+            fetch_room();
+
+        }
+
+
+        fetch_room();
+    </script>
 </body>
 
 </html>
