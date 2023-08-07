@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/bootstrap.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
@@ -38,7 +40,6 @@
                                     <a class="nav-link" href="#noticeBoard">Notice Board</a>
                                 </li>
                             </ul>
-
                         </nav>
                     </div>
                 </div>
@@ -102,7 +103,7 @@
                                     <div class="title" style="text-align: center;">Addmission Open Now <span><i class="fa fa-bullhorn" aria-hidden="true" style="color: red;"></i></span></div>
                                     <div class="content">
                                         <marquee behavior="" direction="" onmouseover="this.stop();"
-                                         onmouseout="this.start();" style="font-size: 15px;">For addmission click<a href="./addmission_form.html"><button class="btn btn-link">Here</button></a></marquee>
+                                         onmouseout="this.start();" style="font-size: 15px;">For addmission click<a href="./addmission_form.html"><button class="btn btn-link shadow-none">Here</button></a></marquee>
                                     </div>
                                 </div>
                                 <div class="notice">
@@ -145,25 +146,19 @@
                                 <h3 class="section-head">Gallary</h3>
                             </div>  
                             <div class="gallery">
-                                <img src="./images/k1 (1).jpg" alt="">
-                                <img src="./images/k1 (2).jpg" alt="">
-                                <img src="./images/27243622-0-image-m-13_1586991155251.jpg" alt="">
-                                <img src="./images/pic_002.jpg" alt="">
-                                <img src="./images/pic_004.jpg" alt="">
-                                <img src="./images/pic_008.jpg" alt="">
-                                <img src="./images/pic_015.jpg" alt="">
-                                <img src="./images/pic_016.jpg" alt="">
-                                <img src="./images/pic_020.jpg" alt="">
-                                <img src="./images/pic_024.jpg" alt="">
-                                <img src="./images/bumrah.jpg" alt="">
-                                <img src="./images/kl-rahul.jpg" alt="">
-
-                                <!-- <img src="./images/838788-lionel-messi-pti.jpg" alt=""> -->
-
-                            </div>
-                          
-                           
-                
+                                <img src="./images/k1 (1).jpg">
+                                <img src="./images/k1 (2).jpg">
+                                <img src="./images/27243622-0-image-m-13_1586991155251.jpg">
+                                <img src="./images/pic_002.jpg">
+                                <img src="./images/pic_004.jpg">
+                                <img src="./images/pic_008.jpg">
+                                <img src="./images/pic_015.jpg">
+                                <img src="./images/pic_016.jpg">
+                                <img src="./images/pic_020.jpg">
+                                <img src="./images/pic_024.jpg">
+                                <img src="./images/bumrah.jpg">
+                                <img src="./images/kl-rahul.jpg">
+                            </div>               
                         </div>
                     </div>
                 </div>
@@ -177,7 +172,7 @@
                                 <div class="form-group row">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Name:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" placeholder="Enter Your Name."
+                                        <input type="text" class="form-control shadow-none" id="name" placeholder="Enter Your Name."
                                             autocomplete="off">
                                 
                                     </div>
@@ -185,7 +180,7 @@
                                 <div class="form-group row">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Email:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="email" placeholder="Enter Your Email."
+                                        <input type="text" class="form-control shadow-none" id="email" placeholder="Enter Your Email."
                                             autocomplete="off">
                                 
                                     </div>
@@ -193,15 +188,13 @@
                                 <div class="form-group row">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Message:</label>
                                     <div class="col-sm-10">
-                                        <textarea type="text" class="form-control" id="address" rows="3" placeholder="Enter Your Query." autocomplete="off"
+                                        <textarea type="text" class="form-control shadow-none" id="address" rows="3" placeholder="Enter Your Query." autocomplete="off" style="resize: none;"
                                             ></textarea>                                
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-10">
-                                        <button class="btn btn-primary" id="btn">Submit</button>
+                                    <div class="text-center">
+                                        <button class="btn btn-primary shadow-none" id="btn">Submit</button>
                                     </div>
-                                </div>
                             </form>
 
                             
@@ -219,7 +212,7 @@
                 </div>
             <div class="col-md-4">
                 <div class="footer-widget" id="company-address">
-                    <h4>Company Address</h4>
+                    <h4>Institute Address</h4>
                     <address>
                         <strong>
                              ABC Institution<br>
@@ -242,9 +235,9 @@
                 <div class="col-md-6"> All copyright reserved &copy; Farhad 2023</div>
                 <div class="col-md-6">
                     <ul id="social-icon" class="float-md-right">
-                        <li><a href="#" class="fa fa-facebook"></a></li>
-                        <li><a href="#" class="fa fa-github"></a></li>
-                        <li><a href="#" class="fa fa-twitter"></a></li>
+                        <li><a href="#" class="fa fa-facebook text-decoration-none"></a></li>
+                        <li><a href="#" class="fa fa-github text-decoration-none"></a></li>
+                        <li><a href="#" class="fa fa-twitter text-decoration-none"></a></li>
                     </ul>
                 </div>
             </div>

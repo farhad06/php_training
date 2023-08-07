@@ -67,6 +67,7 @@
                     else {
                         if($_SESSION['active_role'] =='admin'){
                             $sql = "SELECT * FROM `student`";
+                            
                         }else{
                             $sql = "SELECT * FROM `student` WHERE `id`=". $_SESSION['active_id']; 
                         }

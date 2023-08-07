@@ -4,7 +4,8 @@ html{
 
 a:hover{
     text-decoration: none;
-}
+    
+} 
 .section{
     margin-top: 70px;
     padding-bottom: 70px;
@@ -21,6 +22,7 @@ a:hover{
     width: 100px;
     height: 3px;
     margin: 20px auto;
+    /* box-shadow: none; */
 }
 #header{
     color: white;
@@ -43,7 +45,7 @@ a:hover{
     display: block;
 }
 #menu li a:hover{
-  background: #c0392b;  
+  background: #c0392b; 
 }
 #banner{
     background: url(../images/banner.jpg) no-repeat 0 0;

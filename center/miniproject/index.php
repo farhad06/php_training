@@ -62,7 +62,7 @@
 
         if ($conn->connect_error) die($conn->connect_error);
         else {
-            $sql = "SELECT * FROM `student` WHERE (`email`='$u_name' OR `phone`='$u_name')";
+           $sql = "SELECT * FROM `student` WHERE (`email`='$u_name' OR `phone`='$u_name')";
             $res = $conn->query($sql);
             $rows = $res->fetch_assoc();
             if (!(password_verify($u_pass, $rows['password']))) {
