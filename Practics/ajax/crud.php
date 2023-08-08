@@ -2,15 +2,28 @@
 require('db_config.php');
 
 if(isset($_POST['add_student'])){
+    // print('<pre>');
+    // print_r($_POST);
+    // exit;
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $age = $_POST['age'];
     $marks = $_POST['marks'];
+    $gender=$_POST['gender'];
+    $city = $_POST['city'];
+    $lang=implode(',',json_decode($_POST['language']));
+    
 
-    //echo $name." ".$email." ".$phone;
+    $targetDir = 'images/';
+    $targetFile = $targetDir . basename($_FILES['image']['name']);
+    $imageTmpname=$_FILES['image']['tmp_name'];
 
-    $sql = "INSERT INTO `student`(`name`, `email`, `phone`, `age`, `marks`) VALUES ('$name','$email','$phone',$age,'$marks')";
+    move_uploaded_file($imageTmpname,$targetFile);
+
+    //echo $name." ".$email." ". $phone . " " . $gender . " " . $city . " " . $lang;
+    
+    $sql = "INSERT INTO `student`(`name`, `email`, `phone`, `age`, `marks`,`city`,`gender`,`language`,`image`) VALUES ('$name','$email','$phone',$age,'$marks','$city','$gender','$lang','$targetFile')";
 
     $conn->query($sql);
 
@@ -79,7 +92,7 @@ if(isset($_POST['get_one_student'])){
 
     $data = $res->fetch_assoc();
 
-    $json_data = json_encode($data);
+    $json_data = json_encode($data,JSON_PRETTY_PRINT);
     //print_r($data);
     echo $json_data;
 
@@ -92,8 +105,18 @@ if(isset($_POST['edit_student'])){
     $age = $_POST['age'];
     $marks = $_POST['marks'];
     $id = $_POST['id'];
+    $gender = $_POST['gender'];
+    $city = $_POST['city'];
+    $lang = implode(',', json_decode($_POST['language']));
 
-    $sql= "UPDATE `student` SET `name`='$name',`email`='$email',`phone`='$phone',`age`=$age,`marks`='$marks' WHERE `id`=$id";
+
+    $targetDir = 'images/';
+    $targetFile = $targetDir . basename($_FILES['image']['name']);
+    $imageTmpname = $_FILES['image']['tmp_name'];
+
+    move_uploaded_file($imageTmpname, $targetFile);
+
+    $sql= "UPDATE `student` SET `name`='$name',`email`='$email',`phone`='$phone',`age`=$age,`marks`='$marks',`city`='$city',`gender`='$gender',`language`='$lang',`image`='$targetFile' WHERE `id`=$id";
 
     $conn->query($sql);
 
