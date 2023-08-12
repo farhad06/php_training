@@ -20,3 +20,7 @@ Route::get('/', function () {
 use App\Http\Controllers\formController;
 
 Route::get('/home',[formController::class,'page_open']);
+
+Route::get('/signup',[formController::class, 'form_page']);
+
+Route::post('/submit',[formController::class,'form_submit']);
