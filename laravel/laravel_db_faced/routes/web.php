@@ -17,10 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+#validation.php file full path 
+#vendor/laravel/src\Illuminate/Translation/lang\en/validation.php
+
 use App\Http\Controllers\formController;
 
 Route::get('/home',[formController::class,'page_open']);
 
-Route::get('/signup',[formController::class, 'form_page']);
+Route::get('/signup',[formController::class, 'form_page'])->name('home');
 
 Route::post('/submit',[formController::class,'form_submit']);

@@ -12,6 +12,20 @@
 
 <body>
     <div class="container">
+        {{-- @foreach($errors->all() as $error)
+            <div class="alert alert-danger">
+                <ul>
+                    <li> {{$error}}</li>
+                </ul>
+            </div>
+        @endforeach     --}}
+        @if(@isset($message))
+        <div style="float: right; margin:5px;">
+          <section class="alert alert-success">
+              {{$message}}
+        </section>
+        </div>
+        @endisset
         <div>
             <h1 class="text-center">Registration Page</h1>
         </div>
@@ -19,15 +33,30 @@
             @csrf
             <div class="mb-3">
                 <label for="" class="form-label">Name</label>
-                <input type="text" name="name" class="form-control shadow-none">
+                <input type="text" name="name" value="{{old('name')}}" class="form-control shadow-none @error('name') is-invalid @enderror">
+                <span class="text-danger">
+                    @error('name')
+                        {{$message}}
+                    @enderror
+                </span>
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Email</label>
-                <input type="text" name="email" class="form-control shadow-none">
+                <input type="text" name="email" value="{{old('email')}}" class="form-control shadow-none @error('email') is-invalid @enderror">
+                <span class="text-danger">
+                    @error('email')
+                    {{$message}}
+                    @enderror
+                </span>
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Phone</label>
-                <input type="number" name="phone" class="form-control shadow-none">
+                <input type="number" name="phone" value="{{old('phone')}}" class="form-control shadow-none @error('phone') is-invalid @enderror">
+                <span class="text-danger">
+                    @error('phone')
+                    {{$message}}
+                    @enderror
+                </span>
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Password</label>
@@ -37,6 +66,7 @@
                 <button type="submit" class="btn btn-primary shadow-none">Submit</button>
             </div>
         </form>
+        @if(@isset($info))
         <div class="table-responsive mt-3">
             <table class="table table-bordered">
                 <tr>
@@ -45,18 +75,15 @@
                     <th>Phone</th>
                     <th>Password</th>
                 </tr>
-                @if(@isset($info))
                 <tr>
                     <td>{{$info['name']}}</td>
                     <td>{{$info['email']}}</td>
                     <td>{{$info['phone']}}</td>
                     <td>{{$info['pass']}}</td>
                 </tr>
-                @endisset
-
             </table>
-
         </div>
+        @endisset
     </div>
 
 </body>
