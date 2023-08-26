@@ -24,6 +24,11 @@ use App\Http\Controllers\formController;
 
 Route::get('/home',[formController::class,'page_open']);
 
-Route::get('/signup',[formController::class, 'form_page'])->name('home');
+Route::get('/signup',[formController::class, 'form_page']);
 
 Route::post('/submit',[formController::class,'form_submit']);
+Route::get('/getall', [formController::class, 'get_all_data'])->name('home');
+Route::get('/edit{id}', [formController::class, 'edit_page']);
+Route::post('/update', [formController::class, 'form_update']);
+
+

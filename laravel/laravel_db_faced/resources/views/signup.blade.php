@@ -19,17 +19,17 @@
                 </ul>
             </div>
         @endforeach     --}}
-        @if(@isset($message))
+        {{-- @if(@isset($message))
         <div style="float: right; margin:5px;">
           <section class="alert alert-success">
               {{$message}}
         </section>
         </div>
-        @endisset
+        @endisset --}}
         <div>
             <h1 class="text-center">Registration Page</h1>
         </div>
-        <form action="{{url('/submit')}}" method="post">
+        <form action="{{url('/submit')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="" class="form-label">Name</label>
@@ -57,6 +57,15 @@
                     {{$message}}
                     @enderror
                 </span>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Image</label>
+                <input type="file" name="picture" class="form-control shadow-none">
+                <span class="text-danger">
+                    @error('picture')
+                    {{$message}}
+                    @enderror
+                </span> 
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Password</label>
