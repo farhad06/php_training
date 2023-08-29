@@ -36,7 +36,8 @@
                 <h2>Registration Form</h2>
                 <hr>
             </div>
-            <form>
+            <form action="{{url('/registration')}}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -82,7 +83,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="" class="form-label">City</label>
-                            <select class="form-select shadow-none" aria-label="Default select example">
+                            <select class="form-select shadow-none" aria-label="Default select example" name="city">
                                 <option selected>Select</option>
                                 <option value="Kolkata">Kolkata</option>
                                 <option value="Delhi">Delhi</option>
@@ -121,7 +122,7 @@
                         <span class="text-dark text-center">Already Registered? Log In<a href="{{url('/login')}}" class="text-decoration-none">&nbsp;Here</a></span>
                     </div>
                     <div class="text-center">
-                        <button type="submit" name="register" class="btn btn-dark shadow-none">REGISTER</button>
+                        <button type="submit" class="btn btn-dark shadow-none">REGISTER</button>
                     </div>
                 </div>
             </form>

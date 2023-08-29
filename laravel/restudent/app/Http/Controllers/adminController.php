@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class adminController extends Controller
 {
@@ -18,7 +19,8 @@ class adminController extends Controller
     }
 
     public function get_all_users(){
-        return view('users');
+        $data = DB::table('users')->get();
+        return view('users')->with(['data'=>$data]);
     }
 
     public function get_all_food_items(){

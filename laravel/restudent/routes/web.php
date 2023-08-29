@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[formController::class,'index']);
 Route::get('/register', [formController::class, 'user_registration_page']);
+Route::post('/registration', [formController::class, 'user_registration']);
 Route::get('/login', [formController::class, 'login_page']);
 
 Route::get('/admin', [adminController::class, 'admin_login_page']);
