@@ -43,6 +43,7 @@ $flip_arr=array_flip($team);
 print('<pre>');
 print_r($flip_arr);
 echo"<hr>";
+
 //array diff
 echo"<center><h2>Diff</h2> </center> <br>";
 $color1=['c1'=>'blue','c2'=>'green','c3'=>'red'];
@@ -66,12 +67,4 @@ $explode_arr=explode(' ',$str);
 print('<pre>');
 print_r($explode_arr);
 echo"<hr>";
-
-
-
-
-
-
-
-
 ?>

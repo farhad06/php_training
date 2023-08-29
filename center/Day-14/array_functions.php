@@ -2,7 +2,6 @@
 //array_keys()
 
 $arr=['p_name'=>'Rohit','j_no'=>45,'age'=>35];
-
 $player=array_keys($arr);
 print('<pre>');
 print_r($player);
@@ -48,12 +47,4 @@ $diff=array_diff($color1,$color2);
 print('<pre>');
 print_r($diff);
 echo"<hr>";
-
-
-
-
-
-
-
-
 ?>
