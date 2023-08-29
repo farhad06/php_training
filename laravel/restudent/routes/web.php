@@ -1,18 +1,23 @@
 <?php
 
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\formController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[formController::class,'index']);
+Route::get('/register', [formController::class, 'user_registration_page']);
+Route::get('/login', [formController::class, 'login_page']);
+
+Route::get('/admin', [adminController::class, 'admin_login_page']);
+Route::get('/dashboard', [adminController::class, 'dashboard']);
+Route::get('/allusers', [adminController::class, 'get_all_users']);
+Route::get('/allfood', [adminController::class, 'get_all_food_items']);
+
+
+
+
+
