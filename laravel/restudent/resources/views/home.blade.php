@@ -12,14 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <title>Klassy Cafe - Restaurant HTML Template</title>
-    <!--
-    
-TemplateMo 558 Klassy Cafe
-
-https://templatemo.com/tm-558-klassy-cafe
-
--->
+    <title>Klassy Cafe</title>
     <!-- Additional CSS Files -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
@@ -30,6 +23,18 @@ https://templatemo.com/tm-558-klassy-cafe
     <link rel="stylesheet" href="assets/css/owl-carousel.css">
 
     <link rel="stylesheet" href="assets/css/lightbox.css">
+    <style>
+        #dropdownMenuLink {
+            background-color: white;
+            border: 0;
+        }
+        #profile-pic{
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-left: 3px;
+        }
+    </style>
 
 </head>
 
@@ -44,7 +49,16 @@ https://templatemo.com/tm-558-klassy-cafe
         </div>
     </div>
     <!-- ***** Preloader End ***** -->
-
+    {{-- Alert Message Div Start --}}
+    @if(session('message'))
+    <div>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>{{session('message')}}</strong>
+            <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    @endif
+    {{-- Alert Message Div End --}}
 
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
@@ -85,9 +99,30 @@ https://templatemo.com/tm-558-klassy-cafe
                             </li>
                             <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
                             <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li>
-                            {{-- <li class="scroll-to-section"><a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#login_form">Log In</a></li> --}}
+                            @if (!session('user_id'))
                             <li class="scroll-to-section"><a href="{{url('/login')}}">Log In</a></li>
                             <li class="scroll-to-section"><a href="{{url('/register')}}">Register</a></li>
+                            @else
+                            <div class="dropdown show mt-1">
+                                <a class="btn btn-secondary dropdown-toggle shadow-none" href="#" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    {{-- <div class="d-flex justify-content-between">
+                                        <h6 class="text-dark">Welcome {{session('user_name')}}</h6>
+                                        <img src="uploads/{{session('user_photo')}}" id="profile-pic">
+                                    </div> --}}
+                                    <h6 class="text-dark fw-bold">Welcome {{session('user_name')}}</h6>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <ul>
+                                    <li><a class="dropdown-item" href="{{url('/user_profile')}}{{session('user_id')}}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{url('/user_logout')}}">Log Out</a></li>
+                                    </ul>
+                                    {{--<a class="dropdown-item" href="#">Something else here</a> --}}
+                                </div>
+                            </div>
+                            @endif
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -162,7 +197,8 @@ https://templatemo.com/tm-558-klassy-cafe
                             framework. You can download and feel free to use this website template layout for your
                             restaurant business. You are allowed to use this template for commercial purposes.
                             <br><br>You are NOT allowed to redistribute the template ZIP file on any template donwnload
-                            website. Please contact us for more information.</p>
+                            website. Please contact us for more information.
+                        </p>
                         <div class="row">
                             <div class="col-4">
                                 <img src="assets/images/about-thumb-01.jpg" alt="">
@@ -179,7 +215,7 @@ https://templatemo.com/tm-558-klassy-cafe
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="right-content">
                         <div class="thumb">
-                            <a rel="nofollow" href="http://youtube.com"><i class="fa fa-play"></i></a>
+                            <a rel="nofollow" href="#"><i class="fa fa-play"></i></a>
                             <img src="assets/images/about-video-bg.jpg" alt="">
                         </div>
                     </div>
@@ -391,14 +427,14 @@ https://templatemo.com/tm-558-klassy-cafe
                                 <div class="phone">
                                     <i class="fa fa-phone"></i>
                                     <h4>Phone Numbers</h4>
-                                    <span><a href="#">080-090-0990</a><br><a href="#">080-090-0880</a></span>
+                                    <span><a href="tel:0800900990">080-090-0990</a><br><a href="tel:0620908545">062-090-8545</a></span>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="message">
                                     <i class="fa fa-envelope"></i>
                                     <h4>Emails</h4>
-                                    <span><a href="#">hello@company.com</a><br><a href="#">info@company.com</a></span>
+                                    <span><a href="mailto:cafeklassy@gmail.com">cafeklassy@gmail.com</a><br><a href="mailto:info@company.com">info@company.com</a></span>
                                 </div>
                             </div>
                         </div>
@@ -406,7 +442,8 @@ https://templatemo.com/tm-558-klassy-cafe
                 </div>
                 <div class="col-lg-6">
                     <div class="contact-form">
-                        <form id="contact" action="" method="post">
+                        <form id="contact" action="{{url("/booking")}}" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h4>Table Reservation</h4>
@@ -430,41 +467,35 @@ https://templatemo.com/tm-558-klassy-cafe
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <fieldset>
-                                        <select value="number-guests" name="number-guests" id="number-guests">
-                                            <option value="number-guests">Number Of Guests</option>
-                                            <option name="1" id="1">1</option>
-                                            <option name="2" id="2">2</option>
-                                            <option name="3" id="3">3</option>
-                                            <option name="4" id="4">4</option>
-                                            <option name="5" id="5">5</option>
-                                            <option name="6" id="6">6</option>
-                                            <option name="7" id="7">7</option>
-                                            <option name="8" id="8">8</option>
-                                            <option name="9" id="9">9</option>
-                                            <option name="10" id="10">10</option>
-                                            <option name="11" id="11">11</option>
-                                            <option name="12" id="12">12</option>
+                                        <select value="number-guests" name="number_guests" id="number-guests">
+                                            <option value="">Number Of Guests</option>
+                                            <option value="1" id="1">1</option>
+                                            <option value="2" id="2">2</option>
+                                            <option value="3" id="3">3</option>
+                                            <option value="4" id="4">4</option>
+                                            <option value="5" id="5">5</option>
+                                            <option value="6" id="6">6</option>
                                         </select>
                                     </fieldset>
                                 </div>
                                 <div class="col-lg-6">
                                     <div id="filterDate2">
-                                        <div class="input-group date" data-date-format="dd/mm/yyyy">
-                                            <input name="date" id="date" type="text" class="form-control"
-                                                placeholder="dd/mm/yyyy">
-                                            <div class="input-group-addon">
+                                        {{-- <div class="input-group date" data-date-format="dd/mm/yyyy"> --}}
+                                        <input name="date" id="date" type="date" class="form-control"
+                                            placeholder="dd/mm/yyyy">
+                                        {{-- <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-th"></span>
-                                            </div>
-                                        </div>
+                                            </div> --}}
+                                        {{-- </div> --}}
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <fieldset>
                                         <select value="time" name="time" id="time">
                                             <option value="time">Time</option>
-                                            <option name="Breakfast" id="Breakfast">Breakfast</option>
-                                            <option name="Lunch" id="Lunch">Lunch</option>
-                                            <option name="Dinner" id="Dinner">Dinner</option>
+                                            <option name="Breakfast" value="Breakfast">Breakfast</option>
+                                            <option name="Lunch" value="Lunch">Lunch</option>
+                                            <option name="Dinner" value="Dinner">Dinner</option>
                                         </select>
                                     </fieldset>
                                 </div>
@@ -474,12 +505,14 @@ https://templatemo.com/tm-558-klassy-cafe
                                             required=""></textarea>
                                     </fieldset>
                                 </div>
+                                @if(session('user_id'))
                                 <div class="col-lg-12">
                                     <fieldset>
                                         <button type="submit" id="form-submit" class="main-button-icon">Make A
                                             Reservation</button>
                                     </fieldset>
                                 </div>
+                                @endif
                             </div>
                         </form>
                     </div>
@@ -798,8 +831,6 @@ https://templatemo.com/tm-558-klassy-cafe
                 <div class="col-lg-4 col-xs-12">
                     <div class="left-text-content">
                         <p>© Copyright Klassy Cafe Co.
-
-                            <br>Design: TemplateMo
                         </p>
                     </div>
                 </div>

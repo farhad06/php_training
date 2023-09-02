@@ -19,6 +19,15 @@
 </head>
 <body>
   <div class="container mt-5">
+    @if(session('message'))
+    <div style="float: right;">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong style="color: black">{{session('message')}}</strong>
+            <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    </div>
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-6" id="logInForm">
             <div class="card shadow rounded" style="border: 0;">
@@ -26,14 +35,15 @@
                     <h3 class="text-center">LOGIN FORM</h3>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form action="{{url('/user_login')}}" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control shadow-none" id="username" placeholder="Enter your username">
+                            <input type="text" class="form-control shadow-none" name="username" placeholder="Enter your username (ex.Name/Email/Phone)">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control shadow-none" id="password" placeholder="Enter your password">
+                            <input type="password" class="form-control shadow-none" name="upassword" placeholder="Enter your password">
                         </div>
                         <div class="text-center mb-2">
                             <span class="text-dark text-center">New User? Register<a href="{{url('/register')}}" class="text-decoration-none">&nbsp;Here</a></span>

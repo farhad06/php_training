@@ -21,6 +21,15 @@
 
 <body>
     <div class="container mt-5">
+        @if(session('message'))
+        <div style="float: right;">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong style="color: black">{{session('message')}}</strong>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            </div>
+        </div>
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-6" id="logInForm">
                 <div class="card shadow rounded" style="border: 0;">
@@ -28,14 +37,17 @@
                         <h3 class="text-center text-light"> ADMIN LOGIN FORM</h3>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="{{url('/admin_login')}}" method="POST">
+                            @csrf
                             <div class="mb-3">
                                 <label for="username" class="form-label">Name</label>
-                                <input type="text" class="form-control shadow-none" name="admin_name" id="username" autocomplete="off">
+                                <input type="text" class="form-control shadow-none" name="admin_name" id="username"
+                                    autocomplete="off">
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control shadow-none" name="admin_password" id="password">
+                                <input type="password" class="form-control shadow-none" name="admin_password"
+                                    id="password">
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-dark shadow-none">LOG IN</button>
