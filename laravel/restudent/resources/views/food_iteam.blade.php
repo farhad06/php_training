@@ -13,7 +13,7 @@
 <div class="table table-responsive">
     <div class="mb-3">
         @if(session('message'))
-        <div style="float: right;">
+        <div style="float: right;" id="resDiv">
             <div class="alert alert-info alert-dismissible fade show" role="alert">
                 <strong style="color: black">{{session('message')}}</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">

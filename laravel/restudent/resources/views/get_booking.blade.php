@@ -5,7 +5,7 @@
 @section('content')
 <h2 class="text-center mb-3">Bookings</h2>
 @if(session('message'))
-<div style="float: right;">
+<div style="float: right;" id="resDiv">
     <div class="alert alert-info alert-dismissible fade show" role="alert">
         <strong style="color: black">{{session('message')}}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

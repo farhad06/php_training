@@ -151,7 +151,7 @@ class formController extends Controller
         #create a url because this url contains user's id 
         $url = '/user_profile' . $req->user_id;
         if ($aff) {
-            return redirect($url)->with('message', 'Data Changed');
+            return redirect($url)->with('message', 'Profile Photo Updated');
         } else {
             return redirect($url)->with('message', 'Something Went Wrong');
         }

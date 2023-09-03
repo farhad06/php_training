@@ -18,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/add',[formController::class,'show']);
-Route::post('/submit', [formController::class, 'add_posts']);
+Route::controller(formController::class)->group(function(){
+    Route::get('/add',  'show');
+    Route::get('showpost',  'show_post');
+    Route::post('/submit',  'add_posts');
+    Route::get('/editpost{id}','edit_post');
+    Route::post('updatepost','update_post');
+});
+
 

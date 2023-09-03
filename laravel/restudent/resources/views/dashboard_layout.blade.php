@@ -30,7 +30,7 @@
 
         ul li a {
             color: white;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         a:hover {
@@ -42,22 +42,28 @@
             margin-top: 10px;
             padding: 5px;
         }
+
+        #cafe-name {
+            font-family: "Lucida Handwriting", cursive;
+            font-size: 25px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top top-nav">
-        <h2 class="navbar-brand fw-bold" href="#">ADMIN PANEL</h2>
-        @if(session('admin_name'))
+        <h1 class="navbar-brand fw-bold" href="#" id="cafe-name">Klassy Cafe</h1>
+        {{-- @if(session('admin_name'))
         <h2 class="navbar-brand fw-bold h4" href="#">Welcome {{session('admin_name')}}</h2>
-        @endif
+        @endif --}}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <a class="nav-link text-light" href="{{url('/admin_logout')}}">Log Out <i class="bi bi-power"></i></a>
+                <a class="nav-link text-light" href="{{url('/admin_logout')}}"><button class="btn btn-sm bg-white text-dark fw-bold rounded">Log Out <i class="bi bi-power"></i></button></a>
                 </li>
             </ul>
         </div>
@@ -94,6 +100,12 @@
     </script>
     <script src="//cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script>
+        const resDiv = document.getElementById('resDiv');
+                setTimeout(() => {
+                    resDiv.remove();
+                }, 3000);
     </script>
 </body>
 
