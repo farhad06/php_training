@@ -13,6 +13,9 @@
 <body>
     <div class="container">
         <h2 class="text-center fw-bold fst-italic">All Posts</h2>
+        @if(session('message'))
+        <h3 class="text-success">{{session('message')}}</h3>
+        @endif
         <div class="table table-responsive">
             <table class="table table-bordered border-dark">
                 <thead>
@@ -29,7 +32,7 @@
                         <td>{{$post->description}}</td>
                         <td>
                             <a href="{{url('/editpost')}}{{$post->id}}" class="btn btn-sm btn-success">UPDATE</a>
-                            <a href="" class="btn btn-sm btn-danger">DELETE</a>
+                            <a href="{{url('/deletepost')}}{{$post->id}}" class="btn btn-sm btn-danger">DELETE</a>
                         </td>
                     </tr>
                     @endforeach

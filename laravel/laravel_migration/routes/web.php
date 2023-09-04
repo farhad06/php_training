@@ -24,6 +24,8 @@ Route::controller(formController::class)->group(function(){
     Route::post('/submit',  'add_posts');
     Route::get('/editpost{id}','edit_post');
     Route::post('updatepost','update_post');
+    Route::get('deletepost{id}', 'delete_post');
+
 });
 
 

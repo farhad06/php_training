@@ -23,6 +23,7 @@
                 <label for="" class="form-label">Title</label>
                 <input type="text" name="title" class="form-control shadow-none" value="{{$data->title}}">
             </div>
+            <input type="hidden" name="id" value="{{$data->id}}">
             <div class="mb-3">
                 <label for="" class="form-label">Description</label>
                 <textarea type="text" name="des" rows="3" class="form-control shadow-none">{{$data->description}}</textarea>
