@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="uploads/logo-1.webp">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
@@ -28,11 +29,26 @@
             background-color: white;
             border: 0;
         }
-        #profile-pic{
+
+        #profile-pic {
             height: 40px;
             width: 40px;
             border-radius: 50%;
             margin-left: 3px;
+        }
+
+        .alert-box {
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: none;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
         }
     </style>
 
@@ -49,17 +65,6 @@
         </div>
     </div>
     <!-- ***** Preloader End ***** -->
-    {{-- Alert Message Div Start --}}
-    @if(session('message'))
-    <div>
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{session('message')}}</strong>
-            <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </div>
-    @endif
-    {{-- Alert Message Div End --}}
-
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
         <div class="container">
@@ -109,32 +114,39 @@
                                     aria-expanded="false">
                                     {{-- <div class="d-flex justify-content-between">
                                         <h6 class="text-dark">Welcome {{session('user_name')}}</h6>
-                                        <img src="uploads/{{session('user_photo')}}" id="profile-pic">
-                                    </div> --}}
-                                    <h6 class="text-dark fw-bold">Welcome {{session('user_name')}}</h6>
-                                </a>
+                                    <img src="uploads/{{session('user_photo')}}" id="profile-pic">
+                            </div> --}}
+                            <h6 class="text-dark fw-bold">Welcome {{session('user_name')}}</h6>
+                            </a>
 
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <ul>
-                                    <li><a class="dropdown-item" href="{{url('/user_profile')}}{{session('user_id')}}">Profile</a></li>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <ul>
+                                    <li><a class="dropdown-item"
+                                            href="{{url('/user_profile')}}{{session('user_id')}}">Profile</a></li>
                                     <li><a class="dropdown-item" href="{{url('/user_logout')}}">Log Out</a></li>
-                                    </ul>
-                                    {{--<a class="dropdown-item" href="#">Something else here</a> --}}
-                                </div>
+                                </ul>
+                                {{--<a class="dropdown-item" href="#">Something else here</a> --}}
                             </div>
-                            @endif
-                        </ul>
-                        <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
-                    </nav>
                 </div>
+                @endif
+                </ul>
+                <a class='menu-trigger'>
+                    <span>Menu</span>
+                </a>
+                <!-- ***** Menu End ***** -->
+                </nav>
             </div>
+        </div>
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
-
+    {{-- Alert Message Div Start --}}
+    @if(session('message'))
+    <div class="alert-box">
+        {{-- {{session('message')}} --}}
+    </div>
+    @endif
+    {{-- Alert Message Div End --}}
     <!-- ***** Main Banner Area Start ***** -->
     <div id="top">
         <div class="container-fluid">
@@ -427,14 +439,16 @@
                                 <div class="phone">
                                     <i class="fa fa-phone"></i>
                                     <h4>Phone Numbers</h4>
-                                    <span><a href="tel:0800900990">080-090-0990</a><br><a href="tel:0620908545">062-090-8545</a></span>
+                                    <span><a href="tel:0800900990">080-090-0990</a><br><a
+                                            href="tel:0620908545">062-090-8545</a></span>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="message">
                                     <i class="fa fa-envelope"></i>
                                     <h4>Emails</h4>
-                                    <span><a href="mailto:cafeklassy@gmail.com">cafeklassy@gmail.com</a><br><a href="mailto:info@company.com">info@company.com</a></span>
+                                    <span><a href="mailto:cafeklassy@gmail.com">cafeklassy@gmail.com</a><br><a
+                                            href="mailto:info@company.com">info@company.com</a></span>
                                 </div>
                             </div>
                         </div>
@@ -502,7 +516,7 @@
                                 <div class="col-lg-12">
                                     <fieldset>
                                         <textarea name="message" rows="6" id="message" placeholder="Message"
-                                            required=""></textarea>
+                                            ></textarea>
                                     </fieldset>
                                 </div>
                                 @if(session('user_id'))

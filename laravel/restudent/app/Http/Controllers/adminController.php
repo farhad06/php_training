@@ -43,7 +43,7 @@ class adminController extends Controller
         $count_user = DB::table('users')->count();
         $count_item = DB::table('food_items')->count();
 
-        return view('dashboard')->with(['count_book'=> $count_book, 'count_user'=> $count_user, 'count_item'=> $count_item]);
+        return view('dashboard')->with(['count_book' => $count_book, 'count_user' => $count_user, 'count_item' => $count_item]);
     }
 
     #show all user
@@ -134,6 +134,35 @@ class adminController extends Controller
             return redirect('/allfood')->with('message', 'Item Deleted');
         } else {
             return redirect('/allfood')->with('message', 'Something went wrong');
+        }
+    }
+
+    public function edit_item($id)
+    {
+        $item_data = DB::table('food_items')->find($id);
+        return view('edit_item')->with(['data' => $item_data]);
+    }
+
+    public function update_item(Request $req)
+    {
+        $image = $req->i_image;
+        $location = 'items_images';
+        $extension = $image->getClientOriginalExtension();
+        $imageName = "IMG_" . time() . ".$extension";
+
+        $image->move($location, $imageName);
+        $aff = DB::table('food_items')->where('id','=',$req->id)->update([
+
+            'i_name' => $req->i_name,
+            'price' => $req->i_price,
+            'i_image' => $imageName,
+            'i_desc' => $req->i_desc
+        ]);
+
+        if ($aff) {
+            return redirect('/allfood')->with('message', 'Item Details Updated');
+        } else {
+            return redirect('/allfood')->with('message', 'Item Details Not Updated');
         }
     }
 }

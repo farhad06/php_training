@@ -39,6 +39,8 @@ Route::get('/deletebooking{id}', [adminController::class, 'delete_booking']);
 Route::post('/additem', [adminController::class, 'add_items']);
 Route::get('/deleteitem{id}', [adminController::class, 'delete_item']);
 Route::get('/edititem{id}', [adminController::class, 'edit_item']);
+Route::post('/updateitem', [adminController::class, 'update_item']);
+
 
 
 

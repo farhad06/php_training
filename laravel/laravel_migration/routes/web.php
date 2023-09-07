@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\formController;
+use App\Http\Controllers\homeTask;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,14 @@ Route::controller(formController::class)->group(function(){
     Route::get('/editpost{id}','edit_post');
     Route::post('updatepost','update_post');
     Route::get('deletepost{id}', 'delete_post');
+
+});
+
+
+Route::controller(homeTask::class)->group(function(){
+
+    Route::get('addStudent','add_stu');
+    Route::post('submit','submit_details')->name('add.student');
 
 });
 

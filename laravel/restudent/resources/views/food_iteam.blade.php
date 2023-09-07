@@ -46,6 +46,8 @@
                     </td>
                     <td>{{$item->i_desc}}</td>
                     <td>
+                        {{-- <a href="#editItem{{$item->id}}" data-toggle="modal" data-target="#editItem"><i
+                            class="bi bi-pencil-square" style="color:green; font-size:30px;"></i></a> --}}
                         <a href="{{url('/edititem')}}{{$item->id}}"><i class="bi bi-pencil-square"
                                 style="color:green; font-size:30px;"></i></a>
                         <a href="{{url('/deleteitem')}}{{$item->id}}"><i class="bi bi-trash3-fill"
@@ -57,7 +59,7 @@
         </table>
     </div>
 </div>
-<!-- Modal -->
+<!-- Add Modal -->
 <div class="modal fade" id="addItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
@@ -95,4 +97,46 @@
         </div>
     </div>
 </div>
+{{-- Add Modal End --}}
+
+{{-- edit modal start--}}
+<div class="modal fade" id="editItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center h4" id="exampleModalLabel">Edit Item</h5>
+                <button type="button" class="shadow-none close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{url('/edititem')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="" class="form-label"><strong>Item Name</strong></label>
+                        <input type="text" name="i_name" class="form-control shadow-none">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"><strong>Item Price</strong></label>
+                        <input type="number" name="i_price" class="form-control shadow-none">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"><strong>Item Image</strong></label>
+                        <input type="file" name="i_image" class="form-control shadow-none">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label"><strong>Item Description</strong></label>
+                        <textarea type="text" name="i_desc" class="form-control shadow-none" rows="2"
+                            style="resize: none;"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-sm btn-success shadow-none">EDIT ITEM</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- edit modal end --}}
 @endsection
