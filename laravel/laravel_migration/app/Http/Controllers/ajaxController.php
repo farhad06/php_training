@@ -27,31 +27,7 @@ class ajaxController extends Controller
     }
     public function get_student()
     {
-        //$data = $req->all();
-        // $data=student::all();
-        // echo $data;
-       $data= DB::table('students')->get();
-       //$data=json_encode($o_data);
-    //    print('<pre>');
-    //    print_r(json_decode($data));
-        // $output="";
-        // $output.= "<tr>
-        //             <th>Name</th>
-        //             <th>Email</th>
-        //             <th>Phone</th>
-        //             <th>Age</th>
-        //             <th>Action</th>
-        //         </tr>";
-
-        //  foreach($data as $stu_details){
-        //     $output.="
-        //             <tr>
-        //             <td>$</td>
-        //             </tr>
-        //     ";
-        //  }       
-
-
+        $data= DB::table('students')->get();
         return response()->json($data);
     }
 }

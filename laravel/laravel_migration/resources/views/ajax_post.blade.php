@@ -70,8 +70,7 @@
                                 style="resize:none;"></textarea>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-sm btn-primary shadow-none"
-                                onclick="addStudent()">SUBMIT</button>
+                            <button type="submit" class="btn btn-sm btn-primary shadow-none" id="addstudent">SUBMIT</button>
                         </div>
                     </div>
                     {{-- <div class="modal-footer">
@@ -87,68 +86,85 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             $(document).ready(function(){
+                function loadTableData(){
                     $.ajax({
-                    url:"{{url('/get_student')}}",
-                    type:"GET",
+                        url:"{{url('/get_student')}}",
+                        type:"GET",
+                        dataType:'json',
+                        success:function(data){
+                        //loadTableData(data);
+                        var tbody=$('#tablebody');
+                        tbody.empty();
+                        $.each(data,function(index,item){
+                            tbody.append(
+                            '<tr>' +
+                                '<td>'+item.name+'</td>'+
+                                '<td>'+item.email+'</td>'+
+                                '<td>'+item.phone+'</td>'+
+                                '<td>'+item.age+'</td>'
+                                +'</tr>'
+                            );     
+                            });
+                        }
+                    });
+                }  
+                
+                loadTableData();
+            
+            // function loadTableData(data){
+            //         var tbody=$('#tablebody');
+            //         tbody.empty();
+            //         $.each(data,function(index,item){
+                    
+            //         tbody.append(
+            //             '<tr>' +
+            //                 '<td>'+item.name+'</td>'+
+            //                 '<td>'+item.email+'</td>'+
+            //                 '<td>'+item.phone+'</td>'+
+            //                 '<td>'+item.age+'</td>'
+            //             +'</tr>'
+            //         );
+                    
+            //         });
+            
+            // }
+            $('#addstudent').on('click',function(e){
+                e.preventDefault();
+                var studentData={
+                    'name':$('#name').val(),
+                    'email':$('#email').val(),
+                    'phone':$('#phone').val(),
+                    'age':$('#age').val(),
+                    'address':$('#address').val(),
+                    '_token':'{{csrf_token()}}'
+                }
+                //console.log(studentData);
+                $.ajax({
+                    url:"{{url('/submit')}}",
+                    type:"POST",
+                    data:studentData,
                     dataType:'json',
                     success:function(data){
-                    loadTableData(data);
+                    //alert(data.message);
+                    //console.log(data.status);
+                    $('#add_student').modal('hide');
+                    if (data.status == 200) {
+                    Swal.fire(
+                        'Added!',
+                        'Student Added Successfully!',
+                        'success'
+                    )
                     }
-                    });
-            
-            function loadTableData(data){
-                    var tbody=$('#tablebody');
-                    tbody.empty();
-                    $.each(data,function(index,item){
+                    loadTableData();
+                    //$('#msg').text(data.message);
                     
-                    tbody.append(
-                        '<tr>' +
-                            '<td>'+item.name+'</td>'+
-                            '<td>'+item.email+'</td>'+
-                            '<td>'+item.phone+'</td>'+
-                            '<td>'+item.age+'</td>'
-                        +'</tr>'
-                    );
-                    
-                    });
-            
-            }
-            function addStudent(){
-            var studentData={
-                'name':$('#name').val(),
-                'email':$('#email').val(),
-                'phone':$('#phone').val(),
-                'age':$('#age').val(),
-                'address':$('#address').val(),
-                '_token':'{{csrf_token()}}'
-            }
-            //console.log(studentData);
-            $.ajax({
-                url:"{{url('/submit')}}",
-                type:"POST",
-                data:studentData,
-                dataType:'json',
-                success:function(data){
-                //alert(data.message);
-                //console.log(data.status);
-                $('#add_student').modal('hide');
-                if (data.status == 200) {
-                Swal.fire(
-                    'Added!',
-                    'Student Added Successfully!',
-                    'success'
-                )
-                }
-                //loadTableData(data)
-                //$('#msg').text(data.message);
+                    },
+                    error:function(data){
+                        console.log(data);
+                    }
                 
-                },
-                error:function(data){
-                    console.log(data);
-                }
-            
+                });
             });
-            }
             
             });
            
