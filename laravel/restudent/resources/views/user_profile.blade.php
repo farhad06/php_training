@@ -1,3 +1,8 @@
+@if (!session('user_id'))
+<script>
+    window.location.href="{{url('/')}}";
+</script>
+@endif
 <!DOCTYPE html>
 <html lang="en">
 

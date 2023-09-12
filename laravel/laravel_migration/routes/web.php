@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\formController;
 use App\Http\Controllers\homeTask;
+use App\Http\Controllers\ajaxController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,10 +31,19 @@ Route::controller(formController::class)->group(function(){
 });
 
 
-Route::controller(homeTask::class)->group(function(){
+/*Route::controller(homeTask::class)->group(function(){
 
     Route::get('addStudent','add_stu');
     Route::post('submit','submit_details')->name('add.student');
+
+});*/
+
+Route::controller(ajaxController::class)->group(function(){
+
+    Route::get('addstudent','add_student');
+    Route::post('submit','submit_data');
+    Route::get('get_student', 'get_student');
+
 
 });
 
