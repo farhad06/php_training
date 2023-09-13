@@ -22,6 +22,12 @@ https://github.com/sudheerj/javascript-interview-questions
 
 #### PHP Interview Questions.
 https://github.com/Devinterview-io/php-interview-questions
+https://hackr.io/blog/php-interview-questions
+https://www.besanttechnologies.com/php-interview-questions-and-answers
+https://www.testgorilla.com/blog/php-interview-questions/
+https://www.freshersnow.com/php-interview-questions-and-answers/
+https://placement.freshersworld.com/php-interview-questions/33121834
+https://www.adaface.com/blog/php-interview-questions/
 
 #### Laravel Interview Questions.
 https://github.com/fgitpush/Top-Laravel-Interview-Questions-Wiki
@@ -29,7 +35,10 @@ https://github.com/fgitpush/Top-Laravel-Interview-Questions-Wiki
 #### Bootstrap Design
 https://mdbootstrap.com/docs/standard/forms/input-fields/
 https://pro.propeller.in/components/text-fields
+
 #### Laravel Video
 https://www.learnvern.com/laravel-tutorial/introduction-to-laravel?show_calendar_popup=1
 
+#### PHP cheat sheet
+https://hackr.io/blog/php-cheat-sheet
 

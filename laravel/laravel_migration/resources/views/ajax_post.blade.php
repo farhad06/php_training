@@ -14,7 +14,7 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center bg-dark text-light mt-2 rounded">CRUD OPERATION WITH LARAVEL & AJAX</h1>
+        <h1 class="text-center bg-dark text-light mt-2 rounded py-2">CRUD OPERATION WITH LARAVEL & AJAX</h1>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary shadow-none" data-bs-toggle="modal" data-bs-target="#add_student">
             Add Student
@@ -28,6 +28,8 @@
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Age</th>
+                        <th>Address</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="tablebody">
@@ -47,7 +49,7 @@
                         <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="modalbody">
                         <div class="mb-3">
                             <label for="" class="form-label">Name</label>
                             <input type="text" id="name" class="form-control shadow-none">
@@ -101,7 +103,9 @@
                                 '<td>'+item.name+'</td>'+
                                 '<td>'+item.email+'</td>'+
                                 '<td>'+item.phone+'</td>'+
-                                '<td>'+item.age+'</td>'
+                                '<td>'+item.age+'</td>'+
+                                '<td>'+item.address+'</td>'+
+                                '<td><a href="" class="btn btn-sm btn-success shadow-none">UPDATE</a> <a href="" class="btn btn-sm btn-danger shadow-none">DELETE</a></td>'
                                 +'</tr>'
                             );     
                             });
@@ -155,6 +159,7 @@
                         'success'
                     )
                     }
+                    //$('#modalbody').trigger('reset');
                     loadTableData();
                     //$('#msg').text(data.message);
                     
