@@ -21,3 +21,4 @@ Route::get('/', function () {
 Route::get('httpClientRes',[apiController::class, 'http_client_response']);
 Route::get('login',[apiController::class, 'login_page']);
 Route::post('loggedin',[apiController::class, 'login']);
+// Route::get('getstudent', [apiCrudController::class, 'get_students']);

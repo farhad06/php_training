@@ -43,6 +43,7 @@ Route::controller(ajaxController::class)->group(function(){
     Route::get('addstudent','add_student');
     Route::post('submit','submit_data');
     Route::get('get_student', 'get_student');
+    Route::get('deletestudent/{id}', 'delete_student');
 
 
 });

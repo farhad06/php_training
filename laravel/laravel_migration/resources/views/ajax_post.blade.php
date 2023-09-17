@@ -99,19 +99,33 @@
                         tbody.empty();
                         $.each(data,function(index,item){
                             tbody.append(
-                            '<tr>' +
-                                '<td>'+item.name+'</td>'+
-                                '<td>'+item.email+'</td>'+
-                                '<td>'+item.phone+'</td>'+
-                                '<td>'+item.age+'</td>'+
-                                '<td>'+item.address+'</td>'+
-                                '<td><a href="" class="btn btn-sm btn-success shadow-none">UPDATE</a> <a href="" class="btn btn-sm btn-danger shadow-none">DELETE</a></td>'
-                                +'</tr>'
+                            `<tr> 
+                                <td>${item.name}</td>
+                                <td>${item.email}</td>
+                                <td>${item.phone}</td>
+                                <td>${item.age}</td>
+                                <td>${item.address}</td>
+                                <td><button class="btn btn-sm btn-success shadow-none" onclick="edit_student(${item.id})">UPDATE</button> 
+                                    <button class="btn btn-sm btn-danger shadow-none" onclick="delete_student(${item.id})">DELETE</button>
+                                </td>
+                                </tr>`
                             );     
                             });
                         }
                     });
                 }  
+
+                /*
+                    '<tr>' +
+                        '<td>'+{item.name}+'</td>'+
+                        '<td>'+item.email+'</td>'+
+                        '<td>'+item.phone+'</td>'+
+                        '<td>'+item.age+'</td>'+
+                        '<td>'+item.address+'</td>'+
+                        '<td><a href="" class="btn btn-sm btn-success shadow-none">UPDATE</a> <a href=""
+                                class="btn btn-sm btn-danger shadow-none">DELETE</a></td>'
+                    +'</tr>'
+                */
                 
                 loadTableData();
             
@@ -122,7 +136,7 @@
                     
             //         tbody.append(
             //             '<tr>' +
-            //                 '<td>'+item.name+'</td>'+
+            //                 '<td>'+{item.name}+'</td>'+
             //                 '<td>'+item.email+'</td>'+
             //                 '<td>'+item.phone+'</td>'+
             //                 '<td>'+item.age+'</td>'
@@ -170,9 +184,20 @@
                 
                 });
             });
-            
+
             });
-           
+                function delete_student(id){
+                        //console.log(id);
+                        $.ajax({
+                            url:`{{url('/deletestudent')}}/${id}`,
+                            type:"GET",
+                            data:"'_token':'{{csrf_token()}}'",
+                            success:function(data){
+                                console.log(data);
+                                loadTableData();
+                            }
+                        });
+                }
 
         </script>
     </div>

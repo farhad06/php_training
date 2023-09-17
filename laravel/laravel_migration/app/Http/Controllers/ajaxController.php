@@ -30,4 +30,16 @@ class ajaxController extends Controller
         $data= DB::table('students')->get();
         return response()->json($data);
     }
+
+    public function delete_student($id){
+        $res=DB::table('students')->where('id','=',$id)->delete();
+
+        if($res){
+            return response()->json(['message'=>'Data Successfully deleted']);
+        }else{
+            return response()->json(['message' => 'Error']);
+
+        }
+
+    }
 }
