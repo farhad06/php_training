@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\apiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('httpClientRes',[apiController::class, 'http_client_response']);
+Route::get('login',[apiController::class, 'login_page']);
+Route::post('loggedin',[apiController::class, 'login']);
