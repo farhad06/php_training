@@ -28,4 +28,40 @@ class apiCrudController extends Controller
 
         // return response()->json($response_data);
     }
+
+    public function add_students(Request $req){
+        $data=$req->all();
+        // print("<pre>");
+        // print_r($data);
+        DB::table('students')->insert([
+            'name' => $req->name,
+            'email' => $req->email, 'phone' => $req->phone, 'age' => $req->age, 'address' => $req->address
+
+        ]);
+
+        return response()->json(['message'=>'Data Saved Successfully','data'=>$data]);
+    }
+    public function delete_student($id)
+    {
+        $res = DB::table('students')->where('id', '=', $id)->delete();
+
+        if ($res) {
+            return response()->json(["message" => 'Student Deleted', 'status' => 200]);
+        } else {
+            return response()->json(['message' => 'Error']);
+        }
+    }
+
+    public function update_student($id,Request $req)
+    {
+        // return  $req->all();
+        // exit;
+        DB::table('students')->where('id', '=',$id)->update([
+            'name' => $req->name,
+            'email' => $req->email, 'phone' => $req->phone, 'age' => $req->age, 'address' => $req->address
+
+        ]);
+
+        return response()->json(['status' => 200]);
+    }
 }

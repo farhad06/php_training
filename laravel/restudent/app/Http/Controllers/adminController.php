@@ -106,7 +106,7 @@ class adminController extends Controller
         ]);
 
         if ($aff) {
-            return redirect('/allfood')->with('message', 'Item Added');
+            return redirect('/getchef')->with('message', 'Item Added');
         } else {
             return redirect('/allfood')->with('message', 'Item Not Added');
         }
@@ -164,5 +164,86 @@ class adminController extends Controller
         } else {
             return redirect('/allfood')->with('message', 'Item Details Not Updated');
         }
+    }
+
+    public function get_all_chef()
+    {
+        $data = DB::table('chefs')->get();
+        //dd($data);
+        return view('get_all_chefs')->with(['data' => $data]);
+        //return view('get_all_chefs');
+    }
+
+    public function add_chef(Request $req)
+    {
+        $image = $req->c_image;
+        $location = 'chefs_images';
+        $extension = $image->extension();
+        $imageName = "IMG_" . time() . ".$extension";
+
+        $image->move($location,
+            $imageName
+        );
+        $aff = DB::table('chefs')->insert([
+
+            'name' => $req->c_name,
+            'spacilist' => $req->c_spacilist,
+            'image' => $imageName,
+        ]);
+
+        if ($aff) {
+            return redirect('/getchef')->with('message', 'Chef Added');
+        } else {
+            return redirect('/getchef')->with('message', 'Chef Not Added');
+        }
+    }
+
+
+
+
+    public function delete_chef($id){
+        $chef_data = DB::table('chefs')->find($id);
+        $delete_img = $chef_data->image;
+        $delete_item_image = "chefs_images/" . $delete_img;
+        $aff = DB::table('chefs')->where('id', $id)->delete();
+
+        if ($aff) {
+            unlink($delete_item_image);
+            return redirect('/getchef')->with('message', 'Chef Deleted');
+        } else {
+            return redirect('/getchef')->with('message', 'Something went wrong');
+        }
+
+    }
+
+    public function edit_chef($id){
+        $chef_data = DB::table('chefs')->find($id);
+        return view('edit_chefs')->with(['data' => $chef_data]);
+    }
+
+    public function update_chef(Request $req){
+        //dd($req->all());
+        $image = $req->c_image;
+        $location = 'chefs_images';
+        $extension = $image->extension();
+        $imageName = "IMG_" . time() . ".$extension";
+
+        $image->move(
+            $location,
+            $imageName
+        );
+        $aff = DB::table('chefs')->where('id','=',$req->id)->update([
+
+            'name' => $req->c_name,
+            'spacilist' => $req->c_spacilist,
+            'image' => $imageName,
+        ]);
+
+        if ($aff) {
+            return redirect('/getchef')->with('message', 'Chef Updated');
+        } else {
+            return redirect('/getchef')->with('message', 'Chef Not Updated');
+        }
+
     }
 }

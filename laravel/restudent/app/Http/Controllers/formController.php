@@ -39,7 +39,11 @@ class formController extends Controller
     }
     //view index page
     public function index(){
-        return view('home');
+        $chef_data = DB::table('chefs')->get();
+        $item_data = DB::table('food_items')->get();
+        //dd($chef_data);
+        return view('home')->with(['chef_data' => $chef_data,'item_data'=>$item_data]);
+        //return view('home');
     }
 
     //view user registration page

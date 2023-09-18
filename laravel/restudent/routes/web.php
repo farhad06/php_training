@@ -31,15 +31,25 @@ Route::get('/admin', [adminController::class, 'admin_login_page']);
 Route::post('/admin_login', [adminController::class, 'login']);
 Route::get('/admin_logout', [adminController::class, 'logout']);
 Route::get('/dashboard', [adminController::class, 'dashboard']);
+#Route for users
 Route::get('/allusers', [adminController::class, 'get_all_users']);
 Route::get('/deleteuser{id}', [adminController::class, 'delete_user']);
+#Route for food items
 Route::get('/allfood', [adminController::class, 'get_all_food_items']);
-Route::get('/getbooking', [adminController::class, 'get_all_booking']);
-Route::get('/deletebooking{id}', [adminController::class, 'delete_booking']);
 Route::post('/additem', [adminController::class, 'add_items']);
-Route::get('/deleteitem{id}', [adminController::class, 'delete_item']);
 Route::get('/edititem{id}', [adminController::class, 'edit_item']);
 Route::post('/updateitem', [adminController::class, 'update_item']);
+Route::get('/deleteitem{id}', [adminController::class, 'delete_item']);
+#Route for booking
+Route::get('/getbooking', [adminController::class, 'get_all_booking']);
+Route::get('/deletebooking{id}', [adminController::class, 'delete_booking']);
+#Route for chefs
+Route::get('/getchef', [adminController::class, 'get_all_chef']);
+Route::post('/addchef', [adminController::class, 'add_chef']);
+Route::get('/editchef{id}', [adminController::class, 'edit_chef']);
+Route::post('/updatechef', [adminController::class, 'update_chef']);
+Route::get('/deletechef{id}', [adminController::class, 'delete_chef']);
+
 
 
 

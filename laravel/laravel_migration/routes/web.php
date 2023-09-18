@@ -44,6 +44,8 @@ Route::controller(ajaxController::class)->group(function(){
     Route::post('submit','submit_data');
     Route::get('get_student', 'get_student');
     Route::get('deletestudent/{id}', 'delete_student');
+    Route::get('editstudent/{id}', 'edit_student');
+    Route::post('update_student', 'update_student');
 
 
 });

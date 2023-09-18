@@ -12,7 +12,8 @@
     <title>@yield('title')</title>
     <link rel="icon" type="image/x-icon" href="uploads/logo-1.webp">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @stack('css')
     <style>
@@ -64,7 +65,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <a class="nav-link text-light" href="{{url('/admin_logout')}}"><button class="btn btn-sm bg-white text-dark fw-bold rounded">Log Out <i class="bi bi-power"></i></button></a>
+                <a class="nav-link text-light" href="{{url('/admin_logout')}}"><button
+                        class="btn btn-sm bg-white text-dark fw-bold rounded">Log Out <i
+                            class="bi bi-power"></i></button></a>
                 </li>
             </ul>
         </div>
@@ -82,6 +85,8 @@
                                 Food Items</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{url('/getbooking')}}"><i
                                     class="bi bi-cart-check-fill"></i> All Bookings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/getchef')}}"><i
+                                    class="bi bi-person-standing"></i> Chef</a></li>
                     </ul>
                 </div>
             </div>

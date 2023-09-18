@@ -252,15 +252,15 @@
         <div class="menu-item-carousel">
             <div class="col-lg-12">
                 <div class="owl-menu-item owl-carousel">
+                    @foreach ($item_data as $food)
                     <div class="item">
                         <div class='card card1'>
                             <div class="price">
-                                <h6>$14</h6>
+                                <h6>${{$food->price}}</h6>
                             </div>
                             <div class='info'>
-                                <h1 class='title'>Chocolate Cake</h1>
-                                <p class='description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedii do
-                                    eiusmod teme.</p>
+                                <h1 class='title'>{{$food->i_name}}</h1>
+                                <p class='description'>{{$food->i_desc}}</p>
                                 <div class="main-text-button">
                                     <div class="scroll-to-section"><a href="#reservation">Make Reservation <i
                                                 class="fa fa-angle-down"></i></a></div>
@@ -268,7 +268,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="item">
+                    @endforeach
+                    {{-- <div class="item">
                         <div class='card card2'>
                             <div class="price">
                                 <h6>$22</h6>
@@ -347,7 +348,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -366,6 +367,7 @@
                 </div>
             </div>
             <div class="row">
+                @foreach ($chef_data->all() as $item)
                 <div class="col-lg-4">
                     <div class="chef-item">
                         <div class="thumb">
@@ -375,15 +377,17 @@
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                             </ul>
-                            <img src="assets/images/chefs-01.jpg" alt="Chef #1">
+                            {{-- <img src="assets/images/chefs-01.jpg" alt="Chef #1"> --}}
+                            <img src="chefs_images/{{$item->image}}" alt="Chef #1">
                         </div>
                         <div class="down-content">
-                            <h4>Randy Walker</h4>
-                            <span>Pastry Chef</span>
+                            <h4>{{$item->name}}</h4>
+                            <span>{{$item->spacilist}}</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                @endforeach
+                {{-- <div class="col-lg-4">
                     <div class="chef-item">
                         <div class="thumb">
                             <div class="overlay"></div>
@@ -399,8 +403,8 @@
                             <span>Cookie Chef</span>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
+                </div> --}}
+                {{-- <div class="col-lg-4">
                     <div class="chef-item">
                         <div class="thumb">
                             <div class="overlay"></div>
@@ -416,7 +420,7 @@
                             <span>Pancake Chef</span>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -515,8 +519,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <fieldset>
-                                        <textarea name="message" rows="6" id="message" placeholder="Message"
-                                            ></textarea>
+                                        <textarea name="message" rows="6" id="message" placeholder="Message"></textarea>
                                     </fieldset>
                                 </div>
                                 @if(session('user_id'))

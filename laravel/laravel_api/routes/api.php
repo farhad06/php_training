@@ -22,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('getstudent',[apiCrudController::class,'get_students']);
 Route::get('login',[apiCrudController::class, 'login_page']);
 //Route::post('loggedin',[apiCrudController::class,'login']);
+Route::post('addstudent', [apiCrudController::class, 'add_students']);
+Route::delete('deletestudent/{id}', [apiCrudController::class, 'delete_student']);
+Route::put('updatestudent/{id}', [apiCrudController::class, 'update_student']);
