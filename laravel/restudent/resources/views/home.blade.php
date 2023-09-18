@@ -254,7 +254,7 @@
                 <div class="owl-menu-item owl-carousel">
                     @foreach ($item_data as $food)
                     <div class="item">
-                        <div class='card card1'>
+                        <div class='card card4'>
                             <div class="price">
                                 <h6>${{$food->price}}</h6>
                             </div>
@@ -269,6 +269,7 @@
                         </div>
                     </div>
                     @endforeach
+                   
                     {{-- <div class="item">
                         <div class='card card2'>
                             <div class="price">
@@ -378,7 +379,7 @@
                                 <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                             </ul>
                             {{-- <img src="assets/images/chefs-01.jpg" alt="Chef #1"> --}}
-                            <img src="chefs_images/{{$item->image}}" alt="Chef #1">
+                            <img src="chefs_images/{{$item->image}}" alt="Chef Image">
                         </div>
                         <div class="down-content">
                             <h4>{{$item->name}}</h4>
