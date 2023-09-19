@@ -50,31 +50,33 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="modalbody">
-                        <div class="mb-3">
-                            <label for="" class="form-label">Name</label>
-                            <input type="text" id="name" class="form-control shadow-none">
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Email</label>
-                            <input type="text" id="email" class="form-control shadow-none">
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Phone</label>
-                            <input type="text" id="phone" class="form-control shadow-none">
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Age</label>
-                            <input type="text" id="age" class="form-control shadow-none">
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Address</label>
-                            <textarea type="text" id="address" rows="2" class="form-control shadow-none"
-                                style="resize:none;"></textarea>
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-sm btn-primary shadow-none"
-                                id="addstudent">SUBMIT</button>
-                        </div>
+                        <form id="addform">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Name</label>
+                                <input type="text" id="name" class="form-control shadow-none">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Email</label>
+                                <input type="text" id="email" class="form-control shadow-none">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Phone</label>
+                                <input type="text" id="phone" class="form-control shadow-none">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Age</label>
+                                <input type="text" id="age" class="form-control shadow-none">
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Address</label>
+                                <textarea type="text" id="address" rows="2" class="form-control shadow-none"
+                                    style="resize:none;"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-sm btn-primary shadow-none"
+                                    id="addstudent">SUBMIT</button>
+                            </div>
+                        </form>
                     </div>
                     {{-- <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -119,8 +121,8 @@
                             </div>
                             <input type="hidden" name="" id="e_id">
                             <div>
-                                <button type="submit" class="btn btn-sm btn-success shadow-none"
-                                    onclick="update_student()">UPDATE</button>
+                                <button type="submit" class="btn btn-sm btn-success shadow-none" onclick=""
+                                    id="editdata">UPDATE</button>
                             </div>
                         </form>
                     </div>
@@ -217,6 +219,7 @@
                     success:function(data){
                     //alert(data.message);
                     //console.log(data.status);
+                    $('#addform').trigger('reset');
                     $('#add_student').modal('hide');
                     if (data.status == 200) {
                     Swal.fire(
@@ -225,7 +228,6 @@
                         'success'
                     )
                     }
-                    //$('#modalbody').trigger('reset');
                     loadTableData();
                     //$('#msg').text(data.message);
                     
@@ -234,6 +236,47 @@
                         console.log(data);
                     }
                 
+                });
+            });
+
+            $('#editdata').on('click',function(e){
+                e.preventDefault();
+                var editStudentData={
+                    'e_name':$('#e_name').val(),
+                    'e_email':$('#e_email').val(),
+                    'e_phone':$('#e_phone').val(),
+                    'e_age':$('#e_age').val(),
+                    'e_address':$('#e_address').val(),
+                    'e_id':$('#e_id').val(),
+                    '_token':'{{csrf_token()}}'
+                }
+                console.log(editStudentData);
+                $.ajax({
+                    url:`{{url('/update_student')}}`,
+                    type:"POST",
+                    data:editStudentData,
+                    dataType:'json',
+                    success:function(data){
+                    //alert(data.message);
+                    //console.log(data);
+                    $('#edit_student').modal('hide');
+                        if (data.status == 200) {
+                        Swal.fire(
+                        'Updated!',
+                        'Student Updated Successfully!',
+                        'success'
+                    )
+                    }
+                    //$('#modalbody').trigger('reset');
+                        loadTableData();
+                    //$('#msg').text(data.message);
+                    
+                    },
+                    error:(error)=>{
+                    //console.log("Error Occured",data);
+                        if(error) throw error;
+                    }
+                    
                 });
             });
 
@@ -281,45 +324,46 @@
                 });
             }
 
-            function update_student(){
-                var editStudentData={
-                    'name':$('#e_name').val(),
-                    'email':$('#e_email').val(),
-                    'phone':$('#e_phone').val(),
-                    'age':$('#e_age').val(),
-                    'address':$('#e_address').val(),
-                    'id':$('#e_id').val(),
-                    '_token':'{{csrf_token()}}'
-                }
-                //console.log(studentData);
-                $.ajax({
-                    url:"{{url('/update_student')}}",
-                    type:"POST",
-                    data:editStudentData,
-                    dataType:'json',
-                    success:function(data){
-                        //alert(data.message);
-                        console.log(data);
-                        $('#edit_student').modal('hide');
-                        if (data.status == 200) {
-                            Swal.fire(
-                            'Updated!',
-                            'Student Updated Successfully!',
-                            'success'
-                            )
-                        }
-                        //$('#modalbody').trigger('reset');
-                        loadTableData();
-                        //$('#msg').text(data.message);
+            // function update_student(){
+            //     var editStudentData={
+            //         'e_name':$('#e_name').val(),
+            //         'e_email':$('#e_email').val(),
+            //         'e_phone':$('#e_phone').val(),
+            //         'e_age':$('#e_age').val(),
+            //         'e_address':$('#e_address').val(),
+            //         'e_id':$('#e_id').val(),
+            //         '_token':'{{csrf_token()}}'
+            //     }
+            //     console.log(editStudentData);
+            //     $.ajax({
+            //         url:`{{url('/update_student')}}`,
+            //         type:"POST",
+            //         data:editStudentData,
+            //         dataType:'json',
+            //         success:function(data){
+            //             //alert(data.message);
+            //             //console.log(data);
+            //             $('#edit_student').modal('hide');
+            //             if (data.status == 200) {
+            //                 Swal.fire(
+            //                     'Updated!',
+            //                     'Student Updated Successfully!',
+            //                     'success'
+            //                 )
+            //             }
+            //             //$('#modalbody').trigger('reset');
+            //             loadTableData();
+            //             //$('#msg').text(data.message);
                         
-                    },
-                    error:function(data){
-                        console.log(data);
-                    }
+            //         },
+            //         error:(error)=>{
+            //             //console.log("Error Occured",data);
+            //             if(error) throw error;
+            //         }
                 
-                });
+            //     });
 
-            }
+            // }
 
         </script>
     </div>

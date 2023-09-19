@@ -15,7 +15,8 @@ class ajaxController extends Controller
 
     public function submit_data(Request $req)
     {
-        //$data = $req->all();
+        // $data = $req->all();
+        // dd($data);
 
         DB::table('students')->insert([
             'name'=>$req->name,
@@ -48,10 +49,13 @@ class ajaxController extends Controller
         return response()->json($data[0]);
     }
 
-    public function update_student(Request $req){
-        // return  $req->all();
+    public function update_student_data(Request $req){
+        // $data=$req->all();
+        // dd($data);
+        // print('<pre>');
+        // print_r($data);
         // exit;
-        DB::table('students')->where('id','=',$req->id)->update([
+        DB::table('students')->where('id','=',$req->e_id)->update([
             'name' => $req->e_name,
             'email' => $req->e_email, 'phone' => $req->e_phone, 'age' => $req->e_age, 'address' => $req->e_address
 
