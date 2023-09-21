@@ -42,3 +42,8 @@ https://www.learnvern.com/laravel-tutorial/introduction-to-laravel?show_calendar
 #### PHP cheat sheet
 https://hackr.io/blog/php-cheat-sheet
 
+#### MySQL Interview Questions and Answer
+https://www.turing.com/interview-questions/mysql <br>
+https://www.janbasktraining.com/blog/mysql-interview-questions/ <br>
+https://medium.com/@diptendu.tu/top-30-mysql-interview-questions-and-answers-2023-3101db8abc87 <br>
+
